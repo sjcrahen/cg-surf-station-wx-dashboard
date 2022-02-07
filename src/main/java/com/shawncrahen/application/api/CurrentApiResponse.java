@@ -1,6 +1,6 @@
-package com.shawncrahen.application.rest;
+package com.shawncrahen.application.api;
 
-import com.shawncrahen.application.rest.current.CurrentPredictions;
+import com.shawncrahen.application.api.current.CurrentPredictions;
 
 public class CurrentApiResponse {
 

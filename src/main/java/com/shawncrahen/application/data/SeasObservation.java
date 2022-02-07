@@ -4,7 +4,7 @@ import java.time.ZonedDateTime;
 import org.springframework.stereotype.Component;
 
 @Component
-public class WaveData {
+public class SeasObservation {
 
   private ZonedDateTime dateTime;
   private String dateTimeString;
@@ -17,7 +17,7 @@ public class WaveData {
   private String dominantPeriod;
   private String waveDirection;
 
-  public WaveData() {}
+  public SeasObservation() {}
 
   public int getYear() {
     return year;

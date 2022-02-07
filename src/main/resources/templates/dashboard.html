@@ -6,7 +6,7 @@
 </head>
 <body>
 
-	<div th:object="${waveData}">
+	<div th:object="${seas}">
 		<h3>Wave Data:</h3>
 		<hr>
 		<p>As of: <span th:text="*{dateTimeString}"></span></p>
@@ -14,7 +14,7 @@
 		<p>Period: <span th:text="*{dominantPeriod}"></span> sec</p>
 		<p>Direction: <span th:text="*{waveDirection}"></span> deg</p>
 	</div>
-	<div th:object="${windData}">
+	<div th:object="${wind}">
 		<h3>Wind Data:</h3>
 		<hr>
 		<p>As of: <span th:text="*{dateTimeString}"></span></p>
@@ -32,9 +32,9 @@
 	<div th:object="${weather}">
 		<h3>Weather:</h3>
 		<hr>
-		<img th:src="*{current.condition.icon}">
-		<p>Temp: <span th:text="*{current.temp_f}"></span> deg F</p>
-		<p>Wind: <span th:text="*{current.wind_mph}"></span> mph</p>
+		<img th:src="*{currentWeather.condition.icon}">
+		<p>Temp: <span th:text="*{currentWeather.temp_f}"></span> deg F</p>
+		<p>Wind: <span th:text="*{currentWeather.wind_mph}"></span> mph</p>
 	</div>
 </body>
 </html>

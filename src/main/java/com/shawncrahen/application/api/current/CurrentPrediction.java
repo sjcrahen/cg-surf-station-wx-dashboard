@@ -1,4 +1,4 @@
-package com.shawncrahen.application.rest.current;
+package com.shawncrahen.application.api.current;
 
 import java.time.ZonedDateTime;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

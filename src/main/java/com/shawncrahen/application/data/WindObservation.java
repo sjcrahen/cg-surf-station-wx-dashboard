@@ -4,7 +4,7 @@ import java.time.ZonedDateTime;
 import org.springframework.stereotype.Component;
 
 @Component
-public class WindData {
+public class WindObservation {
 
   private ZonedDateTime dateTime;
   private String dateTimeString;
@@ -17,7 +17,7 @@ public class WindData {
   private int windSpeed;
   private int windGust;
 
-  public WindData() {}
+  public WindObservation() {}
 
   public ZonedDateTime getDateTime() {
     return dateTime;

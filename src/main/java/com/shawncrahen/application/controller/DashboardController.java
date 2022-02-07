@@ -4,29 +4,45 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import com.shawncrahen.application.data.WaveData;
-import com.shawncrahen.application.data.WindData;
-import com.shawncrahen.application.task.ScheduledTasks;
+import com.shawncrahen.application.api.WeatherApiResponse;
+import com.shawncrahen.application.data.CalculatedPresentCurrent;
+import com.shawncrahen.application.data.SeasObservation;
+import com.shawncrahen.application.data.WindObservation;
+import com.shawncrahen.application.service.CalculatedPresentCurrentService;
+import com.shawncrahen.application.service.SeasObservationService;
+import com.shawncrahen.application.service.WindObservationService;
+import com.shawncrahen.application.task.ScheduledWeatherApiUpdater;
 
 @Controller
 public class DashboardController {
 
   @Autowired
-  WaveData waveData;
+  SeasObservationService seasObservationService;
 
   @Autowired
-  WindData windData;
+  WindObservationService windObservationService;
 
   @Autowired
-  ScheduledTasks scheduledTasks;
+  CalculatedPresentCurrentService calculatedPresentCurrentService;
+
+  @Autowired
+  ScheduledWeatherApiUpdater scheduledWeatherApiUpdater;
 
   @GetMapping("/units/{unit}")
   public String showDashboard(Model model) {
-    model.addAttribute("waveData", waveData);
-    model.addAttribute("windData", windData);
-    model.addAttribute("current", scheduledTasks.getCurrentApiResponse().getCurrent_predictions()
-            .calculatePresentCurrent());
-    model.addAttribute("weather", scheduledTasks.getWeatherApiResponse());
+    SeasObservation seas = seasObservationService.getSeasObservation();
+    model.addAttribute("seas", seas);
+
+    WindObservation wind = windObservationService.getWindObservation();
+    model.addAttribute("wind", wind);
+
+    CalculatedPresentCurrent current =
+            calculatedPresentCurrentService.getCalculatedPresentCurrent();
+    model.addAttribute("current", current);
+
+    WeatherApiResponse weather = scheduledWeatherApiUpdater.getWeatherApiResponse();
+    model.addAttribute("weather", weather);
+
     return "dashboard";
   }
 

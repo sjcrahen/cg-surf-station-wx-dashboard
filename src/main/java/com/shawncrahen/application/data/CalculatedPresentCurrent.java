@@ -1,12 +1,12 @@
 package com.shawncrahen.application.data;
 
-public class PresentCurrent {
+public class CalculatedPresentCurrent {
 
   private String dateTimeString;
   private String type;
   private String velocity;
 
-  public PresentCurrent(String dateTimeString, double velocity) {
+  public CalculatedPresentCurrent(String dateTimeString, double velocity) {
     this.dateTimeString = dateTimeString;
     if (velocity < -0.05) {
       this.type = "Ebb";

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Weather Dashboard</title>
+	<meta http-equiv="refresh" content="600">
+</head>
+<body>
+
+	<div th:object="${waveData}">
+		<h3>Wave Data:</h3>
+		<hr>
+		<p>As of: <span th:text="*{dateTimeString}"></span></p>
+		<p>Wave Height: <span th:text="*{waveHeight}"></span> ft</p>
+		<p>Period: <span th:text="*{dominantPeriod}"></span> sec</p>
+		<p>Direction: <span th:text="*{waveDirection}"></span> deg</p>
+	</div>
+	<div th:object="${windData}">
+		<h3>Wind Data:</h3>
+		<hr>
+		<p>As of: <span th:text="*{dateTimeString}"></span></p>
+		<p>Speed: <span th:text="*{windSpeed}"></span> kts</p>
+		<p>Gust: <span th:text="*{windGust}"></span> kts</p>
+		<p>Direction: <span th:text="*{windDirection}"></span> deg</p>
+	</div>
+	<div th:object="${current}">
+		<h3>Current:</h3>
+		<hr>
+		<p>As of: <span th:text="*{dateTimeString}"></span></p>
+		<p><span th:text="*{type}"></span></p>
+		<p>Speed: <span th:text="*{velocity}"></span> kts</p>
+	</div>
+	<div th:object="${weather}">
+		<h3>Weather:</h3>
+		<hr>
+		<img th:src="*{current.condition.icon}">
+		<p>Temp: <span th:text="*{current.temp_f}"></span> deg F</p>
+		<p>Wind: <span th:text="*{current.wind_mph}"></span> mph</p>
+	</div>
+</body>
+</html>

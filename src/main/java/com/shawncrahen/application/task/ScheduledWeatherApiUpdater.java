@@ -26,7 +26,7 @@ public class ScheduledWeatherApiUpdater {
   @Scheduled(fixedRate = 900000)
   private void updateWeather() {
     weatherApiResponse = restTemplate.getForObject(
-            "http://api.weatherapi.com/v1/current.json?key=3436a533716643b989d191452220402&q=01950&aqi=no",
+            "http://api.weatherapi.com/v1/forecast.json?key=3436a533716643b989d191452220402&q=01950&aqi=no",
             WeatherApiResponse.class);
   }
 

@@ -26,5 +26,11 @@ public class Condition {
     this.icon = icon;
   }
 
+  @Override
+  public String toString() {
+    return "{\n  \"Condition\": {\n    \"text\":\"" + text + "\", \n    \"icon\":\"" + icon
+            + "\"\n  }\n}";
+  }
+
 
 }

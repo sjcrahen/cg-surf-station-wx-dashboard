@@ -44,7 +44,7 @@ public class CalculatedPresentCurrentService {
     double presentCurrent = firstVelocity + (diffFromNow.toMinutes() * velocityChangePerMinute);
 
     return new CalculatedPresentCurrent(now.format(DateFormatUtility.getFormatter()),
-            presentCurrent);
+            presentCurrent, first.getMeanEbbDir(), first.getMeanFloodDir());
   }
 
 }

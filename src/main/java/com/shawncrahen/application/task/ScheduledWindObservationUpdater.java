@@ -56,7 +56,9 @@ public class ScheduledWindObservationUpdater {
       windObservation.setDateTime(zuluTime.withZoneSameInstant(ZoneId.of("America/New_York")));
       windObservation.setDateTimeString(
               windObservation.getDateTime().format(DateFormatUtility.getFormatter()));
-      windObservation.setWindDirection(String.format("%3s", windDirection).replace(' ', '0'));
+      windObservation.setWindDirection(
+              String.format("%3d", (Math.round(Double.parseDouble(windDirection) / 5)) * 5)
+                      .replace(' ', '0'));
       windObservation.setWindSpeed((int) Math.round(windSpeed * 1.94384));
       windObservation.setWindGust((int) Math.round(windGust * 1.94384));
     } catch (MalformedURLException e) {

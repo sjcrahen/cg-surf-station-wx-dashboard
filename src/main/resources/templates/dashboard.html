@@ -3,38 +3,68 @@
 <head>
 	<title>Weather Dashboard</title>
 	<meta http-equiv="refresh" content="600">
+	<link rel="stylesheet" href="/css/main.css"/>
 </head>
 <body>
+	<div class="flex-container">
+		<div class="card" th:object="${seas}">
+			<h3>SEAS</h3>
+			<p class="time"><span th:text="*{dateTimeString}"></span></p>
+			<div class="data-display-container">
+				<p><span class="data" th:text="*{waveHeight}"></span><br>ft</p>
+				<p><img class="swell-arrow" th:src="@{/img/swell-arrow.png}" th:style="'transform:rotate('+*{waveDirection}+'deg)'"/>
+					<!-- <br><span th:text="*{waveDirection}"></span>&deg--></p>
+				<p><span class="data" th:text="*{dominantPeriod}"></span><br>sec</p>
 
-	<div th:object="${seas}">
-		<h3>Wave Data:</h3>
-		<hr>
-		<p>As of: <span th:text="*{dateTimeString}"></span></p>
-		<p>Wave Height: <span th:text="*{waveHeight}"></span> ft</p>
-		<p>Period: <span th:text="*{dominantPeriod}"></span> sec</p>
-		<p>Direction: <span th:text="*{waveDirection}"></span> deg</p>
+			</div>
+		</div>
+		<div class="card" th:object="${wind}">
+			<h3>WIND</h3>
+			<p class="time"><span th:text="*{dateTimeString}"></span></p>
+			<div class="data-display-container">
+				<p><span class="data" th:text="*{windSpeed}"></span><br>kts</p>
+				<p><img class="wind-arrow" th:src="@{/img/wind-arrow.png}" th:style="'transform:rotate('+*{windDirection}+'deg)'"/>
+					<!-- <br><span th:text="*{windDirection}"></span>&deg--></p>
+				<p><span class="data" th:text="*{windGust}"></span><br>gust</p>
+			</div>
+		</div>
+		<div class="card" th:object="${current}">
+			<h3>CURRENT</h3>
+			<p class="time"><span th:text="*{dateTimeString}"></span></p>
+			<div class="data-display-container">
+				<p><span class="data" th:text="*{velocity}"></span><br>kts</p>
+				<p><img class="current-arrow" th:src="@{/img/currentarrow.png}" th:style="'transform:rotate('+*{direction}+'deg)'"/>
+					<br><span th:text="*{type}"></span></p>
+			</div>
+		</div>
 	</div>
-	<div th:object="${wind}">
-		<h3>Wind Data:</h3>
-		<hr>
-		<p>As of: <span th:text="*{dateTimeString}"></span></p>
-		<p>Speed: <span th:text="*{windSpeed}"></span> kts</p>
-		<p>Gust: <span th:text="*{windGust}"></span> kts</p>
-		<p>Direction: <span th:text="*{windDirection}"></span> deg</p>
-	</div>
-	<div th:object="${current}">
-		<h3>Current:</h3>
-		<hr>
-		<p>As of: <span th:text="*{dateTimeString}"></span></p>
-		<p><span th:text="*{type}"></span></p>
-		<p>Speed: <span th:text="*{velocity}"></span> kts</p>
-	</div>
-	<div th:object="${weather}">
-		<h3>Weather:</h3>
-		<hr>
-		<img th:src="*{currentWeather.condition.icon}">
-		<p>Temp: <span th:text="*{currentWeather.temp_f}"></span> deg F</p>
-		<p>Wind: <span th:text="*{currentWeather.wind_mph}"></span> mph</p>
+	<div class="flex-container">
+		<div class="card" th:object="${weather}">
+			<h3>WEATHER</h3>
+			<div class="data-display-container">
+				<p id="temp-label"><span id="temp" th:text="*{currentWeather.temp_f}"></span>&deg</p>
+			</div>
+			<div class="data-display-container">
+				<img id="weather-icon" th:src="*{currentWeather.condition.icon}">
+				<p th:each="forecastDay : ${weather.forecast.forecastDay}"><span class="weather-data-small">
+					<span th:text="${forecastDay.day.maxtemp_f}"></span>&deg/ <span th:text="${forecastDay.day.mintemp_f}"></span>&deg<br>
+					Wind: <span th:text="*{currentWeather.wind_mph}"></span> mph</span></p>
+			</div>
+		</div>
+		<div class="ss-flex-container">
+			<div class="ss-card">
+				<div class="weather-data-display-container">
+				<img class="ss-img" th:src="@{/img/sunrise.png}"/>
+				<div class="ss-time" th:each="forecastDay : ${weather.forecast.forecastDay}"><span th:text="${forecastDay.astro.sunrise}"></span></div>
+				</div>
+			</div>
+			<div class="ss-card">
+				<div class="weather-data-display-container">
+				<img class="ss-img" th:src="@{/img/sunset.png}"/>
+				<div class="ss-time" th:each="forecastDay : ${weather.forecast.forecastDay}"><span th:text="${forecastDay.astro.sunset}"></span></div>
+				</div>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

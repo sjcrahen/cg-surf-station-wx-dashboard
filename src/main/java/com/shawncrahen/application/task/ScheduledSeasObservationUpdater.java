@@ -59,9 +59,9 @@ public class ScheduledSeasObservationUpdater {
       seasObservation
               .setWaveHeight(String.format("%.1f", (Double.parseDouble(waveHeight) * 3.28084)));
       seasObservation
-              .setDominantPeriod(String.format("%.1f", (Double.parseDouble(dominantPeriod))));
+              .setDominantPeriod(dominantPeriod);
       seasObservation.setWaveDirection(
-              String.format("%03d", (Integer.parseInt(waveDirection))));
+              String.format("%03d", Math.round(Double.parseDouble(waveDirection) / 5) * 5));
     } catch (MalformedURLException e) {
       e.printStackTrace();
     } catch (IOException e) {

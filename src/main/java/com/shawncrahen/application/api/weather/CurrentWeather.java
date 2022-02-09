@@ -35,4 +35,10 @@ public class CurrentWeather {
     this.wind_mph = (int) Math.round(wind_mph);
   }
 
+  @Override
+  public String toString() {
+    return "{\n  \"CurrentWeather\": {\n    \"temp_f\":\"" + temp_f + "\", \n    \"condition\":\""
+            + condition + "\", \n    \"wind_mph\":\"" + wind_mph + "\"\n  }\n}";
+  }
+
 }

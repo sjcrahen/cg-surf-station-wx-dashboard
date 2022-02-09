@@ -5,13 +5,17 @@ public class CalculatedPresentCurrent {
   private String dateTimeString;
   private String type;
   private String velocity;
+  private String direction;
 
-  public CalculatedPresentCurrent(String dateTimeString, double velocity) {
+  public CalculatedPresentCurrent(String dateTimeString, double velocity, String ebbDirection,
+          String floodDirection) {
     this.dateTimeString = dateTimeString;
     if (velocity < -0.05) {
       this.type = "Ebb";
+      direction = ebbDirection;
     } else if (velocity > 0.049) {
       this.type = "Flood";
+      direction = floodDirection;
     } else {
       this.type = "Slack";
     }
@@ -42,10 +46,19 @@ public class CalculatedPresentCurrent {
     this.dateTimeString = dateTimeString;
   }
 
+  public String getDirection() {
+    return direction;
+  }
+
+  public void setDirection(String direction) {
+    this.direction = direction;
+  }
+
   @Override
   public String toString() {
-    return "{\n  \"PresentCurrent\": {\n    \"type\":\"" + type + "\", \n    \"velocity\":\""
-            + velocity + "\"\n  }\n}";
+    return "{\n  \"CalculatedPresentCurrent\": {\n    \"dateTimeString\":\"" + dateTimeString
+            + "\", \n    \"type\":\"" + type + "\", \n    \"velocity\":\"" + velocity
+            + "\", \n    \"direction\":\"" + direction + "\"\n  }\n}";
   }
 
 }

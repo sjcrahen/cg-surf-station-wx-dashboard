@@ -18,6 +18,10 @@ public class CurrentPrediction {
   @JsonProperty("Velocity_Major")
   private String velocity;
 
+  private String meanFloodDir;
+
+  private String meanEbbDir;
+
   public CurrentPrediction() {}
 
   public String getType() {
@@ -54,10 +58,27 @@ public class CurrentPrediction {
     this.time = time;
   }
 
+  public String getMeanFloodDir() {
+    return meanFloodDir;
+  }
+
+  public void setMeanFloodDir(String meanFloodDir) {
+    this.meanFloodDir = meanFloodDir;
+  }
+
+  public String getMeanEbbDir() {
+    return meanEbbDir;
+  }
+
+  public void setMeanEbbDir(String meanEbbDir) {
+    this.meanEbbDir = meanEbbDir;
+  }
+
   @Override
   public String toString() {
-    return "{\n  \"CP\": {\n    \"time\":\"" + time + "\", \n    \"velocity\":\"" + velocity
-            + "\"\n  }\n}";
+    return "{\n  \"CurrentPrediction\": {\n    \"dateTime\":\"" + dateTime + "\", \n    \"type\":\""
+            + type + "\", \n    \"velocity\":\"" + velocity + "\", \n    \"meanFloodDir\":\""
+            + meanFloodDir + "\", \n    \"meanEbbDir\":\"" + meanEbbDir + "\"\n  }\n}";
   }
 
 }

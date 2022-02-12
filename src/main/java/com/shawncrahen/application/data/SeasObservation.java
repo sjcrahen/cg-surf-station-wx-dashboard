@@ -2,26 +2,19 @@ package com.shawncrahen.application.data;
 
 import java.time.ZonedDateTime;
 import org.springframework.stereotype.Component;
+import com.shawncrahen.application.utility.DirectionMapper;
 
 @Component
 public class SeasObservation {
 
   private ZonedDateTime dateTime;
   private String dateTimeString;
-  private int year;
-  private int month;
-  private int day;
-  private int hour;
-  private int minute;
   private String waveHeight;
   private String dominantPeriod;
   private String waveDirection;
+  private String direction;
 
   public SeasObservation() {}
-
-  public int getYear() {
-    return year;
-  }
 
   public ZonedDateTime getDateTime() {
     return dateTime;
@@ -37,42 +30,6 @@ public class SeasObservation {
 
   public void setDateTimeString(String dateTimeString) {
     this.dateTimeString = dateTimeString;
-  }
-
-  public void setYear(int year) {
-    this.year = year;
-  }
-
-  public int getMonth() {
-    return month;
-  }
-
-  public void setMonth(int month) {
-    this.month = month;
-  }
-
-  public int getDay() {
-    return day;
-  }
-
-  public void setDay(int day) {
-    this.day = day;
-  }
-
-  public int getHour() {
-    return hour;
-  }
-
-  public void setHour(int hour) {
-    this.hour = hour;
-  }
-
-  public int getMinute() {
-    return minute;
-  }
-
-  public void setMinute(int minute) {
-    this.minute = minute;
   }
 
   public String getWaveHeight() {
@@ -95,17 +52,25 @@ public class SeasObservation {
     return waveDirection;
   }
 
-  public void setWaveDirection(String waveDirection) {
-    this.waveDirection = waveDirection;
+  public void setWaveDirection(String direction) {
+    this.waveDirection = direction;
+  }
+
+  public String getDirection() {
+    return direction;
+  }
+
+  public void setDirection(long direction) {
+    this.direction = DirectionMapper.mapDirection(direction);
   }
 
   @Override
   public String toString() {
-    return "{\n  \"WaveDataSource\": {\n    \"dateTime\":\"" + dateTime + "\", \n    \"year\":\""
-            + year + "\", \n    \"month\":\"" + month + "\", \n    \"day\":\"" + day
-            + "\", \n    \"hour\":\"" + hour + "\", \n    \"minute\":\"" + minute
-            + "\", \n    \"waveHeight\":\"" + waveHeight + "\", \n    \"dominantPeriod\":\""
-            + dominantPeriod + "\", \n    \"waveDirection\":\"" + waveDirection + "\"\n  }\n}";
+    return "{\n  \"SeasObservation\": {\n    \"dateTime\":\"" + dateTime
+            + "\", \n    \"dateTimeString\":\"" + dateTimeString + "\", \n    \"waveHeight\":\""
+            + waveHeight + "\", \n    \"dominantPeriod\":\"" + dominantPeriod
+            + "\", \n    \"waveDirection\":\"" + waveDirection + "\", \n    \"direction\":\""
+            + direction + "\"\n  }\n}";
   }
 
 }

@@ -2,6 +2,7 @@ package com.shawncrahen.application.data;
 
 import java.time.ZonedDateTime;
 import org.springframework.stereotype.Component;
+import com.shawncrahen.application.utility.DirectionMapper;
 
 @Component
 public class WindObservation {
@@ -14,6 +15,7 @@ public class WindObservation {
   private int hour;
   private int minute;
   private String windDirection;
+  private String direction;
   private int windSpeed;
   private int windGust;
 
@@ -81,6 +83,14 @@ public class WindObservation {
 
   public void setWindDirection(String windDirection) {
     this.windDirection = windDirection;
+  }
+
+  public String getDirection() {
+    return direction;
+  }
+
+  public void setDirection(long direction) {
+    this.direction = DirectionMapper.mapDirection(direction);
   }
 
   public int getWindSpeed() {

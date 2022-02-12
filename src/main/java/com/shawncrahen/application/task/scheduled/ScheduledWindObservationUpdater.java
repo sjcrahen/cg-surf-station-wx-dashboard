@@ -1,4 +1,4 @@
-package com.shawncrahen.application.task;
+package com.shawncrahen.application.task.scheduled;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,14 +11,19 @@ import java.time.ZonedDateTime;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import com.shawncrahen.application.data.WindObservation;
-import com.shawncrahen.application.utility.DateFormatUtility;
+import com.shawncrahen.application.entity.Station;
+import com.shawncrahen.application.service.StationService;
+import com.shawncrahen.application.utility.DateTimeFormatUtility;
 
 @Component
-public class ScheduledWindObservationUpdater {
+public class ScheduledWindObservationUpdater implements ScheduledApiUpdater {
 
+  private StationService stationService;
   private WindObservation windObservation;
 
-  public ScheduledWindObservationUpdater(WindObservation windObservation) {
+  private ScheduledWindObservationUpdater(StationService stationService,
+          WindObservation windObservation) {
+    this.stationService = stationService;
     this.windObservation = windObservation;
   }
 
@@ -30,9 +35,13 @@ public class ScheduledWindObservationUpdater {
     this.windObservation = windObservation;
   }
 
-  @Scheduled(fixedRate = 300000)
-  private void updateWindData() {
-    String url = "https://www.ndbc.noaa.gov/data/realtime2/IOSN3.txt";
+  @Override
+  @Scheduled(fixedRate = 180000)
+  public void update() {
+    Station station = stationService.getStation();
+    String url = "https://www.ndbc.noaa.gov/data/realtime2/"
+            + station.getWindSourceId()
+            + ".txt";
     try (BufferedReader in =
             new BufferedReader(new InputStreamReader(new URL(url).openStream()))) {
       String dataLine = "";
@@ -55,10 +64,11 @@ public class ScheduledWindObservationUpdater {
               ZonedDateTime.of(LocalDateTime.of(year, month, day, hour, minute), ZoneId.of("Z"));
       windObservation.setDateTime(zuluTime.withZoneSameInstant(ZoneId.of("America/New_York")));
       windObservation.setDateTimeString(
-              windObservation.getDateTime().format(DateFormatUtility.getFormatter()));
+              windObservation.getDateTime().format(DateTimeFormatUtility.getComplexFormatter()));
       windObservation.setWindDirection(
               String.format("%3d", (Math.round(Double.parseDouble(windDirection) / 5)) * 5)
                       .replace(' ', '0'));
+      windObservation.setDirection(Math.round(Double.parseDouble(windDirection) / 5) * 5);
       windObservation.setWindSpeed((int) Math.round(windSpeed * 1.94384));
       windObservation.setWindGust((int) Math.round(windGust * 1.94384));
     } catch (MalformedURLException e) {

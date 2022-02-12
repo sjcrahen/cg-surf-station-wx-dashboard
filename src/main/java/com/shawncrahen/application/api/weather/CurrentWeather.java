@@ -8,6 +8,10 @@ public class CurrentWeather {
   private int temp_f;
   private Condition condition;
   private int wind_mph;
+  private String wind_dir;
+  private int gust_mph;
+  private int feelslike_f;
+  private String last_updated;
 
   private CurrentWeather() {}
 
@@ -35,10 +39,44 @@ public class CurrentWeather {
     this.wind_mph = (int) Math.round(wind_mph);
   }
 
+  public String getWind_dir() {
+    return wind_dir;
+  }
+
+  public void setWind_dir(String wind_dir) {
+    this.wind_dir = wind_dir;
+  }
+
+  public int getGust_mph() {
+    return gust_mph;
+  }
+
+  public void setGust_mph(double gust_mph) {
+    this.gust_mph = (int) Math.round(gust_mph);
+  }
+
+  public int getFeelslike_f() {
+    return feelslike_f;
+  }
+
+  public void setFeelslike_f(double feelslike_f) {
+    this.feelslike_f = (int) Math.round(feelslike_f);
+  }
+
+  public String getLast_updated() {
+    return last_updated;
+  }
+
+  public void setLast_updated(String last_updated) {
+    this.last_updated = last_updated;
+  }
+
   @Override
   public String toString() {
     return "{\n  \"CurrentWeather\": {\n    \"temp_f\":\"" + temp_f + "\", \n    \"condition\":\""
-            + condition + "\", \n    \"wind_mph\":\"" + wind_mph + "\"\n  }\n}";
+            + condition + "\", \n    \"wind_mph\":\"" + wind_mph + "\", \n    \"wind_dir\":\""
+            + wind_dir + "\", \n    \"gust_mph\":\"" + gust_mph + "\", \n    \"feelslike_f\":\""
+            + feelslike_f + "\", \n    \"last_updated\":\"" + last_updated + "\"\n  }\n}";
   }
 
 }

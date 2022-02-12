@@ -2,7 +2,7 @@ package com.shawncrahen.application.service;
 
 import org.springframework.stereotype.Service;
 import com.shawncrahen.application.api.WeatherApiResponse;
-import com.shawncrahen.application.task.ScheduledWeatherApiUpdater;
+import com.shawncrahen.application.task.scheduled.ScheduledWeatherApiUpdater;
 
 @Service
 public class WeatherService {

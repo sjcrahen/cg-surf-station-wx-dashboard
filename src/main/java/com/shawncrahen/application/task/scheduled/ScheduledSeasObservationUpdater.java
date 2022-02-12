@@ -1,4 +1,4 @@
-package com.shawncrahen.application.task;
+package com.shawncrahen.application.task.scheduled;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,14 +11,19 @@ import java.time.ZonedDateTime;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import com.shawncrahen.application.data.SeasObservation;
-import com.shawncrahen.application.utility.DateFormatUtility;
+import com.shawncrahen.application.entity.Station;
+import com.shawncrahen.application.service.StationService;
+import com.shawncrahen.application.utility.DateTimeFormatUtility;
 
 @Component
-public class ScheduledSeasObservationUpdater {
+public class ScheduledSeasObservationUpdater implements ScheduledApiUpdater {
 
+  private StationService stationService;
   private SeasObservation seasObservation;
 
-  public ScheduledSeasObservationUpdater(SeasObservation seasObservation) {
+  private ScheduledSeasObservationUpdater(StationService stationService,
+          SeasObservation seasObservation) {
+    this.stationService = stationService;
     this.seasObservation = seasObservation;
   }
 
@@ -30,9 +35,13 @@ public class ScheduledSeasObservationUpdater {
     this.seasObservation = seasObservation;
   }
 
-  @Scheduled(fixedRate = 300000)
-  private void updateSeasObservation() {
-    String url = "https://www.ndbc.noaa.gov/data/realtime2/44098.txt";
+  @Override
+  @Scheduled(fixedRate = 180000)
+  public void update() {
+    Station station = stationService.getStation();
+    String url = "https://www.ndbc.noaa.gov/data/realtime2/"
+            + station.getWavesSourceId()
+            + ".txt";
     try (BufferedReader in =
             new BufferedReader(new InputStreamReader(new URL(url).openStream()))) {
       String dataLine = "";
@@ -55,13 +64,14 @@ public class ScheduledSeasObservationUpdater {
               ZonedDateTime.of(LocalDateTime.of(year, month, day, hour, minute), ZoneId.of("Z"));
       seasObservation.setDateTime(zuluTime.withZoneSameInstant(ZoneId.of("America/New_York")));
       seasObservation.setDateTimeString(
-              seasObservation.getDateTime().format(DateFormatUtility.getFormatter()));
+              seasObservation.getDateTime().format(DateTimeFormatUtility.getComplexFormatter()));
       seasObservation
               .setWaveHeight(String.format("%.1f", (Double.parseDouble(waveHeight) * 3.28084)));
       seasObservation
               .setDominantPeriod(dominantPeriod);
       seasObservation.setWaveDirection(
-              String.format("%03d", Math.round(Double.parseDouble(waveDirection) / 5) * 5));
+              String.valueOf(Math.round(Double.parseDouble(waveDirection) / 5) * 5));
+      seasObservation.setDirection(Math.round(Double.parseDouble(waveDirection) / 5) * 5);
     } catch (MalformedURLException e) {
       e.printStackTrace();
     } catch (IOException e) {

@@ -2,66 +2,134 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<title>Weather Dashboard</title>
-	<meta http-equiv="refresh" content="600">
+	<meta http-equiv="refresh" content="300">
 	<link rel="stylesheet" href="/css/main.css"/>
 </head>
 <body>
-	<div class="flex-container">
+	<h1>Station <span th:text="${stationName}"></span>&nbsp<a id="stations-link" href="">change station</a></h1>
+	<div class="flex-container main-dashboard">
 		<div class="card" th:object="${seas}">
-			<h3>SEAS</h3>
+			<h3>Significant Wave Height</h3>
 			<p class="time"><span th:text="*{dateTimeString}"></span></p>
-			<div class="data-display-container">
-				<p><span class="data" th:text="*{waveHeight}"></span><br>ft</p>
-				<p><img class="swell-arrow" th:src="@{/img/swell-arrow.png}" th:style="'transform:rotate('+*{waveDirection}+'deg)'"/>
-					<!-- <br><span th:text="*{waveDirection}"></span>&deg--></p>
-				<p><span class="data" th:text="*{dominantPeriod}"></span><br>sec</p>
-
+			<div class="data-display-container-top">
+				<div class="col-3">
+					<p><span class="data" th:text="*{waveHeight}"></span></p>
+				</div>
+				<div class="col-3">
+					<p><img class="swell-arrow" th:src="@{/img/swell-arrow.png}" th:style="'transform:rotate('+*{waveDirection}+'deg)'"/>
+				</div>
+				<div class="col-3">
+					<p><span class="data" th:text="*{dominantPeriod}"></span></p>
+				</div>
+			</div>
+			<div class="data-display-container-bottom">
+				<div class="col-3">
+					<p>ft</p>
+				</div>	
+				<div class="col-3">
+					<p><span th:text="*{direction}"></span></p>
+				</div>	
+				<div class="col-3">
+					<p>sec</p>
+				</div>	
 			</div>
 		</div>
 		<div class="card" th:object="${wind}">
-			<h3>WIND</h3>
+			<h3>Wind</h3>
 			<p class="time"><span th:text="*{dateTimeString}"></span></p>
-			<div class="data-display-container">
-				<p><span class="data" th:text="*{windSpeed}"></span><br>kts</p>
-				<p><img class="wind-arrow" th:src="@{/img/wind-arrow.png}" th:style="'transform:rotate('+*{windDirection}+'deg)'"/>
-					<!-- <br><span th:text="*{windDirection}"></span>&deg--></p>
-				<p><span class="data" th:text="*{windGust}"></span><br>gust</p>
+			<div class="data-display-container-top">
+				<div class="col-3">
+					<p><span class="data" th:text="*{windSpeed}"></span></p>
+				</div>
+				<div class="col-3">
+					<p><img class="wind-arrow" th:src="@{/img/wind-arrow.png}" th:style="'transform:rotate('+*{windDirection}+'deg)'"/>
+				</div>
+				<div class="col-3">
+					<p><span class="data" th:text="*{windGust}"></span></p>
+				</div>
+			</div>
+			<div class="data-display-container-bottom">
+				<div class="col-3">
+					<p>kts</p>
+				</div>
+				<div class="col-3">
+					<p><span th:text="*{direction}"></span></p>
+				</div>
+				<div class="col-3">
+					<p>gust</p>
+				</div>
 			</div>
 		</div>
 		<div class="card" th:object="${current}">
-			<h3>CURRENT</h3>
+			<h3>Current & Next Tide</h3>
 			<p class="time"><span th:text="*{dateTimeString}"></span></p>
-			<div class="data-display-container">
-				<p><span class="data" th:text="*{velocity}"></span><br>kts</p>
-				<p><img class="current-arrow" th:src="@{/img/currentarrow.png}" th:style="'transform:rotate('+*{direction}+'deg)'"/>
-					<br><span th:text="*{type}"></span></p>
-			</div>
-		</div>
-	</div>
-	<div class="flex-container">
-		<div class="card" th:object="${weather}">
-			<h3>WEATHER</h3>
-			<div class="data-display-container">
-				<p id="temp-label"><span id="temp" th:text="*{currentWeather.temp_f}"></span>&deg</p>
-			</div>
-			<div class="data-display-container">
-				<img id="weather-icon" th:src="*{currentWeather.condition.icon}">
-				<p th:each="forecastDay : ${weather.forecast.forecastDay}"><span class="weather-data-small">
-					<span th:text="${forecastDay.day.maxtemp_f}"></span>&deg/ <span th:text="${forecastDay.day.mintemp_f}"></span>&deg<br>
-					Wind: <span th:text="*{currentWeather.wind_mph}"></span> mph</span></p>
-			</div>
-		</div>
-		<div class="ss-flex-container">
-			<div class="ss-card">
-				<div class="weather-data-display-container">
-				<img class="ss-img" th:src="@{/img/sunrise.png}"/>
-				<div class="ss-time" th:each="forecastDay : ${weather.forecast.forecastDay}"><span th:text="${forecastDay.astro.sunrise}"></span></div>
+			<div class="data-display-container-top">
+				<div class="col-3">
+					<p><span class="data" th:text="*{velocity}"></span></p>
+				</div>
+				<div class="col-3">
+					<p><img class="current-arrow" th:src="@{/img/currentarrow.png}" th:style="'transform:rotate('+*{direction}+'deg)'"/></p>
+				</div>
+				<div class="col-3">
+					<p><span class="data" th:text="${nextTide.time}"></span></p>
 				</div>
 			</div>
-			<div class="ss-card">
-				<div class="weather-data-display-container">
-				<img class="ss-img" th:src="@{/img/sunset.png}"/>
-				<div class="ss-time" th:each="forecastDay : ${weather.forecast.forecastDay}"><span th:text="${forecastDay.astro.sunset}"></span></div>
+			<div class="data-display-container-bottom">
+				<div class="col-3">
+					<p>kts</p>
+				</div>			
+				<div class="col-3">
+					<p><span th:text="*{type}"></span></p>
+				</div>			
+				<div class="col-3">
+					<p><span th:text="${nextTide.type}"></span></p>
+				</div>			
+			</div>
+		</div>
+		<div class="card" th:object="${weather}">
+			<h3>Current Weather</h3>
+			<p class="time"><span th:text="*{currentWeather.last_updated}"></span></p>
+			<div class="main-temp-data">
+				<p class="data current-temp"><span th:text="*{currentWeather.temp_f}"></span>&deg</p>
+				<p><span th:text="*{currentWeather.condition.text}"></span></p>
+			</div>
+			<div class="weather-data"> 
+				<p><img id="weather-icon" th:src="*{currentWeather.condition.icon}"></p>
+				<div class="weather-data-data">
+					<p><span class="small">Feels like:&nbsp</span><span th:text="*{currentWeather.feelslike_f}"></span>&deg</p>
+					<p><span class="small">Wind:&nbsp</span><span th:text="*{currentWeather.wind_mph}"></span> mph  &nbsp<img id="wind" th:src="@{/img/wind.svg}"/>&nbsp
+					<span th:text="*{currentWeather.wind_dir}"></span></p>
+				</div>
+			</div>
+		</div>
+		<div class="card" th:object="${weather}" th:each="forecastDay : ${weather.forecast.forecastDay}">
+			<h3>Today's Forecast</h3>
+			<p class="time"><span th:text="${forecastDay.date}"></span></p>
+			<div class="forecast-icon-container">
+				<p><img id="forecast-icon" th:src="${forecastDay.day.condition.icon}"></p>
+				<p th:each="forecastDay : ${weather.forecast.forecastDay}"><span th:text="${forecastDay.day.condition.text}"></span></p>
+			</div>
+			<div class="forecast-data"> 
+				<div class="forecast-data-container-left" th:each="forecastDay : ${weather.forecast.forecastDay}">
+					<p><span class="small">Hi / Lo:&nbsp</span> <span th:text="${forecastDay.day.maxtemp_f}"></span>&deg/ <span th:text="${forecastDay.day.mintemp_f}"></span>&deg</p>
+					<p><span class="small">Wind:&nbsp</span> <span th:text="${forecastDay.day.maxwind_mph}"></span> mph</p>
+					<p><span class="small">Precip:&nbsp</span> <span th:text="${forecastDay.day.chance_of_precip}"></span>&#37</p>
+				</div>
+				<div class="forecast-data-container-right">
+					<div class="flex-container">
+					<div class="ss-icon-container">
+						<img class="ss-img" th:src="@{/img/sunrise.png}"/>
+					</div>
+					<div class="ss-data-container">
+						<span class="ss-time" th:each="forecastDay : ${weather.forecast.forecastDay}"><span th:text="${forecastDay.astro.sunrise}"></span></span>
+					</div>
+					<div class="ss-icon-container">
+						<img class="ss-img" th:src="@{/img/sunset.png}"/>
+					</div>
+					<div class="ss-data-container">
+						<span class="ss-time" th:each="forecastDay : ${weather.forecast.forecastDay}"><span th:text="${forecastDay.astro.sunset}"></span></span>
+					</div>
+				</div>
 				</div>
 			</div>
 		</div>

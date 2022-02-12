@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 import com.shawncrahen.application.api.CurrentApiResponse;
 import com.shawncrahen.application.api.current.CurrentPrediction;
 import com.shawncrahen.application.data.CalculatedPresentCurrent;
-import com.shawncrahen.application.task.ScheduledCurrentPredictionsApiUpdater;
-import com.shawncrahen.application.utility.DateFormatUtility;
+import com.shawncrahen.application.task.scheduled.ScheduledCurrentPredictionsApiUpdater;
+import com.shawncrahen.application.utility.DateTimeFormatUtility;
 
 @Service
 public class CalculatedPresentCurrentService {
@@ -23,10 +23,8 @@ public class CalculatedPresentCurrentService {
   public CalculatedPresentCurrent getCalculatedPresentCurrent() {
     CurrentApiResponse currentApiResponse =
             scheduledCurrentPredictionsUpdater.getCurrentApiResponse();
-    CurrentPrediction[] predictions = currentApiResponse.getCurrent_predictions().getPredictions();
-    for (CurrentPrediction prediction : predictions) {
-      prediction.setDateTime(prediction.getTime());
-    }
+    CurrentPrediction[] predictions =
+            currentApiResponse.getCurrent_predictions().getPredictions();
 
     ZonedDateTime now = ZonedDateTime.now(ZoneId.systemDefault());
     int i = 0;
@@ -43,7 +41,7 @@ public class CalculatedPresentCurrentService {
     double velocityChangePerMinute = (lastVelocity - firstVelocity) / periodDuration.toMinutes();
     double presentCurrent = firstVelocity + (diffFromNow.toMinutes() * velocityChangePerMinute);
 
-    return new CalculatedPresentCurrent(now.format(DateFormatUtility.getFormatter()),
+    return new CalculatedPresentCurrent(now.format(DateTimeFormatUtility.getComplexFormatter()),
             presentCurrent, first.getMeanEbbDir(), first.getMeanFloodDir());
   }
 

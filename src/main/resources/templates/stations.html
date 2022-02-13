@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Stations</title>
+</head>
+<body>
+	<h1>Select a station</h1>
+	<div th:each="station : ${stations}" th:object="${station}">
+		<p><a th:href="@{/stations/{id}(id=${station.stationId})}"><span th:text="*{stationName}"></span></a>
+	</div>
+</body>
+</html>

@@ -3,16 +3,17 @@ package com.shawncrahen.application.service;
 import org.springframework.stereotype.Service;
 import com.shawncrahen.application.data.ActiveStation;
 import com.shawncrahen.application.entity.Station;
+import com.shawncrahen.application.repository.StationRepository;
 
 @Service
 public class StationService {
 
+  private StationRepository repository;
   private ActiveStation activeStation;
-  private Station station;
 
-  private StationService(ActiveStation activeStation, Station station) {
+  public StationService(StationRepository repository, ActiveStation activeStation) {
+    this.repository = repository;
     this.activeStation = activeStation;
-    this.station = station;
   }
 
   public ActiveStation getActiveStation() {
@@ -24,17 +25,16 @@ public class StationService {
   }
 
   public Station getStation() {
-    return station;
+    return repository.findByStationId(activeStation.getName());
   }
 
-  public void setStation(Station station) {
-    this.station = station;
+  public Iterable<Station> getAllStations() {
+    return repository.findAll();
   }
 
   @Override
   public String toString() {
-    return "{\n  \"StationService\": {\n    \"activeStation\":\"" + activeStation
-            + "\", \n    \"station\":\"" + station + "\"\n  }\n}";
+    return "{\n  \"StationService\": {\n    \"activeStation\":\"" + activeStation + "\"\n  }\n}";
   }
 
 }

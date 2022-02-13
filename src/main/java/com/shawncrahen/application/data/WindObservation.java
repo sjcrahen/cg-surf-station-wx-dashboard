@@ -90,6 +90,8 @@ public class WindObservation {
   }
 
   public void setDirection(long direction) {
+    if (direction == -1)
+      this.direction = null;
     this.direction = DirectionMapper.mapDirection(direction);
   }
 
@@ -111,11 +113,21 @@ public class WindObservation {
 
   @Override
   public String toString() {
-    return "{\n  \"WindDataSource\": {\n    \"dateTime\":\"" + dateTime + "\", \n    \"year\":\""
-            + year + "\", \n    \"month\":\"" + month + "\", \n    \"day\":\"" + day
+    return "{\n  \"WindObservation\": {\n    \"dateTime\":\"" + dateTime
+            + "\", \n    \"dateTimeString\":\"" + dateTimeString + "\", \n    \"year\":\"" + year
+            + "\", \n    \"month\":\"" + month + "\", \n    \"day\":\"" + day
             + "\", \n    \"hour\":\"" + hour + "\", \n    \"minute\":\"" + minute
-            + "\", \n    \"windDirection\":\"" + windDirection + "\", \n    \"windSpeed\":\""
-            + windSpeed + "\", \n    \"windGust\":\"" + windGust + "\"\n  }\n}";
+            + "\", \n    \"windDirection\":\"" + windDirection + "\", \n    \"direction\":\""
+            + direction + "\", \n    \"windSpeed\":\"" + windSpeed + "\", \n    \"windGust\":\""
+            + windGust + "\"\n  }\n}";
+  }
+
+  public void reset() {
+    this.setDateTimeString(null);
+    this.setWindSpeed(0);
+    this.setWindGust(0);
+    this.setWindDirection(null);
+    this.setDirection(-1);
   }
 
 }

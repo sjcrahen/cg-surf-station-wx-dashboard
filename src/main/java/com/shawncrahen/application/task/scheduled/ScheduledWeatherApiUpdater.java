@@ -31,12 +31,14 @@ public class ScheduledWeatherApiUpdater implements ScheduledApiUpdater {
   @Scheduled(fixedRate = 900000)
   public void update() {
     Station station = stationService.getStation();
-    weatherApiResponse = restTemplate.getForObject(
-            "http://api.weatherapi.com/v1/forecast.json?key=3436a533716643b989d191452220402&q="
-                    + station.getWeatherSourceId()
-                    + "&aqi=no",
-            WeatherApiResponse.class);
-    weatherApiResponse.setChanceOfPrecip();
+    if (station != null) {
+      weatherApiResponse = restTemplate.getForObject(
+              "http://api.weatherapi.com/v1/forecast.json?key=3436a533716643b989d191452220402&q="
+                      + station.getWeatherSourceId()
+                      + "&aqi=no",
+              WeatherApiResponse.class);
+      weatherApiResponse.setChanceOfPrecip();
+    }
   }
 
 }

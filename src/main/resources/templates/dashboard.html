@@ -6,11 +6,18 @@
 	<link rel="stylesheet" href="/css/main.css"/>
 </head>
 <body>
-	<h1>Station <span th:text="${stationName}"></span>&nbsp<a id="stations-link" href="">change station</a></h1>
+
+	<h1>Station <span th:text="${station.stationName}"></span> <a id="stations-link" href="/stations">change&nbspstation</a></h1>
+	
 	<div class="flex-container main-dashboard">
+	
+	<!-- ---------- Wave Data ---------- -->
+	
 		<div class="card" th:object="${seas}">
 			<h3>Significant Wave Height</h3>
-			<p class="time"><span th:text="*{dateTimeString}"></span></p>
+			<p class="time"><span><a th:href="@{${station.wavesSourceUrl}}" target="_blank">
+							<span th:text="${station.wavesSourceName}"></span></a></span></p>
+			<p class="time">Updated: <span th:text="*{dateTimeString}"></span></p>
 			<div class="data-display-container-top">
 				<div class="col-3">
 					<p><span class="data" th:text="*{waveHeight}"></span></p>
@@ -34,18 +41,23 @@
 				</div>	
 			</div>
 		</div>
-		<div class="card" th:object="${wind}">
+		
+	<!-- ---------- Wind Data ---------- -->
+		
+		<div class="card"  th:object="${wind}">
 			<h3>Wind</h3>
-			<p class="time"><span th:text="*{dateTimeString}"></span></p>
+			<p class="time"><span th:unless="${wind eq null}"><a th:href="@{${station.windSourceUrl}}" target="_blank">
+					<span th:text="${station.windSourceName}"></span></a></span></p>
+			<p class="time">Updated: <span th:text="${wind eq null} ? 'No Wind Data Available' : *{dateTimeString}"></span></p>
 			<div class="data-display-container-top">
 				<div class="col-3">
-					<p><span class="data" th:text="*{windSpeed}"></span></p>
+					<p><span class="data" th:text="${wind eq null} ? '---' : *{windSpeed}"></span></p>
 				</div>
 				<div class="col-3">
-					<p><img class="wind-arrow" th:src="@{/img/wind-arrow.png}" th:style="'transform:rotate('+*{windDirection}+'deg)'"/>
+					<p th:unless="${wind eq null}" ><img class="wind-arrow" th:src="@{/img/wind-arrow.png}" th:style="'transform:rotate('+*{windDirection}+'deg)'"/>
 				</div>
 				<div class="col-3">
-					<p><span class="data" th:text="*{windGust}"></span></p>
+					<p><span class="data" th:text="${wind eq null} ? '---' : *{windGust}"></span></p>
 				</div>
 			</div>
 			<div class="data-display-container-bottom">
@@ -53,25 +65,30 @@
 					<p>kts</p>
 				</div>
 				<div class="col-3">
-					<p><span th:text="*{direction}"></span></p>
+					<p th:unless="${wind eq null}" ><span th:text="*{direction}"></span></p>
 				</div>
 				<div class="col-3">
 					<p>gust</p>
 				</div>
 			</div>
 		</div>
-		<div class="card" th:object="${current}">
+		
+	<!-- ---------- Current & Tide Data ---------- -->
+		
+		<div class="card" th:with="baseUrl='https://tidesandcurrents.noaa.gov/noaatidepredictions.html'" th:object="${current}">
 			<h3>Current & Next Tide</h3>
-			<p class="time"><span th:text="*{dateTimeString}"></span></p>
+			<p class="time"><span th:unless="${nextTide eq null}"><a th:href="@{${baseUrl}(id=${station.tideSourceId})}" target="_blank">
+					<span th:text="${station.tideSourceName}"></span></a></span></p>
+			<p class="time">Updated: <span th:text="${current eq null} ? 'No Current Data Available' : *{dateTimeString}"></span></p>
 			<div class="data-display-container-top">
 				<div class="col-3">
-					<p><span class="data" th:text="*{velocity}"></span></p>
+					<p><span class="data" th:text="${current eq null} ? '---' : *{velocity}"></span></p>
 				</div>
 				<div class="col-3">
-					<p><img class="current-arrow" th:src="@{/img/currentarrow.png}" th:style="'transform:rotate('+*{direction}+'deg)'"/></p>
+					<p th:unless="${current eq null}"><img class="current-arrow" th:src="@{/img/currentarrow.png}" th:style="'transform:rotate('+*{direction}+'deg)'"/></p>
 				</div>
 				<div class="col-3">
-					<p><span class="data" th:text="${nextTide.time}"></span></p>
+					<p th:unless="${nextTide eq null}"><span class="data" th:text="${nextTide.time}"></span></p>
 				</div>
 			</div>
 			<div class="data-display-container-bottom">
@@ -79,16 +96,18 @@
 					<p>kts</p>
 				</div>			
 				<div class="col-3">
-					<p><span th:text="*{type}"></span></p>
+					<p th:unless="${current eq null}"><span th:text="*{type}"></span></p>
 				</div>			
 				<div class="col-3">
-					<p><span th:text="${nextTide.type}"></span></p>
+					<p th:unless="${nextTide eq null}"><span th:text="${nextTide.type}"></span></p>
 				</div>			
 			</div>
 		</div>
+		
+	<!-- ---------- Current Weather ---------- -->
+		
 		<div class="card" th:object="${weather}">
-			<h3>Current Weather</h3>
-			<p class="time"><span th:text="*{currentWeather.last_updated}"></span></p>
+			<h3 th:text="${station.city}"></h3>
 			<div class="main-temp-data">
 				<p class="data current-temp"><span th:text="*{currentWeather.temp_f}"></span>&deg</p>
 				<p><span th:text="*{currentWeather.condition.text}"></span></p>
@@ -102,9 +121,11 @@
 				</div>
 			</div>
 		</div>
+		
+	<!-- ---------- Forecast ---------- -->
+		
 		<div class="card" th:object="${weather}" th:each="forecastDay : ${weather.forecast.forecastDay}">
-			<h3>Today's Forecast</h3>
-			<p class="time"><span th:text="${forecastDay.date}"></span></p>
+			<h3>Today's Forecast - <span th:text="${forecastDay.date}"></span></h3>
 			<div class="forecast-icon-container">
 				<p><img id="forecast-icon" th:src="${forecastDay.day.condition.icon}"></p>
 				<p th:each="forecastDay : ${weather.forecast.forecastDay}"><span th:text="${forecastDay.day.condition.text}"></span></p>

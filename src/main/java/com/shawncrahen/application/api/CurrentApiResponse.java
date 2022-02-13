@@ -16,6 +16,10 @@ public class CurrentApiResponse {
     this.current_predictions = current_predictions;
   }
 
+  public void reset() {
+    current_predictions = null;
+  }
+
   @Override
   public String toString() {
     return "{\n  \"CurrentPredictionResponse\": {\n    \"current_predictions\":\""

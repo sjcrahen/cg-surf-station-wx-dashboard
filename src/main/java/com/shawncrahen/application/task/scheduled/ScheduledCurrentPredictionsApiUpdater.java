@@ -34,17 +34,22 @@ public class ScheduledCurrentPredictionsApiUpdater implements ScheduledApiUpdate
   @Scheduled(fixedRate = 43200000)
   public void update() {
     Station station = stationService.getStation();
-    String todayString = LocalDate.now().toString().replaceAll("-", "");
-    currentApiResponse = restTemplate.getForObject(
-            "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?station="
-                    + station.getCurrentSourceId()
-                    + "&begin_date="
-                    + todayString
-                    + "&range=36&product=currents_predictions&units=english&time_zone=lst_ldt&format=json",
-            CurrentApiResponse.class);
-    for (CurrentPrediction prediction : currentApiResponse.getCurrent_predictions()
-            .getPredictions()) {
-      prediction.setDateTime(prediction.getTime());
+    if (station != null && station.getCurrentSourceId() == null) {
+      currentApiResponse.reset();
+    }
+    if (station != null && station.getCurrentSourceId() != null) {
+      String todayString = LocalDate.now().toString().replaceAll("-", "");
+      currentApiResponse = restTemplate.getForObject(
+              "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?station="
+                      + station.getCurrentSourceId()
+                      + "&begin_date="
+                      + todayString
+                      + "&range=36&product=currents_predictions&units=english&time_zone=lst_ldt&format=json",
+              CurrentApiResponse.class);
+      for (CurrentPrediction prediction : currentApiResponse.getCurrent_predictions()
+              .getPredictions()) {
+        prediction.setDateTime(prediction.getTime());
+      }
     }
   }
 

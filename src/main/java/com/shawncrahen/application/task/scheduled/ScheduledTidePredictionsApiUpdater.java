@@ -34,16 +34,18 @@ public class ScheduledTidePredictionsApiUpdater implements ScheduledApiUpdater {
   @Scheduled(fixedRate = 43200000)
   public void update() {
     Station station = stationService.getStation();
-    String todayString = LocalDate.now().toString().replaceAll("-", "");
-    tideApiResponse = restTemplate.getForObject(
-            "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?begin_date="
-                    + todayString
-                    + "&range=36&station="
-                    + station.getTideSourceId()
-                    + "&product=predictions&datum=mllw&interval=hilo&units=english&time_zone=lst_ldt&format=json",
-            TideApiResponse.class);
-    for (TidePredictions prediction : tideApiResponse.getPredictions()) {
-      prediction.setDateTime(prediction.getTime());
+    if (station != null) {
+      String todayString = LocalDate.now().toString().replaceAll("-", "");
+      tideApiResponse = restTemplate.getForObject(
+              "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?begin_date="
+                      + todayString
+                      + "&range=36&station="
+                      + station.getTideSourceId()
+                      + "&product=predictions&datum=mllw&interval=hilo&units=english&time_zone=lst_ldt&format=json",
+              TideApiResponse.class);
+      for (TidePredictions prediction : tideApiResponse.getPredictions()) {
+        prediction.setDateTime(prediction.getTime());
+      }
     }
   }
 }

@@ -4,7 +4,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import com.shawncrahen.application.api.WeatherApiResponse;
 import com.shawncrahen.application.data.ActiveStation;
 import com.shawncrahen.application.data.CalculatedNextTide;
@@ -21,7 +20,6 @@ import com.shawncrahen.application.service.WindObservationService;
 import com.shawncrahen.application.task.ApiUpdater;
 
 @Controller
-@RequestMapping("/stations")
 public class DashboardController {
 
   ApiUpdater apiUpdater;
@@ -48,25 +46,36 @@ public class DashboardController {
     this.stationService = stationService;
   }
 
-  @GetMapping("/{stationId}")
+
+  @GetMapping("/stations")
+  public String stations(Model model) {
+    Iterable<Station> stations = stationService.getAllStations();
+    model.addAttribute("stations", stations);
+    return "stations";
+  }
+
+  @GetMapping("/stations/{stationId}")
   public String showDashboard(@PathVariable String stationId, Model model) {
     if (activeStation.getName() == null || !activeStation.getName().equals(stationId)) {
       activeStation.setName(stationId);
       apiUpdater.refreshAll();
     }
-
     Station station = stationService.getStation();
-    model.addAttribute("stationName", station.getStationName());
+    model.addAttribute("station", station);
 
     SeasObservation seas = seasObservationService.getSeasObservation();
     model.addAttribute("seas", seas);
 
     WindObservation wind = windObservationService.getWindObservation();
-    model.addAttribute("wind", wind);
+    if (station.getWindSourceId() != null) {
+      model.addAttribute("wind", wind);
+    }
 
-    CalculatedPresentCurrent current =
-            calculatedPresentCurrentService.getCalculatedPresentCurrent();
-    model.addAttribute("current", current);
+    if (station.getCurrentSourceId() != null) {
+      CalculatedPresentCurrent current =
+              calculatedPresentCurrentService.getCalculatedPresentCurrent();
+      model.addAttribute("current", current);
+    }
 
     WeatherApiResponse weather = weatherService.getCurrentWeather();
     model.addAttribute("weather", weather);

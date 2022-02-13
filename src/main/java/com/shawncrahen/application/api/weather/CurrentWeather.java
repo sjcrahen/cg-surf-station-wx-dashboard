@@ -1,5 +1,8 @@
 package com.shawncrahen.application.api.weather;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -67,8 +70,11 @@ public class CurrentWeather {
     return last_updated;
   }
 
-  public void setLast_updated(String last_updated) {
-    this.last_updated = last_updated;
+  public void setLast_updated(String last_updated) throws ParseException {
+    SimpleDateFormat displayFormat = new SimpleDateFormat("dd MMM");
+    SimpleDateFormat parseFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+    Date date = parseFormat.parse(last_updated);
+    this.last_updated = displayFormat.format(date);
   }
 
   @Override

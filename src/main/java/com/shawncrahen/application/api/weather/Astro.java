@@ -22,12 +22,6 @@ public class Astro {
     SimpleDateFormat parseFormat = new SimpleDateFormat("hh:mm a");
     Date date = parseFormat.parse(sunrise);
     this.sunrise = displayFormat.format(date);
-    // String[] st = sunrise.substring(0, 5).split(":");
-    // if (sunrise.endsWith("PM")) {
-    // st[0] = String.valueOf(Integer.parseInt(st[0]) + 12)
-    // }
-    // LocalTime time = LocalTime.of(Integer.parseInt(st[0]), Integer.parseInt(st[1]));
-    // this.sunrise = time.format(DateTimeFormatUtility.getTimeOnlyFormatter());
   }
 
   public String getSunset() {

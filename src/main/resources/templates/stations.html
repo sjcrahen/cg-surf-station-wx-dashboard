@@ -2,11 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<title>Stations</title>
+	<link rel="stylesheet" href="/css/stations.css"/>
 </head>
 <body>
-	<h1>Select a station</h1>
-	<div th:each="station : ${stations}" th:object="${station}">
-		<p><a th:href="@{/stations/{id}(id=${station.stationId})}"><span th:text="*{stationName}"></span></a>
+	<h1>Surf Station Weather Dashboard</h1>
+	<div class="container">
+		<p class="description">* Select a station to see current marine and terrestrial weather conditions.</p>
+		<div class="main-container">
+		<div class="station-link" th:each="station : ${stations}" th:object="${station}">
+			<p><a th:href="@{/stations/{id}(id=${station.stationId})}"><span th:text="*{stationName}"></span></a>
+		</div>
+		</div>
 	</div>
 </body>
 </html>

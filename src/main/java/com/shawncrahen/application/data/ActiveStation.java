@@ -14,7 +14,6 @@ public class ActiveStation {
   }
 
   public void setName(String name) {
-    System.out.println("set active station to: " + name);
     this.stationId = name;
   }
 

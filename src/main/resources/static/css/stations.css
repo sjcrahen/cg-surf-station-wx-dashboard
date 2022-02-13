@@ -1,0 +1,48 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color:#7EC0FF;
+}
+
+a, a:visited {
+	color: blue;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+h1 {
+	margin: 1rem;
+	font-size: 3rem;
+	color: #eee;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	text-align: center;
+}
+
+.description {
+	color: #eee;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	font-size: 1.5rem;
+	margin: .5rem 2rem .5rem;	
+}
+
+.container {
+	width: 75%;
+	margin: 2rem auto;
+}
+
+.main-container {
+	display: flex;
+	flex-flow: row wrap;
+	width: 100%;
+	border-radius: 5px;
+	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+	background: linear-gradient(#eee, #fff);
+	margin: .5rem;
+}
+
+.station-link {
+	padding: 1rem;
+}

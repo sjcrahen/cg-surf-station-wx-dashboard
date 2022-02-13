@@ -2,12 +2,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<title>Weather Dashboard</title>
-	<meta http-equiv="refresh" content="300">
-	<link rel="stylesheet" href="/css/main.css"/>
+	<meta http-equiv="refresh" content="120">
+	<link rel="stylesheet" href="/css/dashboard.css"/>
 </head>
 <body>
 
-	<h1>Station <span th:text="${station.stationName}"></span> <a id="stations-link" href="/stations">change&nbspstation</a></h1>
+	<h1>Station <span th:text="${station.stationName}"></span> <a id="stations-link" href="/stations">select&nbspstation</a></h1>
 	
 	<div class="flex-container main-dashboard">
 	
@@ -15,7 +15,7 @@
 	
 		<div class="card" th:object="${seas}">
 			<h3>Significant Wave Height</h3>
-			<p class="time"><span><a th:href="@{${station.wavesSourceUrl}}" target="_blank">
+			<p class="time bold"><span><a class="none" th:href="@{${station.wavesSourceUrl}}" target="_blank">
 							<span th:text="${station.wavesSourceName}"></span></a></span></p>
 			<p class="time">Updated: <span th:text="*{dateTimeString}"></span></p>
 			<div class="data-display-container-top">
@@ -46,7 +46,7 @@
 		
 		<div class="card"  th:object="${wind}">
 			<h3>Wind</h3>
-			<p class="time"><span th:unless="${wind eq null}"><a th:href="@{${station.windSourceUrl}}" target="_blank">
+			<p class="time bold"><span th:unless="${wind eq null}"><a class="none" th:href="@{${station.windSourceUrl}}" target="_blank">
 					<span th:text="${station.windSourceName}"></span></a></span></p>
 			<p class="time">Updated: <span th:text="${wind eq null} ? 'No Wind Data Available' : *{dateTimeString}"></span></p>
 			<div class="data-display-container-top">
@@ -77,7 +77,7 @@
 		
 		<div class="card" th:with="baseUrl='https://tidesandcurrents.noaa.gov/noaatidepredictions.html'" th:object="${current}">
 			<h3>Current & Next Tide</h3>
-			<p class="time"><span th:unless="${nextTide eq null}"><a th:href="@{${baseUrl}(id=${station.tideSourceId})}" target="_blank">
+			<p class="time bold"><span th:unless="${nextTide eq null}"><a class="none" th:href="@{${baseUrl}(id=${station.tideSourceId})}" target="_blank">
 					<span th:text="${station.tideSourceName}"></span></a></span></p>
 			<p class="time">Updated: <span th:text="${current eq null} ? 'No Current Data Available' : *{dateTimeString}"></span></p>
 			<div class="data-display-container-top">
@@ -153,6 +153,12 @@
 				</div>
 				</div>
 			</div>
+		</div>
+		
+	<!-- ---------- Windy Embed ---------- -->	
+		
+		<div class="card">
+			<iframe class="radar-frame" th:src="@{${station.radarSource}}" frameborder="0"></iframe>	
 		</div>
 	</div>
 </body>

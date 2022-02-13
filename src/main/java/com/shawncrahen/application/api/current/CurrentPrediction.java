@@ -1,13 +1,14 @@
 package com.shawncrahen.application.api.current;
 
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CurrentPrediction {
 
-  private ZonedDateTime dateTime;
+  private LocalDateTime dateTime;
 
   @JsonProperty("Type")
   private String type;
@@ -40,14 +41,13 @@ public class CurrentPrediction {
     this.velocity = String.format("%.1f", Double.parseDouble(velocity));
   }
 
-  public ZonedDateTime getDateTime() {
+  public LocalDateTime getDateTime() {
     return dateTime;
   }
 
   public void setDateTime(String dateTime) {
-    String timeString = dateTime.replace(' ', 'T') + ":00-05:00[America/New_York]";
-    ZonedDateTime dt = ZonedDateTime.parse(timeString);
-    this.dateTime = dt;
+    this.dateTime =
+            LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
   }
 
   public String getTime() {

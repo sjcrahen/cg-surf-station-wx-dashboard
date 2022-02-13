@@ -1,6 +1,7 @@
 package com.shawncrahen.application.task.scheduled;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -35,7 +36,8 @@ public class ScheduledTidePredictionsApiUpdater implements ScheduledApiUpdater {
   public void update() {
     Station station = stationService.getStation();
     if (station != null) {
-      String todayString = LocalDate.now().toString().replaceAll("-", "");
+      String todayString =
+              LocalDate.now(ZoneId.of(station.getTimeZone())).toString().replaceAll("-", "");
       tideApiResponse = restTemplate.getForObject(
               "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?begin_date="
                       + todayString

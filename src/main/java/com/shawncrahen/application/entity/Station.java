@@ -54,6 +54,12 @@ public class Station {
   @Column(name = "current_source_id")
   private String currentSourceId;
 
+  @Column(name = "radar_source")
+  private String radarSource;
+
+  @Column(name = "time_zone")
+  private String timeZone;
+
   private Station() {}
 
   private Station(String stationId, String stationName, String wavesSourceId, String wavesSourceUrl,
@@ -182,14 +188,34 @@ public class Station {
     this.tideSourceName = tideSourceName;
   }
 
+  public String getRadarSource() {
+    return radarSource;
+  }
+
+  public void setRadarSource(String radarSource) {
+    this.radarSource = radarSource;
+  }
+
+  public String getTimeZone() {
+    return timeZone;
+  }
+
+  public void setTimeZone(String timeZone) {
+    this.timeZone = timeZone;
+  }
+
   @Override
   public String toString() {
-    return "{\n  \"Station\": {\n    \"stationId\":\"" + stationId + "\", \n    \"stationName\":\""
-            + stationName + "\", \n    \"wavesSourceId\":\"" + wavesSourceId
+    return "{\n  \"Station\": {\n    \"id\":\"" + id + "\", \n    \"stationId\":\"" + stationId
+            + "\", \n    \"stationName\":\"" + stationName + "\", \n    \"wavesSourceId\":\""
+            + wavesSourceId + "\", \n    \"wavesSourceName\":\"" + wavesSourceName
             + "\", \n    \"wavesSourceUrl\":\"" + wavesSourceUrl + "\", \n    \"windSourceId\":\""
-            + windSourceId + "\", \n    \"windSourceUrl\":\"" + windSourceUrl
-            + "\", \n    \"weatherSourceId\":\"" + weatherSourceId + "\", \n    \"tideSourceId\":\""
-            + tideSourceId + "\", \n    \"currentSourceId\":\"" + currentSourceId + "\"\n  }\n}";
+            + windSourceId + "\", \n    \"windSourceName\":\"" + windSourceName
+            + "\", \n    \"windSourceUrl\":\"" + windSourceUrl + "\", \n    \"weatherSourceId\":\""
+            + weatherSourceId + "\", \n    \"city\":\"" + city + "\", \n    \"tideSourceId\":\""
+            + tideSourceId + "\", \n    \"tideSourceName\":\"" + tideSourceName
+            + "\", \n    \"currentSourceId\":\"" + currentSourceId + "\", \n    \"radarSource\":\""
+            + radarSource + "\", \n    \"timeZone\":\"" + timeZone + "\"\n  }\n}";
   }
 
 }

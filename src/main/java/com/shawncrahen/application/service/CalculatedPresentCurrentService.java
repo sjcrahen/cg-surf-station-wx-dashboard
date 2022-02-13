@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.shawncrahen.application.api.CurrentApiResponse;
 import com.shawncrahen.application.api.current.CurrentPrediction;
 import com.shawncrahen.application.data.CalculatedPresentCurrent;
+import com.shawncrahen.application.entity.Station;
 import com.shawncrahen.application.task.scheduled.ScheduledCurrentPredictionsApiUpdater;
 import com.shawncrahen.application.utility.DateTimeFormatUtility;
 
@@ -14,21 +15,26 @@ import com.shawncrahen.application.utility.DateTimeFormatUtility;
 public class CalculatedPresentCurrentService {
 
   private ScheduledCurrentPredictionsApiUpdater scheduledCurrentPredictionsUpdater;
+  private StationService stationService;
 
   private CalculatedPresentCurrentService(
-          ScheduledCurrentPredictionsApiUpdater scheduledCurrentPredictionsUpdater) {
+          ScheduledCurrentPredictionsApiUpdater scheduledCurrentPredictionsUpdater,
+          StationService stationService) {
     this.scheduledCurrentPredictionsUpdater = scheduledCurrentPredictionsUpdater;
+    this.stationService = stationService;
   }
 
   public CalculatedPresentCurrent getCalculatedPresentCurrent() {
+    Station station = stationService.getStation();
     CurrentApiResponse currentApiResponse =
             scheduledCurrentPredictionsUpdater.getCurrentApiResponse();
     CurrentPrediction[] predictions =
             currentApiResponse.getCurrent_predictions().getPredictions();
 
-    ZonedDateTime now = ZonedDateTime.now(ZoneId.systemDefault());
+    ZonedDateTime now = ZonedDateTime.now(ZoneId.of(station.getTimeZone()));
     int i = 0;
-    while (now.compareTo(predictions[i].getDateTime()) > 0) {
+    while (now.compareTo(
+            ZonedDateTime.of(predictions[i].getDateTime(), ZoneId.of(station.getTimeZone()))) > 0) {
       i++;
     }
     CurrentPrediction first = predictions[i - 1];

@@ -47,7 +47,7 @@ public class ScheduledSeasObservationUpdater implements ScheduledApiUpdater {
               new BufferedReader(new InputStreamReader(new URL(url).openStream()))) {
         String dataLine = "";
         String[] data = null;
-        for (int lineNumber = 0; lineNumber < 6; lineNumber++) {
+        for (int lineNumber = 0; lineNumber < 8; lineNumber++) {
           String line = in.readLine();
           if (lineNumber >= 2) {
             dataLine = line;
@@ -69,7 +69,8 @@ public class ScheduledSeasObservationUpdater implements ScheduledApiUpdater {
           ZonedDateTime zuluTime =
                   ZonedDateTime.of(LocalDateTime.of(year, month, day, hour, minute),
                           ZoneId.of("Z"));
-          seasObservation.setDateTime(zuluTime.withZoneSameInstant(ZoneId.of("America/New_York")));
+          seasObservation
+                  .setDateTime(zuluTime.withZoneSameInstant(ZoneId.of(station.getTimeZone())));
           seasObservation.setDateTimeString(
                   seasObservation.getDateTime()
                           .format(DateTimeFormatUtility.getTimeOnlyFormatter()));

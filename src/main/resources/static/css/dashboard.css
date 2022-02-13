@@ -5,17 +5,28 @@
 }
 
 body {
-	background-color:#a1b3c7;
+	background-color:#7EC0FF;
 }
 
 h1 {
-	margin: 1rem 2rem 1rem;
+	margin: .5rem 2rem .5rem;
 	font-size: 2rem;
 	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	color: #eee;
 }
 
-#stations-link {
+a, a:visited {
+	color: blue;
+}
+
+a.none {
+	text-decoration: none;
+}
+
+#stations-link, #stations-link:visited {
 	font-size: 1rem;
+	font-weight: 100;
+	color: #eee;
 }
 
 .flex-container {
@@ -29,10 +40,11 @@ h1 {
 }
 
 .card {
-	background: linear-gradient(#c7b5a1, #f6f7f9);
+	background: linear-gradient(#eee, #fff);
 	flex: 0 0 0;
 	min-width: 380px;
-	margin: 10px;
+	height: 320px;
+	margin: 5px;
 	border-radius: 5px;
 	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 	font-family: "Trebuchet MS", Helvetica, sans-serif;
@@ -47,12 +59,17 @@ h1 {
 	font-size: .7rem;
 	font-weight: 200;
 	padding-left: .5rem;
+	padding-top: .2rem;
+}
+
+.bold {
+	font-weight: bold;
 }
 
 .data-display-container-top {
 	display: flex;
 	flex-flow: row no-wrap;
-	margin-top: 2rem;
+	margin-top: 3rem;
 }
 
 .data-display-container-bottom {
@@ -187,3 +204,8 @@ h1 {
 	width: 105px;
 }
 
+.radar-frame {
+	width: 380px;
+	height: 320px;
+	padding: .5rem;
+}

@@ -1,12 +1,12 @@
-package com.shawncrahen.application.api;
+package com.shawncrahen.application.data;
 
-import com.shawncrahen.application.api.current.CurrentPredictions;
+import com.shawncrahen.application.data.current.CurrentPredictions;
 
-public class CurrentApiResponse {
+public class CurrentDto {
 
   private CurrentPredictions current_predictions;
 
-  public CurrentApiResponse() {}
+  public CurrentDto() {}
 
   public CurrentPredictions getCurrent_predictions() {
     return current_predictions;

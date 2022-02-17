@@ -1,6 +1,6 @@
 package com.shawncrahen.application.task.scheduled;
 
-public interface ScheduledApiUpdater {
+public interface ScheduledUpdater {
 
   void update();
 

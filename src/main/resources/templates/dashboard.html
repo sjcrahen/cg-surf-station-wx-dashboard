@@ -17,16 +17,16 @@
 			<h3>Significant Wave Height</h3>
 			<p class="time bold"><span><a class="none" th:href="@{${station.wavesSourceUrl}}" target="_blank">
 							<span th:text="${station.wavesSourceName}"></span></a></span></p>
-			<p class="time">Updated: <span th:text="*{dateTimeString}"></span></p>
+			<p class="time">Updated: <span th:text="${seas eq null} ? 'No Wave Data Available' : *{dateTimeString}"></span></p>
 			<div class="data-display-container-top">
 				<div class="col-3">
-					<p><span class="data" th:text="*{waveHeight}"></span></p>
+					<p><span class="data" th:text="${seas eq null} ? '---' : *{waveHeight}"></span></p>
 				</div>
 				<div class="col-3">
-					<p><img class="swell-arrow" th:src="@{/img/swell-arrow.png}" th:style="'transform:rotate('+*{waveDirection}+'deg)'"/>
+					<p th:unless="${seas eq null}"><img class="swell-arrow" th:src="@{/img/swell-arrow.png}" th:style="'transform:rotate('+*{waveDirection}+'deg)'"/>
 				</div>
 				<div class="col-3">
-					<p><span class="data" th:text="*{dominantPeriod}"></span></p>
+					<p><span class="data" th:text="${seas eq null} ? '---' : *{dominantPeriod}"></span></p>
 				</div>
 			</div>
 			<div class="data-display-container-bottom">
@@ -34,10 +34,10 @@
 					<p>ft</p>
 				</div>	
 				<div class="col-3">
-					<p><span th:text="*{direction}"></span></p>
+					<p th:unless="${seas eq null}"><span th:text="*{direction}"></span></p>
 				</div>	
 				<div class="col-3">
-					<p>sec</p>
+					<p><br>sec</p>
 				</div>	
 			</div>
 		</div>
@@ -68,7 +68,7 @@
 					<p th:unless="${wind eq null}" ><span th:text="*{direction}"></span></p>
 				</div>
 				<div class="col-3">
-					<p>gust</p>
+					<p><br>gust</p>
 				</div>
 			</div>
 		</div>
@@ -88,7 +88,8 @@
 					<p th:unless="${current eq null}"><img class="current-arrow" th:src="@{/img/currentarrow.png}" th:style="'transform:rotate('+*{direction}+'deg)'"/></p>
 				</div>
 				<div class="col-3">
-					<p th:unless="${nextTide eq null}"><span class="data" th:text="${nextTide.time}"></span></p>
+					<p th:unless="${current eq null}"><span class="data" th:text="${current.nextSlackTime}"></span></p>
+					<p th:if="${current eq null}" th:unless="${nextTide eq null}"><span class="data" th:text="${nextTide.time}"></span></p>
 				</div>
 			</div>
 			<div class="data-display-container-bottom">
@@ -99,7 +100,8 @@
 					<p th:unless="${current eq null}"><span th:text="*{type}"></span></p>
 				</div>			
 				<div class="col-3">
-					<p th:unless="${nextTide eq null}"><span th:text="${nextTide.type}"></span></p>
+					<p th:unless="${current eq null}">Slack<br><span th:text="${current.nextSlackType}"></span></p>
+					<p th:if="${current eq null}" th:unless="${nextTide eq null}"><span th:text="${nextTide.type}"></span></p>
 				</div>			
 			</div>
 		</div>
@@ -109,10 +111,10 @@
 		<div class="card" th:object="${weather}">
 			<h3 th:text="${station.city}"></h3>
 			<div class="main-temp-data">
-				<p class="data current-temp"><span th:text="*{currentWeather.temp_f}"></span>&deg</p>
-				<p><span th:text="*{currentWeather.condition.text}"></span></p>
+				<p class="data current-temp"><span th:text="${weather eq null} ? '---' : *{currentWeather.temp_f}"></span>&deg</p>
+				<p th:unless="${weather eq null}"><span th:text="*{currentWeather.condition.text}"></span></p>
 			</div>
-			<div class="weather-data"> 
+			<div th:unless="${weather eq null}" class="weather-data"> 
 				<p><img id="weather-icon" th:src="*{currentWeather.condition.icon}"></p>
 				<div class="weather-data-data">
 					<p><span class="small">Feels like:&nbsp</span><span th:text="*{currentWeather.feelslike_f}"></span>&deg</p>
@@ -124,7 +126,8 @@
 		
 	<!-- ---------- Forecast ---------- -->
 		
-		<div class="card" th:object="${weather}" th:each="forecastDay : ${weather.forecast.forecastDay}">
+		<div th:unless="${weather eq null}" class="card" th:object="${weather}">
+		<div th:each="forecastDay : ${weather.forecast.forecastDay}">
 			<h3>Today's Forecast - <span th:text="${forecastDay.date}"></span></h3>
 			<div class="forecast-icon-container">
 				<p><img id="forecast-icon" th:src="${forecastDay.day.condition.icon}"></p>
@@ -153,6 +156,7 @@
 				</div>
 				</div>
 			</div>
+		</div>
 		</div>
 		
 	<!-- ---------- Windy Embed ---------- -->	

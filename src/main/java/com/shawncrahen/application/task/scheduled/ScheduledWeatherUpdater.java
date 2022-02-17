@@ -3,28 +3,28 @@ package com.shawncrahen.application.task.scheduled;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-import com.shawncrahen.application.api.WeatherApiResponse;
+import com.shawncrahen.application.data.WeatherDto;
 import com.shawncrahen.application.entity.Station;
 import com.shawncrahen.application.service.StationService;
 
 @Component
-public class ScheduledWeatherApiUpdater implements ScheduledApiUpdater {
+public class ScheduledWeatherUpdater implements ScheduledUpdater {
 
   private RestTemplate restTemplate;
   private StationService stationService;
-  private WeatherApiResponse weatherApiResponse = new WeatherApiResponse();
+  private WeatherDto weatherDto = new WeatherDto();
 
-  private ScheduledWeatherApiUpdater(RestTemplate restTemplate, StationService stationService) {
+  private ScheduledWeatherUpdater(RestTemplate restTemplate, StationService stationService) {
     this.restTemplate = restTemplate;
     this.stationService = stationService;
   }
 
-  public WeatherApiResponse getWeatherApiResponse() {
-    return weatherApiResponse;
+  public WeatherDto getWeatherDto() {
+    return weatherDto;
   }
 
-  public void setWeatherApiResponse(WeatherApiResponse weatherApiResponse) {
-    this.weatherApiResponse = weatherApiResponse;
+  public void setWeatherDto(WeatherDto weatherApiResponse) {
+    this.weatherDto = weatherApiResponse;
   }
 
   @Override
@@ -32,12 +32,12 @@ public class ScheduledWeatherApiUpdater implements ScheduledApiUpdater {
   public void update() {
     Station station = stationService.getStation();
     if (station != null) {
-      weatherApiResponse = restTemplate.getForObject(
+      weatherDto = restTemplate.getForObject(
               "http://api.weatherapi.com/v1/forecast.json?key=3436a533716643b989d191452220402&q="
                       + station.getWeatherSourceId()
                       + "&aqi=no",
-              WeatherApiResponse.class);
-      weatherApiResponse.setChanceOfPrecip();
+              WeatherDto.class);
+      weatherDto.setChanceOfPrecip();
     }
   }
 

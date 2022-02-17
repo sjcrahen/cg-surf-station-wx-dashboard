@@ -4,11 +4,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import com.shawncrahen.application.api.WeatherApiResponse;
 import com.shawncrahen.application.data.ActiveStation;
 import com.shawncrahen.application.data.CalculatedNextTide;
 import com.shawncrahen.application.data.CalculatedPresentCurrent;
 import com.shawncrahen.application.data.SeasObservation;
+import com.shawncrahen.application.data.WeatherDto;
 import com.shawncrahen.application.data.WindObservation;
 import com.shawncrahen.application.entity.Station;
 import com.shawncrahen.application.service.CalculatedPresentCurrentService;
@@ -77,7 +77,7 @@ public class DashboardController {
       model.addAttribute("current", current);
     }
 
-    WeatherApiResponse weather = weatherService.getCurrentWeather();
+    WeatherDto weather = weatherService.getCurrentWeather();
     model.addAttribute("weather", weather);
 
     CalculatedNextTide nextTide = nextTideService.getNextTide();

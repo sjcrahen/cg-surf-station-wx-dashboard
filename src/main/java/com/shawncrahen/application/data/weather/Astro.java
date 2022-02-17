@@ -1,4 +1,4 @@
-package com.shawncrahen.application.api.weather;
+package com.shawncrahen.application.data.weather;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

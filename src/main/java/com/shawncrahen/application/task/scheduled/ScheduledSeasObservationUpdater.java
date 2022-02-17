@@ -16,7 +16,7 @@ import com.shawncrahen.application.service.StationService;
 import com.shawncrahen.application.utility.DateTimeFormatUtility;
 
 @Component
-public class ScheduledSeasObservationUpdater implements ScheduledApiUpdater {
+public class ScheduledSeasObservationUpdater implements ScheduledUpdater {
 
   private StationService stationService;
   private SeasObservation seasObservation;

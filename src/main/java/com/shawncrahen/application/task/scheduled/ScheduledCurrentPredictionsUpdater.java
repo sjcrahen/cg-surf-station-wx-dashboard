@@ -4,30 +4,30 @@ import java.time.LocalDate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-import com.shawncrahen.application.api.CurrentApiResponse;
-import com.shawncrahen.application.api.current.CurrentPrediction;
+import com.shawncrahen.application.data.CurrentDto;
+import com.shawncrahen.application.data.current.CurrentPrediction;
 import com.shawncrahen.application.entity.Station;
 import com.shawncrahen.application.service.StationService;
 
 @Component
-public class ScheduledCurrentPredictionsApiUpdater implements ScheduledApiUpdater {
+public class ScheduledCurrentPredictionsUpdater implements ScheduledUpdater {
 
   private RestTemplate restTemplate;
   private StationService stationService;
-  private CurrentApiResponse currentApiResponse = new CurrentApiResponse();
+  private CurrentDto currentDto = new CurrentDto();
 
-  private ScheduledCurrentPredictionsApiUpdater(RestTemplate restTemplate,
+  private ScheduledCurrentPredictionsUpdater(RestTemplate restTemplate,
           StationService stationService) {
     this.restTemplate = restTemplate;
     this.stationService = stationService;
   }
 
-  public CurrentApiResponse getCurrentApiResponse() {
-    return currentApiResponse;
+  public CurrentDto getCurrentApiResponse() {
+    return currentDto;
   }
 
-  public void setCurrentApiResponse(CurrentApiResponse currentApiResponse) {
-    this.currentApiResponse = currentApiResponse;
+  public void setCurrentApiResponse(CurrentDto currentApiResponse) {
+    this.currentDto = currentApiResponse;
   }
 
   @Override
@@ -35,19 +35,18 @@ public class ScheduledCurrentPredictionsApiUpdater implements ScheduledApiUpdate
   public void update() {
     Station station = stationService.getStation();
     if (station != null && station.getCurrentSourceId() == null) {
-      currentApiResponse.reset();
+      currentDto.reset();
     }
     if (station != null && station.getCurrentSourceId() != null) {
       String todayString = LocalDate.now().toString().replaceAll("-", "");
-      currentApiResponse = restTemplate.getForObject(
+      currentDto = restTemplate.getForObject(
               "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?station="
                       + station.getCurrentSourceId()
                       + "&begin_date="
                       + todayString
                       + "&range=36&product=currents_predictions&units=english&time_zone=lst_ldt&format=json",
-              CurrentApiResponse.class);
-      for (CurrentPrediction prediction : currentApiResponse.getCurrent_predictions()
-              .getPredictions()) {
+              CurrentDto.class);
+      for (CurrentPrediction prediction : currentDto.getCurrent_predictions().getPredictions()) {
         prediction.setDateTime(prediction.getTime());
       }
     }

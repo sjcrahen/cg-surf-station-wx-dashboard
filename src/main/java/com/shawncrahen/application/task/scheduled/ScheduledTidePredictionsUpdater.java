@@ -5,30 +5,30 @@ import java.time.ZoneId;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-import com.shawncrahen.application.api.TideApiResponse;
-import com.shawncrahen.application.api.tide.TidePredictions;
+import com.shawncrahen.application.data.TideDto;
+import com.shawncrahen.application.data.tide.TidePredictions;
 import com.shawncrahen.application.entity.Station;
 import com.shawncrahen.application.service.StationService;
 
 @Component
-public class ScheduledTidePredictionsApiUpdater implements ScheduledApiUpdater {
+public class ScheduledTidePredictionsUpdater implements ScheduledUpdater {
 
   private RestTemplate restTemplate;
   private StationService stationService;
-  private TideApiResponse tideApiResponse;
+  private TideDto tideDto;
 
-  private ScheduledTidePredictionsApiUpdater(RestTemplate restTemplate,
+  private ScheduledTidePredictionsUpdater(RestTemplate restTemplate,
           StationService stationService) {
     this.restTemplate = restTemplate;
     this.stationService = stationService;
   }
 
-  public TideApiResponse getTideApiResponse() {
-    return tideApiResponse;
+  public TideDto getTideDto() {
+    return tideDto;
   }
 
-  public void setTideApiResponse(TideApiResponse tideApiResponse) {
-    this.tideApiResponse = tideApiResponse;
+  public void setTideDto(TideDto tideDto) {
+    this.tideDto = tideDto;
   }
 
   @Override
@@ -38,14 +38,14 @@ public class ScheduledTidePredictionsApiUpdater implements ScheduledApiUpdater {
     if (station != null) {
       String todayString =
               LocalDate.now(ZoneId.of(station.getTimeZone())).toString().replaceAll("-", "");
-      tideApiResponse = restTemplate.getForObject(
+      tideDto = restTemplate.getForObject(
               "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?begin_date="
                       + todayString
                       + "&range=36&station="
                       + station.getTideSourceId()
                       + "&product=predictions&datum=mllw&interval=hilo&units=english&time_zone=lst_ldt&format=json",
-              TideApiResponse.class);
-      for (TidePredictions prediction : tideApiResponse.getPredictions()) {
+              TideDto.class);
+      for (TidePredictions prediction : tideDto.getPredictions()) {
         prediction.setDateTime(prediction.getTime());
       }
     }

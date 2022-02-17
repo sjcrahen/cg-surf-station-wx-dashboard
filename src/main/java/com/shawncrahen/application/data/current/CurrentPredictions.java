@@ -1,4 +1,4 @@
-package com.shawncrahen.application.api.current;
+package com.shawncrahen.application.data.current;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

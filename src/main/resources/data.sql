@@ -126,7 +126,7 @@ values
 	('humboldt-bay', 'Humboldt Bay', '46244', 
 		'https://www.ndbc.noaa.gov/station_page.php?station=46244', '46022', 
 		'https://www.ndbc.noaa.gov/station_page.php?station=46022', '95564', 
-		'9418767', 'HUB0402','46244 - HUMBOLDT BAY',	'46022 - EEL RIVER',
+		'9418767', null,'46244 - HUMBOLDT BAY',	'46022 - EEL RIVER',
 		'HUMBOLDT BAY NORTH SPIT',	'Samoa, CA', 'https://embed.windy.com/embed2.html?lat=40.781&lon=-124.364&width=380&height=325&zoom=8&level=surface&overlay=radar&product=radar&calendar=now&type=map&location=coordinates&metricWind=kt&metricTemp=%C2%B0F&radarRange=-1',
 		'America/Los_Angeles');
 																

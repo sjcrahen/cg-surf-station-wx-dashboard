@@ -1,20 +1,20 @@
 package com.shawncrahen.application.service;
 
 import org.springframework.stereotype.Service;
-import com.shawncrahen.application.api.WeatherApiResponse;
-import com.shawncrahen.application.task.scheduled.ScheduledWeatherApiUpdater;
+import com.shawncrahen.application.data.WeatherDto;
+import com.shawncrahen.application.task.scheduled.ScheduledWeatherUpdater;
 
 @Service
 public class WeatherService {
 
-  ScheduledWeatherApiUpdater scheduledWeatherApiUpdater;
+  ScheduledWeatherUpdater scheduledWeatherApiUpdater;
 
-  private WeatherService(ScheduledWeatherApiUpdater scheduledWeatherApiUpdater) {
+  private WeatherService(ScheduledWeatherUpdater scheduledWeatherApiUpdater) {
     this.scheduledWeatherApiUpdater = scheduledWeatherApiUpdater;
   }
 
-  public WeatherApiResponse getCurrentWeather() {
-    return scheduledWeatherApiUpdater.getWeatherApiResponse();
+  public WeatherDto getCurrentWeather() {
+    return scheduledWeatherApiUpdater.getWeatherDto();
   }
 
 }

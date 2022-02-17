@@ -4,21 +4,21 @@ import java.time.Duration;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import org.springframework.stereotype.Service;
-import com.shawncrahen.application.api.CurrentApiResponse;
-import com.shawncrahen.application.api.current.CurrentPrediction;
 import com.shawncrahen.application.data.CalculatedPresentCurrent;
+import com.shawncrahen.application.data.CurrentDto;
+import com.shawncrahen.application.data.current.CurrentPrediction;
 import com.shawncrahen.application.entity.Station;
-import com.shawncrahen.application.task.scheduled.ScheduledCurrentPredictionsApiUpdater;
+import com.shawncrahen.application.task.scheduled.ScheduledCurrentPredictionsUpdater;
 import com.shawncrahen.application.utility.DateTimeFormatUtility;
 
 @Service
 public class CalculatedPresentCurrentService {
 
-  private ScheduledCurrentPredictionsApiUpdater scheduledCurrentPredictionsUpdater;
+  private ScheduledCurrentPredictionsUpdater scheduledCurrentPredictionsUpdater;
   private StationService stationService;
 
   private CalculatedPresentCurrentService(
-          ScheduledCurrentPredictionsApiUpdater scheduledCurrentPredictionsUpdater,
+          ScheduledCurrentPredictionsUpdater scheduledCurrentPredictionsUpdater,
           StationService stationService) {
     this.scheduledCurrentPredictionsUpdater = scheduledCurrentPredictionsUpdater;
     this.stationService = stationService;
@@ -26,7 +26,7 @@ public class CalculatedPresentCurrentService {
 
   public CalculatedPresentCurrent getCalculatedPresentCurrent() {
     Station station = stationService.getStation();
-    CurrentApiResponse currentApiResponse =
+    CurrentDto currentApiResponse =
             scheduledCurrentPredictionsUpdater.getCurrentApiResponse();
     CurrentPrediction[] predictions =
             currentApiResponse.getCurrent_predictions().getPredictions();
@@ -47,8 +47,14 @@ public class CalculatedPresentCurrentService {
     double velocityChangePerMinute = (lastVelocity - firstVelocity) / periodDuration.toMinutes();
     double presentCurrent = firstVelocity + (diffFromNow.toMinutes() * velocityChangePerMinute);
 
+
+    CurrentPrediction nextSlackCurrent =
+            Math.abs(Double.parseDouble(first.getVelocity())) < 0.5 ? predictions[i + 1] : last;
+    String nextSlackTime =
+            nextSlackCurrent.getDateTime().format(DateTimeFormatUtility.getTimeOnlyFormatter());
+
     return new CalculatedPresentCurrent(now.format(DateTimeFormatUtility.getTimeOnlyFormatter()),
-            presentCurrent, first.getMeanEbbDir(), first.getMeanFloodDir());
+            presentCurrent, first.getMeanEbbDir(), first.getMeanFloodDir(), nextSlackTime);
   }
 
 }

@@ -1,24 +1,24 @@
 package com.shawncrahen.application.task;
 
 import org.springframework.stereotype.Component;
-import com.shawncrahen.application.task.scheduled.ScheduledCurrentPredictionsApiUpdater;
+import com.shawncrahen.application.task.scheduled.ScheduledCurrentPredictionsUpdater;
 import com.shawncrahen.application.task.scheduled.ScheduledSeasObservationUpdater;
-import com.shawncrahen.application.task.scheduled.ScheduledTidePredictionsApiUpdater;
-import com.shawncrahen.application.task.scheduled.ScheduledWeatherApiUpdater;
+import com.shawncrahen.application.task.scheduled.ScheduledTidePredictionsUpdater;
+import com.shawncrahen.application.task.scheduled.ScheduledWeatherUpdater;
 import com.shawncrahen.application.task.scheduled.ScheduledWindObservationUpdater;
 
 @Component
 public class ApiUpdater {
 
-  private ScheduledCurrentPredictionsApiUpdater currentUpdater;
+  private ScheduledCurrentPredictionsUpdater currentUpdater;
   private ScheduledSeasObservationUpdater seasUpdater;
-  private ScheduledTidePredictionsApiUpdater tideUpdater;
-  private ScheduledWeatherApiUpdater weatherUpdater;
+  private ScheduledTidePredictionsUpdater tideUpdater;
+  private ScheduledWeatherUpdater weatherUpdater;
   private ScheduledWindObservationUpdater windUpdater;
 
-  private ApiUpdater(ScheduledCurrentPredictionsApiUpdater currentUpdater,
+  private ApiUpdater(ScheduledCurrentPredictionsUpdater currentUpdater,
           ScheduledSeasObservationUpdater seasUpdater,
-          ScheduledTidePredictionsApiUpdater tideUpdater, ScheduledWeatherApiUpdater weatherUpdater,
+          ScheduledTidePredictionsUpdater tideUpdater, ScheduledWeatherUpdater weatherUpdater,
           ScheduledWindObservationUpdater windUpdater) {
     this.currentUpdater = currentUpdater;
     this.seasUpdater = seasUpdater;

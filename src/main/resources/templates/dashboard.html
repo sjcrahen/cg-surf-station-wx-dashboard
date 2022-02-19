@@ -1,9 +1,20 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-	<title>Weather Dashboard</title>
-	<meta http-equiv="refresh" content="120">
+	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Weather Dashboard</title>
+	
+	<link rel="icon" href="/img/favicon.ico">
+	<link rel="icon" href="/img/safari-pinned-tab.svg" type="image/svg+xml">
+	<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+	<link rel="manifest" href="/img/site.webmanifest">
+	<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+	<link rel="mask-icon" href="/img/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#2b5797">
+	<meta name="theme-color" content="#e8e8e8">
+
 	<link rel="stylesheet" href="/css/dashboard.css"/>
 </head>
 <body>
@@ -24,7 +35,7 @@
 					<p><span class="data" th:text="${seas eq null} ? '---' : *{waveHeight}"></span></p>
 				</div>
 				<div class="col-3">
-					<p th:unless="${seas eq null}"><img class="swell-arrow" th:src="@{/img/swell-arrow.png}" th:style="'transform:rotate('+*{waveDirection}+'deg)'"/>
+					<p th:unless="${seas eq null}"><img title="swell-arrow" class="swell-arrow" th:src="@{/img/swell-arrow.png}" th:style="'transform:rotate('+*{waveDirection}+'deg)'"/>
 				</div>
 				<div class="col-3">
 					<p><span class="data" th:text="${seas eq null} ? '---' : *{dominantPeriod}"></span></p>
@@ -55,7 +66,7 @@
 					<p><span class="data" th:text="${wind eq null} ? '---' : *{windSpeed}"></span></p>
 				</div>
 				<div class="col-3">
-					<p th:unless="${wind eq null}" ><img class="wind-arrow" th:src="@{/img/wind-arrow.png}" th:style="'transform:rotate('+*{windDirection}+'deg)'"/>
+					<p th:unless="${wind eq null}" ><img title="wind-arrow" class="wind-arrow" th:src="@{/img/wind-arrow.png}" th:style="'transform:rotate('+*{windDirection}+'deg)'"/>
 				</div>
 				<div class="col-3">
 					<p><span class="data" th:text="${wind eq null} ? '---' : *{windGust}"></span></p>
@@ -86,7 +97,7 @@
 					<p><span class="data" th:text="${current eq null} ? '---' : ${current.velocity}"></span></p>
 				</div>
 				<div class="col-3">
-					<p th:unless="${current eq null}"><img class="current-arrow" th:src="@{/img/currentarrow.png}" th:style="'transform:rotate('+${current.direction}+'deg)'"/></p>
+					<p th:unless="${current eq null}"><img title="current-arrow" class="current-arrow" th:src="@{/img/currentarrow.png}" th:style="'transform:rotate('+${current.direction}+'deg)'"/></p>
 				</div>
 				<div class="col-3">
 					<p th:unless="${current eq null}"><span class="data" th:text="${current.nextSlackTime}"></span></p>
@@ -117,10 +128,10 @@
 				<p th:unless="${weather eq null}"><span th:text="*{currentWeather.condition.text}"></span></p>
 			</div>
 			<div th:unless="${weather eq null}" class="weather-data"> 
-				<p><img id="weather-icon" th:src="*{currentWeather.condition.icon}"></p>
+				<p><img title="weather-icon" id="weather-icon" th:src="*{currentWeather.condition.icon}"></p>
 				<div class="weather-data-data">
 					<p><span class="small">Feels like:&nbsp</span><span th:text="*{currentWeather.feelslike_f}"></span>&deg</p>
-					<p><span class="small">Wind:&nbsp</span><span th:text="*{currentWeather.wind_mph}"></span> mph  &nbsp<img id="wind" th:src="@{/img/wind.svg}"/>&nbsp
+					<p><span class="small">Wind:&nbsp</span><span th:text="*{currentWeather.wind_mph}"></span> mph  &nbsp<img title="wind" id="wind" th:src="@{/img/wind.svg}"/>&nbsp
 					<span th:text="*{currentWeather.wind_dir}"></span></p>
 				</div>
 			</div>
@@ -132,7 +143,7 @@
 		<div th:each="forecastDay : ${weather.forecast.forecastDay}">
 			<h3>Today's Forecast - <span th:text="${forecastDay.date}"></span></h3>
 			<div class="forecast-icon-container">
-				<p><img id="forecast-icon" th:src="${forecastDay.day.condition.icon}"></p>
+				<p><img title="forecast-icon" id="forecast-icon" th:src="${forecastDay.day.condition.icon}"></p>
 				<p th:each="forecastDay : ${weather.forecast.forecastDay}"><span th:text="${forecastDay.day.condition.text}"></span></p>
 			</div>
 			<div class="forecast-data"> 
@@ -144,13 +155,13 @@
 				<div class="forecast-data-container-right">
 					<div class="flex-container">
 					<div class="ss-icon-container">
-						<img class="ss-img" th:src="@{/img/sunrise.png}"/>
+						<img title="sunrise" class="ss-img" th:src="@{/img/sunrise.png}"/>
 					</div>
 					<div class="ss-data-container">
 						<span class="ss-time" th:each="forecastDay : ${weather.forecast.forecastDay}"><span th:text="${forecastDay.astro.sunrise}"></span></span>
 					</div>
 					<div class="ss-icon-container">
-						<img class="ss-img" th:src="@{/img/sunset.png}"/>
+						<img title="sunset" class="ss-img" th:src="@{/img/sunset.png}"/>
 					</div>
 					<div class="ss-data-container">
 						<span class="ss-time" th:each="forecastDay : ${weather.forecast.forecastDay}"><span th:text="${forecastDay.astro.sunset}"></span></span>
@@ -164,8 +175,14 @@
 	<!-- ---------- Windy Embed ---------- -->	
 		
 		<div class="card">
-			<iframe class="radar-frame" th:src="@{${station.radarSource}}" frameborder="0"></iframe>	
+			<iframe title="Windy" class="radar-frame" th:src="@{${station.radarSource}}" frameborder="0"></iframe>	
 		</div>
 	</div>
+	
+	<script>
+		window.setTimeout(function () {
+			window.location.reload();
+		}, 480000);
+	</script>
 </body>
 </html>

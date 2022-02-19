@@ -37,6 +37,7 @@ a.none {
 
 .main-dashboard {
 	width: 100%;
+	margin: 1rem auto;
 	justify-content: center;
 }
 
@@ -197,7 +198,7 @@ a.none {
 @media(min-width:600px) {
 	.main-dashboard {
 		width: 90%;
-		margin: auto;
+		margin: 1rem auto;
 	}
 }
 
@@ -205,6 +206,6 @@ a.none {
 @media(min-width:1500px) {
 	.main-dashboard {
 		width: 75%;
-		margin: auto;
+		margin: 1rem auto;
 	}
 }

@@ -46,6 +46,10 @@ public class DashboardController {
     this.stationService = stationService;
   }
 
+  @GetMapping("/test")
+  public String test() {
+    return "test";
+  }
 
   @GetMapping("/stations")
   public String stations(Model model) {

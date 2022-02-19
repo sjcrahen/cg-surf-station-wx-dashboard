@@ -71,7 +71,7 @@ public class CurrentWeather {
   }
 
   public void setLast_updated(String last_updated) throws ParseException {
-    SimpleDateFormat displayFormat = new SimpleDateFormat("dd MMM");
+    SimpleDateFormat displayFormat = new SimpleDateFormat("HH:mm");
     SimpleDateFormat parseFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
     Date date = parseFormat.parse(last_updated);
     this.last_updated = displayFormat.format(date);

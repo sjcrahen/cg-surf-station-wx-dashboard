@@ -3,6 +3,7 @@
 <head>
 	<title>Weather Dashboard</title>
 	<meta http-equiv="refresh" content="120">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/css/dashboard.css"/>
 </head>
 <body>
@@ -75,17 +76,17 @@
 		
 	<!-- ---------- Current & Tide Data ---------- -->
 		
-		<div class="card" th:with="baseUrl='https://tidesandcurrents.noaa.gov/noaatidepredictions.html'" th:object="${current}">
+		<div class="card" th:with="baseUrl='https://tidesandcurrents.noaa.gov/noaatidepredictions.html'">
 			<h3>Current & Next Tide</h3>
 			<p class="time bold"><span th:unless="${nextTide eq null}"><a class="none" th:href="@{${baseUrl}(id=${station.tideSourceId})}" target="_blank">
 					<span th:text="${station.tideSourceName}"></span></a></span></p>
-			<p class="time">Updated: <span th:text="${current eq null} ? 'No Current Data Available' : *{dateTimeString}"></span></p>
+			<p class="time">Updated: <span th:text="${current eq null} ? 'No Current Data Available' : ${current.dateTimeString}"></span></p>
 			<div class="data-display-container-top">
 				<div class="col-3">
-					<p><span class="data" th:text="${current eq null} ? '---' : *{velocity}"></span></p>
+					<p><span class="data" th:text="${current eq null} ? '---' : ${current.velocity}"></span></p>
 				</div>
 				<div class="col-3">
-					<p th:unless="${current eq null}"><img class="current-arrow" th:src="@{/img/currentarrow.png}" th:style="'transform:rotate('+*{direction}+'deg)'"/></p>
+					<p th:unless="${current eq null}"><img class="current-arrow" th:src="@{/img/currentarrow.png}" th:style="'transform:rotate('+${current.direction}+'deg)'"/></p>
 				</div>
 				<div class="col-3">
 					<p th:unless="${current eq null}"><span class="data" th:text="${current.nextSlackTime}"></span></p>
@@ -97,7 +98,7 @@
 					<p>kts</p>
 				</div>			
 				<div class="col-3">
-					<p th:unless="${current eq null}"><span th:text="*{type}"></span></p>
+					<p th:unless="${current eq null}"><span th:text="${current.type}"></span></p>
 				</div>			
 				<div class="col-3">
 					<p th:unless="${current eq null}">Slack<br><span th:text="${current.nextSlackType}"></span></p>
@@ -110,6 +111,7 @@
 		
 		<div class="card" th:object="${weather}">
 			<h3 th:text="${station.city}"></h3>
+			<p class="time">Updated: <span th:text="${weather eq null} ? 'No Data Available' : *{currentWeather.last_updated}"></span></p>
 			<div class="main-temp-data">
 				<p class="data current-temp"><span th:text="${weather eq null} ? '---' : *{currentWeather.temp_f}"></span>&deg</p>
 				<p th:unless="${weather eq null}"><span th:text="*{currentWeather.condition.text}"></span></p>

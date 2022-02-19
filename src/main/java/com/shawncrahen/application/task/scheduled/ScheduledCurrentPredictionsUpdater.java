@@ -1,6 +1,7 @@
 package com.shawncrahen.application.task.scheduled;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -38,7 +39,8 @@ public class ScheduledCurrentPredictionsUpdater implements ScheduledUpdater {
       currentDto.reset();
     }
     if (station != null && station.getCurrentSourceId() != null) {
-      String todayString = LocalDate.now().toString().replaceAll("-", "");
+      String todayString =
+              LocalDate.now(ZoneId.of(station.getTimeZone())).toString().replaceAll("-", "");
       currentDto = restTemplate.getForObject(
               "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?station="
                       + station.getCurrentSourceId()

@@ -9,7 +9,7 @@ body {
 }
 
 h1 {
-	margin: .5rem 2rem .5rem;
+	margin: .5rem;
 	font-size: 2rem;
 	font-family: "Trebuchet MS", Helvetica, sans-serif;
 	color: #eee;
@@ -32,19 +32,19 @@ a.none {
 .flex-container {
 	display: flex;
 	flex-flow: row wrap;
+	gap: 5px;
 }
 
 .main-dashboard {
-	width: 85%;
-	margin: auto;
+	width: 100%;
+	justify-content: center;
 }
 
 .card {
 	background: linear-gradient(#eee, #fff);
 	flex: 0 0 0;
-	min-width: 380px;
-	height: 320px;
-	margin: 5px;
+	min-width: 340px;
+	height: 300px;
 	border-radius: 5px;
 	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 	font-family: "Trebuchet MS", Helvetica, sans-serif;
@@ -93,7 +93,7 @@ a.none {
 }
 
 .swell-arrow {
-	width: 30%;
+	width: 25%;
 }
 
 .wind-arrow {
@@ -106,56 +106,38 @@ a.none {
 
 .data-display-container-bottom > div > * {
 	text-align: center;
-	font-size: 1.7rem;
+	font-size: 1.2rem;
 	margin-bottom: 2rem;
 }
 
 .ss-icon-container {
-	justify-content: center;
-	width: 35%;
+	margin-left: 5px;
+	width: 30%;
 }
 
 .ss-data-container {
-	width: 65%;
-	margin-bottom: 1rem;
+	width: 60%;
+	margin-bottom: .8rem;
+	padding-top: .8rem;
 }
 
 .ss-img {
-	width: 70%;
-	padding-left: .5rem;
-}
-
-.ss-time {
-	padding: 1rem;
+	width: 80%;
 }
 
 .data {
-	font-size: 3rem;
+	font-size: 2.7rem;
 	font-weight: bold;
 	text-align: center;
 	padding: 0 1rem;
 }
 
 .current-temp {
-	font-size: 4rem;
+	font-size: 3.5rem;
 }
 
 .current-arrow {
-	width: 30%;
-}
-
-#temp {
-	display: inline;
-	width: 100%;
-	padding-bottom: 1rem;
-	font-size: 3rem;
-	font-weight: bold;
-}
-
-#temp-label {
-	padding-bottom: 1rem;
-	font-size: 3rem;
-	font-weight: bold;
+	width: 25%;
 }
 
 .weather-data {
@@ -169,8 +151,8 @@ a.none {
 }
 
 .weather-data-data {
-	font-size: 1.5rem;
-	margin: 1rem;
+	padding-top: 1rem;
+	font-size: 1.4rem;
 }
 
 .forecast-icon-container {
@@ -180,32 +162,49 @@ a.none {
 
 .forecast-data-container-left {
 	width: 55%;
-	font-size: 1.5rem;
-	padding: 1rem;
+	font-size: 1.4rem;
+	margin-top: 1rem;
+	padding: .8rem;
 }
 
 .forecast-data-container-right {
 	width: 45%;
-	font-size: 1.5rem;
-	padding: .7rem;
+	font-size: 1.4rem;
+	margin-top: 1rem;
+	padding: .4rem;
 }
 
 .small {
-	font-size: 1rem;
+	font-size: .9rem;
 }
 
 #weather-icon {
-	width: 120px;
+	width: 100px;
 	padding-left: 1rem;
 	margin-bottom: 2rem;
 }
 
 #forecast-icon {
-	width: 105px;
+	width: 85px;
 }
 
 .radar-frame {
-	width: 380px;
-	height: 320px;
+	width: 340px;
+	height: 300px;
 	padding: .5rem;
+}
+
+@media(min-width:600px) {
+	.main-dashboard {
+		width: 90%;
+		margin: auto;
+	}
+}
+
+
+@media(min-width:1500px) {
+	.main-dashboard {
+		width: 75%;
+		margin: auto;
+	}
 }

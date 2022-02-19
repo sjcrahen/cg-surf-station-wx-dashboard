@@ -7,14 +7,14 @@ import com.shawncrahen.application.task.scheduled.ScheduledWeatherUpdater;
 @Service
 public class WeatherService {
 
-  ScheduledWeatherUpdater scheduledWeatherApiUpdater;
+  ScheduledWeatherUpdater scheduledWeatherUpdater;
 
-  private WeatherService(ScheduledWeatherUpdater scheduledWeatherApiUpdater) {
-    this.scheduledWeatherApiUpdater = scheduledWeatherApiUpdater;
+  private WeatherService(ScheduledWeatherUpdater scheduledWeatherUpdater) {
+    this.scheduledWeatherUpdater = scheduledWeatherUpdater;
   }
 
   public WeatherDto getCurrentWeather() {
-    return scheduledWeatherApiUpdater.getWeatherDto();
+    return scheduledWeatherUpdater.getWeatherDto();
   }
 
 }

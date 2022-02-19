@@ -1,6 +1,7 @@
 * {
 	margin: 0;
 	padding: 0;
+	box-sizing: border-box;
 }
 
 body {
@@ -14,8 +15,15 @@ a, a:visited {
 }
 
 h1 {
-	margin: 1rem;
+	margin: .5rem;
 	font-size: 3rem;
+	color: #eee;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	text-align: center;
+}
+
+h2 {
+	margin: 1rem;
 	color: #eee;
 	font-family: "Trebuchet MS", Helvetica, sans-serif;
 	text-align: center;
@@ -25,24 +33,41 @@ h1 {
 	color: #eee;
 	font-family: "Trebuchet MS", Helvetica, sans-serif;
 	font-size: 1.5rem;
-	margin: .5rem 2rem .5rem;	
+	text-align: center;
+	padding-bottom: .5rem;
 }
 
 .container {
-	width: 75%;
-	margin: 2rem auto;
+	width: 85%;
+	margin: 1rem auto;
 }
 
 .main-container {
 	display: flex;
 	flex-flow: row wrap;
-	width: 100%;
 	border-radius: 5px;
 	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 	background: linear-gradient(#eee, #fff);
 	margin: .5rem;
+	justify-content:center;
 }
 
 .station-link {
-	padding: 1rem;
+	padding: .5rem;
+	font-size: 1.3rem;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	text-align: center;
+	margin: 1rem .5rem .5rem;
+}
+
+@media(min-width:600px) {
+	.flex-container {
+		display: flex;
+		flex-flow: row wrap;
+		justify-content: center;
+	}
+
+	.container {
+		width: 75%;
+	}
 }

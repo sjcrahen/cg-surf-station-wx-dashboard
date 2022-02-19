@@ -39,14 +39,15 @@ public class ScheduledCurrentPredictionsUpdater implements ScheduledUpdater {
       currentDto.reset();
     }
     if (station != null && station.getCurrentSourceId() != null) {
-      String todayString =
-              LocalDate.now(ZoneId.of(station.getTimeZone())).toString().replaceAll("-", "");
+      String yesterdayString =
+              LocalDate.now(ZoneId.of(station.getTimeZone())).minusDays(1).toString()
+                      .replaceAll("-", "");
       currentDto = restTemplate.getForObject(
               "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?station="
                       + station.getCurrentSourceId()
                       + "&begin_date="
-                      + todayString
-                      + "&range=36&product=currents_predictions&units=english&time_zone=lst_ldt&format=json",
+                      + yesterdayString
+                      + "&range=60&product=currents_predictions&units=english&time_zone=lst_ldt&format=json",
               CurrentDto.class);
       for (CurrentPrediction prediction : currentDto.getCurrent_predictions().getPredictions()) {
         prediction.setDateTime(prediction.getTime());

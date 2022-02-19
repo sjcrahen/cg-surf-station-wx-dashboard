@@ -2,13 +2,13 @@ package com.shawncrahen.application.service;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import org.springframework.stereotype.Service;
 import com.shawncrahen.application.data.CalculatedNextTide;
 import com.shawncrahen.application.data.TideDto;
 import com.shawncrahen.application.data.tide.TidePredictions;
 import com.shawncrahen.application.entity.Station;
 import com.shawncrahen.application.task.scheduled.ScheduledTidePredictionsUpdater;
-import com.shawncrahen.application.utility.DateTimeFormatUtility;
 
 @Service
 public class NextTideService {
@@ -34,7 +34,7 @@ public class NextTideService {
       i++;
     }
     return new CalculatedNextTide(
-            predictions[i].getDateTime().format(DateTimeFormatUtility.getTimeOnlyFormatter()),
+            predictions[i].getDateTime().format(DateTimeFormatter.ofPattern("HH:mm")),
             predictions[i].getType());
   }
 

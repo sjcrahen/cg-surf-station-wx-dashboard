@@ -8,12 +8,12 @@ import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import com.shawncrahen.application.data.WindObservation;
 import com.shawncrahen.application.entity.Station;
 import com.shawncrahen.application.service.StationService;
-import com.shawncrahen.application.utility.DateTimeFormatUtility;
 
 @Component
 public class ScheduledWindObservationUpdater implements ScheduledUpdater {
@@ -77,7 +77,7 @@ public class ScheduledWindObservationUpdater implements ScheduledUpdater {
                   .setDateTime(zuluTime.withZoneSameInstant(ZoneId.of(station.getTimeZone())));
           windObservation.setDateTimeString(
                   windObservation.getDateTime()
-                          .format(DateTimeFormatUtility.getTimeOnlyFormatter()));
+                          .format(DateTimeFormatter.ofPattern("HH:mm")));
           windObservation.setWindDirection(windDirection.equals("MM") ? "---"
                   : String.format("%3d", (Math.round(Double.parseDouble(windDirection) / 5)) * 5)
                           .replace(' ', '0'));

@@ -8,12 +8,12 @@ import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import com.shawncrahen.application.data.SeasObservation;
 import com.shawncrahen.application.entity.Station;
 import com.shawncrahen.application.service.StationService;
-import com.shawncrahen.application.utility.DateTimeFormatUtility;
 
 @Component
 public class ScheduledSeasObservationUpdater implements ScheduledUpdater {
@@ -73,7 +73,7 @@ public class ScheduledSeasObservationUpdater implements ScheduledUpdater {
                   .setDateTime(zuluTime.withZoneSameInstant(ZoneId.of(station.getTimeZone())));
           seasObservation.setDateTimeString(
                   seasObservation.getDateTime()
-                          .format(DateTimeFormatUtility.getTimeOnlyFormatter()));
+                          .format(DateTimeFormatter.ofPattern("HH:mm")));
           seasObservation
                   .setWaveHeight(String.format("%.1f", (Double.parseDouble(waveHeight) * 3.28084)));
           seasObservation

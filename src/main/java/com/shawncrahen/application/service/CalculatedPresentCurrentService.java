@@ -3,13 +3,13 @@ package com.shawncrahen.application.service;
 import java.time.Duration;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import org.springframework.stereotype.Service;
 import com.shawncrahen.application.data.CalculatedPresentCurrent;
 import com.shawncrahen.application.data.CurrentDto;
 import com.shawncrahen.application.data.current.CurrentPrediction;
 import com.shawncrahen.application.entity.Station;
 import com.shawncrahen.application.task.scheduled.ScheduledCurrentPredictionsUpdater;
-import com.shawncrahen.application.utility.DateTimeFormatUtility;
 
 @Service
 public class CalculatedPresentCurrentService {
@@ -51,9 +51,9 @@ public class CalculatedPresentCurrentService {
     CurrentPrediction nextSlackCurrent =
             Math.abs(Double.parseDouble(first.getVelocity())) < 0.5 ? predictions[i + 1] : last;
     String nextSlackTime =
-            nextSlackCurrent.getDateTime().format(DateTimeFormatUtility.getTimeOnlyFormatter());
+            nextSlackCurrent.getDateTime().format(DateTimeFormatter.ofPattern("HH:mm"));
 
-    return new CalculatedPresentCurrent(now.format(DateTimeFormatUtility.getTimeOnlyFormatter()),
+    return new CalculatedPresentCurrent(now.format(DateTimeFormatter.ofPattern("HH:mm")),
             presentCurrent, first.getMeanEbbDir(), first.getMeanFloodDir(), nextSlackTime);
   }
 

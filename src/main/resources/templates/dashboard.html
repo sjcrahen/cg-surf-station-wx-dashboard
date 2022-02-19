@@ -29,7 +29,7 @@
 			<h3>Significant Wave Height</h3>
 			<p class="time bold"><span><a class="none" th:href="@{${station.wavesSourceUrl}}" target="_blank">
 							<span th:text="${station.wavesSourceName}"></span></a></span></p>
-			<p class="time">Updated: <span th:text="${seas eq null} ? 'No Wave Data Available' : *{dateTimeString}"></span></p>
+			<p class="time">Updated: <span th:text="${seas eq null} ? 'No Wave Data Available' : *{dateTimeString}"></span> <span th:unless="${seas eq null}">local</span></p>
 			<div class="data-display-container-top">
 				<div class="col-3">
 					<p><span class="data" th:text="${seas eq null} ? '---' : *{waveHeight}"></span></p>
@@ -60,7 +60,7 @@
 			<h3>Wind</h3>
 			<p class="time bold"><span th:unless="${wind eq null}"><a class="none" th:href="@{${station.windSourceUrl}}" target="_blank">
 					<span th:text="${station.windSourceName}"></span></a></span></p>
-			<p class="time">Updated: <span th:text="${wind eq null} ? 'No Wind Data Available' : *{dateTimeString}"></span></p>
+			<p class="time">Updated: <span th:text="${wind eq null} ? 'No Wind Data Available' : *{dateTimeString}"></span> <span th:unless="${wind eq null}">local</span></p>
 			<div class="data-display-container-top">
 				<div class="col-3">
 					<p><span class="data" th:text="${wind eq null} ? '---' : *{windSpeed}"></span></p>
@@ -91,7 +91,7 @@
 			<h3>Current & Next Tide</h3>
 			<p class="time bold"><span th:unless="${nextTide eq null}"><a class="none" th:href="@{${baseUrl}(id=${station.tideSourceId})}" target="_blank">
 					<span th:text="${station.tideSourceName}"></span></a></span></p>
-			<p class="time">Updated: <span th:text="${current eq null} ? 'No Current Data Available' : ${current.dateTimeString}"></span></p>
+			<p class="time">Updated: <span th:text="${current eq null} ? 'No Current Data Available' : ${current.dateTimeString}"></span> <span th:unless="${current eq null}">local</span></p>
 			<div class="data-display-container-top">
 				<div class="col-3">
 					<p><span class="data" th:text="${current eq null} ? '---' : ${current.velocity}"></span></p>
@@ -122,7 +122,7 @@
 		
 		<div class="card" th:object="${weather}">
 			<h3 th:text="${station.city}"></h3>
-			<p class="time">Updated: <span th:text="${weather eq null} ? 'No Data Available' : *{currentWeather.last_updated}"></span></p>
+			<p class="time">Updated: <span th:text="${weather eq null} ? 'No Data Available' : *{currentWeather.last_updated}"></span> <span th:unless="${weather eq null}">local</span></p>
 			<div class="main-temp-data">
 				<p class="data current-temp"><span th:text="${weather eq null} ? '---' : *{currentWeather.temp_f}"></span>&deg</p>
 				<p th:unless="${weather eq null}"><span th:text="*{currentWeather.condition.text}"></span></p>
@@ -182,7 +182,7 @@
 	<script>
 		window.setTimeout(function () {
 			window.location.reload();
-		}, 480000);
+		}, 180000);
 	</script>
 </body>
 </html>

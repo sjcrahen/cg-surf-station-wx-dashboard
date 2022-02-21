@@ -4,6 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import com.shawncrahen.application.contact.Contact;
 import com.shawncrahen.application.data.ActiveStation;
 import com.shawncrahen.application.data.CalculatedNextTide;
 import com.shawncrahen.application.data.CalculatedPresentCurrent;
@@ -11,6 +13,7 @@ import com.shawncrahen.application.data.SeasObservation;
 import com.shawncrahen.application.data.WeatherDto;
 import com.shawncrahen.application.data.WindObservation;
 import com.shawncrahen.application.entity.Station;
+import com.shawncrahen.application.mail.EmailService;
 import com.shawncrahen.application.service.CalculatedPresentCurrentService;
 import com.shawncrahen.application.service.NextTideService;
 import com.shawncrahen.application.service.SeasObservationService;
@@ -30,12 +33,13 @@ public class DashboardController {
   NextTideService nextTideService;
   ActiveStation activeStation;
   StationService stationService;
+  EmailService emailService;
 
   private DashboardController(ApiUpdater apiUpdater, SeasObservationService seasObservationService,
           WindObservationService windObservationService,
           CalculatedPresentCurrentService calculatedPresentCurrentService,
           WeatherService weatherService, NextTideService nextTideService,
-          ActiveStation activeStation, StationService stationService) {
+          ActiveStation activeStation, StationService stationService, EmailService emailService) {
     this.apiUpdater = apiUpdater;
     this.seasObservationService = seasObservationService;
     this.windObservationService = windObservationService;
@@ -44,6 +48,7 @@ public class DashboardController {
     this.nextTideService = nextTideService;
     this.activeStation = activeStation;
     this.stationService = stationService;
+    this.emailService = emailService;
   }
 
   @GetMapping("/test")
@@ -91,8 +96,21 @@ public class DashboardController {
   }
 
   @GetMapping("/contact")
-  public String showContact() {
+  public String showContact(Model model) {
+    Contact contact = new Contact();
+    model.addAttribute("contact", contact);
     return "contact";
+  }
+
+  @PostMapping("/contact")
+  public String handleFormSubmission(Contact contact) throws Exception {
+    emailService.sendEmail(contact);
+    return "redirect:/contact/success";
+  }
+
+  @GetMapping("/contact/success")
+  public String getSuccess() {
+    return "success";
   }
 
 }

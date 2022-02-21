@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-	<title>Contact Me</title>
+	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Contact Me</title>
+	<link rel="icon" href="/img/envelope.ico">
 	<link rel="stylesheet" href="/css/contact.css"/>
 </head>
 <body>
 	<h1>Contact</h1>
 	<div id="contact" class="container">
 		<div class="flex-container contact-form-flex-container">
-		<form id="form">
+		<form id="form" action="#" method="post" th:action="@{/contact}" th:object="${contact}">
 			<input type="text" name="name" placeholder="Name" autocomplete="off" required>
 			<input type="email" name="email" placeholder="Email" autocomplete="off" required>
 			<input type="text" name="subject" placeholder="Subject" autocomplete="off">

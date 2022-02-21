@@ -90,5 +90,9 @@ public class DashboardController {
     return "dashboard";
   }
 
+  @GetMapping("/contact")
+  public String showContact() {
+    return "contact";
+  }
 
 }

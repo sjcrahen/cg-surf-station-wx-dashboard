@@ -1,0 +1,71 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+body {
+	background-color:#7EC0FF;
+}
+h1 {
+	margin: .5rem;
+	font-size: 3rem;
+	color: #eee;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+	text-align: center;
+}
+.gap {
+	gap: 2rem;
+}
+.container {
+	padding-top: 2rem;
+	width: 90%;
+	max-width: 800px;
+	margin: auto;
+}
+.flex-container {
+    display: flex;
+    flex-flow: row wrap;
+}
+.contact-form-flex-container {
+    width: 95%;
+    margin: auto;
+}
+#contact input, #contact textarea {
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: .8rem;
+	border-radius: 5px;
+	border: 2px solid #eee;
+	box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+	background: linear-gradient(#eee, #fff);
+    font-size: 1.2rem;
+    resize: none;
+}
+#contact input:focus, #contact textarea:focus {
+    outline: none;
+    border: 2px solid #666;
+}
+#contact .btn {
+    width: auto;
+    text-align: center;
+    margin-right: 1rem;
+    border: 2px solid #eee;
+    color: #444;
+    font-family: "SF Mono","Fira Code", "Fira Mono", "Roboto Mono", monospace;
+}
+#contact .btn:focus {
+	border: 2px solid #eee;
+}
+#contact .btn:active {
+    transform: translate(1px, 2px);
+	box-shadow: 1px 8px 20px rgba(0,0,0,0.23), 1px 4px 6px rgba(0,0,0,0.27);
+}
+::placeholder {
+    font-size: 1.2rem;
+    color: #999;
+    font-family: "SF Mono","Fira Code", "Fira Mono", "Roboto Mono", monospace;
+}
+#contact .btn:hover {
+    cursor: pointer;
+}

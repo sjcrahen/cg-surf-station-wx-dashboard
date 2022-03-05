@@ -107,7 +107,7 @@ a.none {
 
 .main-temp-data {
 	text-align: center;
-	margin: 2rem 0;
+	margin: 1.5rem 0;
 }
 
 .col-3 {
@@ -116,6 +116,15 @@ a.none {
 	width: 33%;
 	justify-content: center;
 	align-items: flex-end;
+	text-align: center;
+}
+
+.col-2 {
+	display: flex;
+	flex-flow: row no-wrap;
+	width: 50%;
+	justify-content: center;
+	align-items: space-around;
 	text-align: center;
 }
 

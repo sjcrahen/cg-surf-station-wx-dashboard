@@ -6,7 +6,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import com.shawncrahen.application.data.TideDto;
-import com.shawncrahen.application.data.tide.TidePredictions;
 import com.shawncrahen.application.entity.Station;
 import com.shawncrahen.application.service.StationService;
 
@@ -45,9 +44,9 @@ public class ScheduledTidePredictionsUpdater implements ScheduledUpdater {
                       + station.getTideSourceId()
                       + "&product=predictions&datum=mllw&interval=hilo&units=english&time_zone=lst_ldt&format=json",
               TideDto.class);
-      for (TidePredictions prediction : tideDto.getPredictions()) {
-        prediction.setDateTime(prediction.getTime());
-      }
+      // for (TidePredictions prediction : tideDto.getPredictions()) {
+      // prediction.setDateTime(prediction.getTime());
+      // }
     }
   }
 }

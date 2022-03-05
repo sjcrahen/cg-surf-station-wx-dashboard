@@ -10,7 +10,7 @@ public class CalculatedPresentCurrent {
   private String nextSlackTime;
 
   public CalculatedPresentCurrent(String dateTimeString, double velocity, String ebbDirection,
-          String floodDirection, String nextSlackDateTime) {
+          String floodDirection, String nextSlackDateTime, double nextCurrent) {
     this.dateTimeString = dateTimeString;
     if (velocity < -0.05) {
       this.type = "Ebb";
@@ -22,7 +22,7 @@ public class CalculatedPresentCurrent {
       nextSlackType = "High";
     } else {
       this.type = "Slack";
-      nextSlackType = "---";
+      nextSlackType = nextCurrent < 0 ? "High" : "Low";
     }
     this.velocity = String.format("%.1f", Math.abs(velocity));
     this.nextSlackTime = nextSlackDateTime;

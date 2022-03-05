@@ -15,6 +15,7 @@ public class CurrentWeather {
   private int gust_mph;
   private int feelslike_f;
   private String last_updated;
+  private int pressure_mb;
 
   private CurrentWeather() {}
 
@@ -75,6 +76,14 @@ public class CurrentWeather {
     SimpleDateFormat parseFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
     Date date = parseFormat.parse(last_updated);
     this.last_updated = displayFormat.format(date);
+  }
+
+  public int getPressure_mb() {
+    return pressure_mb;
+  }
+
+  public void setPressure_mb(double pressure_mb) {
+    this.pressure_mb = (int) Math.round(pressure_mb);
   }
 
   @Override

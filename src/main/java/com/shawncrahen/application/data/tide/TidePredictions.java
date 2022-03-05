@@ -34,6 +34,7 @@ public class TidePredictions {
 
   public void setTime(String time) {
     this.time = time;
+    this.dateTime = LocalDateTime.parse(time, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
   }
 
   public String getHeight() {

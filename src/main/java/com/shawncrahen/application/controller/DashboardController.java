@@ -80,11 +80,9 @@ public class DashboardController {
       model.addAttribute("wind", wind);
     }
 
-    if (station.getCurrentSourceId() != null) {
-      CalculatedPresentCurrent current =
-              calculatedPresentCurrentService.getCalculatedPresentCurrent();
-      model.addAttribute("current", current);
-    }
+    CalculatedPresentCurrent current =
+            calculatedPresentCurrentService.getCalculatedPresentCurrent();
+    model.addAttribute("current", current);
 
     WeatherDto weather = weatherService.getCurrentWeather();
     model.addAttribute("weather", weather);

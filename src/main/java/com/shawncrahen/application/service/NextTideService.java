@@ -35,7 +35,7 @@ public class NextTideService {
     }
     return new CalculatedNextTide(
             predictions[i].getDateTime().format(DateTimeFormatter.ofPattern("HH:mm")),
-            predictions[i].getType());
+            predictions[i].getType(), predictions[i].getHeight());
   }
 
 }

@@ -26,6 +26,8 @@ public class CalculatedPresentCurrentService {
 
   public CalculatedPresentCurrent getCalculatedPresentCurrent() {
     Station station = stationService.getStation();
+    if (station.getCurrentSourceId() == null)
+      return null;
     CurrentDto currentApiResponse =
             scheduledCurrentPredictionsUpdater.getCurrentApiResponse();
     CurrentPrediction[] predictions =
@@ -54,7 +56,8 @@ public class CalculatedPresentCurrentService {
             nextSlackCurrent.getDateTime().format(DateTimeFormatter.ofPattern("HH:mm"));
 
     return new CalculatedPresentCurrent(now.format(DateTimeFormatter.ofPattern("HH:mm")),
-            presentCurrent, first.getMeanEbbDir(), first.getMeanFloodDir(), nextSlackTime);
+            presentCurrent, first.getMeanEbbDir(), first.getMeanFloodDir(), nextSlackTime,
+            lastVelocity);
   }
 
 }

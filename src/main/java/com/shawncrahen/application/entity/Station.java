@@ -22,13 +22,13 @@ public class Station {
   private String stationName;
 
   @Column(name = "waves_source_id")
-  private String wavesSourceId;
+  private String waveSourceId;
 
   @Column(name = "waves_source_name")
-  private String wavesSourceName;
+  private String waveSourceName;
 
   @Column(name = "waves_source_url")
-  private String wavesSourceUrl;
+  private String waveSourceUrl;
 
   @Column(name = "wind_source_id")
   private String windSourceId;
@@ -54,6 +54,9 @@ public class Station {
   @Column(name = "current_source_id")
   private String currentSourceId;
 
+  @Column(name = "current_source_name")
+  private String currentSourceName;
+
   @Column(name = "radar_source")
   private String radarSource;
 
@@ -67,8 +70,8 @@ public class Station {
           String currentSourceId) {
     this.stationId = stationId;
     this.stationName = stationName;
-    this.wavesSourceId = wavesSourceId;
-    this.wavesSourceUrl = wavesSourceUrl;
+    this.waveSourceId = wavesSourceId;
+    this.waveSourceUrl = wavesSourceUrl;
     this.windSourceId = windSourceId;
     this.windSourceUrl = windSourceUrl;
     this.weatherSourceId = weatherSourceId;
@@ -93,19 +96,19 @@ public class Station {
   }
 
   public String getWavesSourceId() {
-    return wavesSourceId;
+    return waveSourceId;
   }
 
   public void setWavesSourceId(String wavesSourceId) {
-    this.wavesSourceId = wavesSourceId;
+    this.waveSourceId = wavesSourceId;
   }
 
   public String getWavesSourceUrl() {
-    return wavesSourceUrl;
+    return waveSourceUrl;
   }
 
   public void setWavesSourceUrl(String wavesSourceUrl) {
-    this.wavesSourceUrl = wavesSourceUrl;
+    this.waveSourceUrl = wavesSourceUrl;
   }
 
   public String getWindSourceId() {
@@ -157,11 +160,11 @@ public class Station {
   }
 
   public String getWavesSourceName() {
-    return wavesSourceName;
+    return waveSourceName;
   }
 
   public void setWavesSourceName(String wavesSourceName) {
-    this.wavesSourceName = wavesSourceName;
+    this.waveSourceName = wavesSourceName;
   }
 
   public String getWindSourceName() {
@@ -204,12 +207,20 @@ public class Station {
     this.timeZone = timeZone;
   }
 
+  public String getCurrentSourceName() {
+    return currentSourceName;
+  }
+
+  public void setCurrentSourceName(String currentSourceName) {
+    this.currentSourceName = currentSourceName;
+  }
+
   @Override
   public String toString() {
     return "{\n  \"Station\": {\n    \"id\":\"" + id + "\", \n    \"stationId\":\"" + stationId
             + "\", \n    \"stationName\":\"" + stationName + "\", \n    \"wavesSourceId\":\""
-            + wavesSourceId + "\", \n    \"wavesSourceName\":\"" + wavesSourceName
-            + "\", \n    \"wavesSourceUrl\":\"" + wavesSourceUrl + "\", \n    \"windSourceId\":\""
+            + waveSourceId + "\", \n    \"wavesSourceName\":\"" + waveSourceName
+            + "\", \n    \"wavesSourceUrl\":\"" + waveSourceUrl + "\", \n    \"windSourceId\":\""
             + windSourceId + "\", \n    \"windSourceName\":\"" + windSourceName
             + "\", \n    \"windSourceUrl\":\"" + windSourceUrl + "\", \n    \"weatherSourceId\":\""
             + weatherSourceId + "\", \n    \"city\":\"" + city + "\", \n    \"tideSourceId\":\""

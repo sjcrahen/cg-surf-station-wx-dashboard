@@ -4,14 +4,16 @@ public class CalculatedNextTide {
 
   private String time;
   private String type;
+  private String height;
 
-  public CalculatedNextTide(String time, String type) {
+  public CalculatedNextTide(String time, String type, String height) {
     this.time = time;
     if (type.equals("H")) {
       this.type = "High";
     } else if (type.equals("L")) {
       this.type = "Low";
     }
+    this.height = String.format("%.1f", (Double.parseDouble(height)));
   }
 
   public String getTime() {
@@ -30,10 +32,18 @@ public class CalculatedNextTide {
     this.type = type;
   }
 
+  public String getHeight() {
+    return height;
+  }
+
+  public void setHeight(String height) {
+    this.height = String.format("%.1f", (Double.parseDouble(height)));
+  }
+
   @Override
   public String toString() {
     return "{\n  \"CalculatedNextTide\": {\n    \"time\":\"" + time + "\", \n    \"type\":\"" + type
-            + "\"\n  }\n}";
+            + "\", \n    \"height\":\"" + height + "\"\n  }\n}";
   }
 
 }

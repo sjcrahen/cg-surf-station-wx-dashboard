@@ -121,7 +121,7 @@
 		
 	<!-- ---------- Tide Data ---------- -->
 		
-		<div th:unless="${current != null}" class="card" th:with="baseUrl='https://tidesandcurrents.noaa.gov/noaatidepredictions.html'">
+		<div class="card" th:with="baseUrl='https://tidesandcurrents.noaa.gov/noaatidepredictions.html'">
 			<h3>Next Tide</h3>
 			<p class="time bold"><span th:unless="${nextTide eq null}"><a class="none" th:href="@{${baseUrl}(id=${station.tideSourceId})}" target="_blank">
 					<span th:text="${station.tideSourceName}"></span></a></span></p>

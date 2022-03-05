@@ -58,7 +58,7 @@ a.none {
 .flex-container {
 	display: flex;
 	flex-flow: row wrap;
-	gap: 5px;
+	gap: 10px;
 }
 
 .main-dashboard {
@@ -152,7 +152,7 @@ a.none {
 }
 
 .ss-data-container {
-	width: 60%;
+	width: 59%;
 	margin-bottom: .8rem;
 	padding-top: .8rem;
 }
@@ -228,18 +228,4 @@ a.none {
 	width: 340px;
 	height: 300px;
 	padding: .5rem;
-}
-
-@media(min-width:600px) {
-	.main-dashboard {
-		width: 90%;
-		margin: 1rem auto;
-	}
-}
-
-@media(min-width:1500px) {
-	.main-dashboard {
-		width: 75%;
-		margin: 1rem auto;
-	}
 }

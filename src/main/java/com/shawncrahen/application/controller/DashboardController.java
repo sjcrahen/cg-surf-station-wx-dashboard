@@ -1,5 +1,7 @@
 package com.shawncrahen.application.controller;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -71,6 +73,9 @@ public class DashboardController {
     }
     Station station = stationService.getStation();
     model.addAttribute("station", station);
+
+    ZonedDateTime now = ZonedDateTime.now(ZoneId.of(station.getTimeZone()));
+    model.addAttribute("currentTime", now);
 
     SeasObservation seas = seasObservationService.getSeasObservation();
     model.addAttribute("seas", seas);

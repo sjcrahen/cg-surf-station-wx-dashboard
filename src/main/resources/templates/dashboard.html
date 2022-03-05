@@ -125,7 +125,7 @@
 			<h3>Next Tide</h3>
 			<p class="time bold"><span th:unless="${nextTide eq null}"><a class="none" th:href="@{${baseUrl}(id=${station.tideSourceId})}" target="_blank">
 					<span th:text="${station.tideSourceName}"></span></a></span></p>
-			<p class="time">Updated: <span th:text="${#calendars.format(#calendars.createNow(), 'HH:mm')}"></span><span>local</span></p>
+			<p class="time">Updated: <span th:text="${#temporals.format(currentTime, 'HH:mm')}"></span> <span>local</span></p>
 			<div class="data-display-container-top">
 				<div class="col-2">
 					<p th:unless="${nextTide eq null}"><span class="data" th:text="${nextTide.time}"></span></p>
@@ -139,7 +139,7 @@
 					<p th:unless="${nextTide eq null}"><span th:text="${nextTide.type}"></span></p>
 				</div>			
 				<div class="col-2">
-					<p th:unless="${nextTide eq null}">ft &plusmn MLW</p>
+					<p th:unless="${nextTide eq null}"><br>ft &plusmn MLW</p>
 				</div>			
 			</div>
 		</div>

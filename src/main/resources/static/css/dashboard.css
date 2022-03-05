@@ -99,6 +99,10 @@ a.none {
 	margin-top: 3rem;
 }
 
+.tide-top {
+	margin-top: 3.9rem;
+}
+
 .data-display-container-bottom {
 	display: flex;
 	flex-flow: row no-wrap;
@@ -154,7 +158,7 @@ a.none {
 .ss-data-container {
 	width: 59%;
 	margin-bottom: .8rem;
-	padding-top: .8rem;
+	padding-top: .4rem;
 }
 
 .ss-img {
@@ -228,4 +232,10 @@ a.none {
 	width: 340px;
 	height: 300px;
 	padding: .5rem;
+}
+
+@media(min-width: 481px) {
+	.main-dashboard {
+		width: 98%;
+	}	
 }

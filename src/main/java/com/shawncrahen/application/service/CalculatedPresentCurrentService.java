@@ -56,8 +56,8 @@ public class CalculatedPresentCurrentService {
             nextSlackCurrent.getDateTime().format(DateTimeFormatter.ofPattern("HH:mm"));
 
     return new CalculatedPresentCurrent(now.format(DateTimeFormatter.ofPattern("HH:mm")),
-            presentCurrent, first.getMeanEbbDir(), first.getMeanFloodDir(), nextSlackTime,
-            lastVelocity);
+            presentCurrent, first.getMeanEbbDir(), first.getMeanFloodDir(), first.getTime(),
+            nextSlackTime, lastVelocity);
   }
 
 }

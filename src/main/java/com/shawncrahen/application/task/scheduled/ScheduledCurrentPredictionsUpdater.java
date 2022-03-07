@@ -47,7 +47,7 @@ public class ScheduledCurrentPredictionsUpdater implements ScheduledUpdater {
                       + station.getCurrentSourceId()
                       + "&begin_date="
                       + yesterdayString
-                      + "&range=60&product=currents_predictions&units=english&time_zone=lst_ldt&format=json",
+                      + "&range=60&product=currents_predictions&units=english&time_zone=lst_ldt&format=json&interval=MAX_SLACK",
               CurrentDto.class);
       for (CurrentPrediction prediction : currentDto.getCurrent_predictions().getPredictions()) {
         prediction.setDateTime(prediction.getTime());

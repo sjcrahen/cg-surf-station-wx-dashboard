@@ -54,9 +54,13 @@ public class CalculatedPresentCurrentService {
             Math.abs(Double.parseDouble(first.getVelocity())) < 0.5 ? predictions[i + 1] : last;
     String nextSlackTime =
             nextSlackCurrent.getDateTime().format(DateTimeFormatter.ofPattern("HH:mm"));
+    String thisSlackTime =
+            Math.abs(Double.parseDouble(first.getVelocity())) < 0.5
+                    ? first.getDateTime().format(DateTimeFormatter.ofPattern("HH:mm"))
+                    : last.getDateTime().format(DateTimeFormatter.ofPattern("HH:mm"));
 
     return new CalculatedPresentCurrent(now.format(DateTimeFormatter.ofPattern("HH:mm")),
-            presentCurrent, first.getMeanEbbDir(), first.getMeanFloodDir(), first.getTime(),
+            presentCurrent, first.getMeanEbbDir(), first.getMeanFloodDir(), thisSlackTime,
             nextSlackTime, lastVelocity);
   }
 

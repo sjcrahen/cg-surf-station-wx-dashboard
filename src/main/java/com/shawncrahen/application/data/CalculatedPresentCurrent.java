@@ -17,16 +17,18 @@ public class CalculatedPresentCurrent {
       this.type = "Ebb";
       direction = ebbDirection;
       nextSlackType = "Low";
+      nextSlackTime = nextSlackDateTime;
     } else if (velocity > 0.049) {
       this.type = "Flood";
       direction = floodDirection;
       nextSlackType = "High";
+      nextSlackTime = nextSlackDateTime;
     } else {
       this.type = "Slack";
       nextSlackType = nextCurrent < 0 ? "High" : "Low";
+      nextSlackTime = thisSlackDateTime;
     }
     this.velocity = String.format("%.1f", Math.abs(velocity));
-    this.nextSlackTime = Math.abs(velocity) < 0.049 ? thisSlackDateTime : nextSlackDateTime;
   }
 
   public String getType() {

@@ -125,6 +125,7 @@
 			<h3>Next Tide</h3>
 			<p class="time bold"><span th:unless="${nextTide eq null}"><a class="none" th:href="@{${baseUrl}(id=${station.tideSourceId})}" target="_blank">
 					<span th:text="${station.tideSourceName}"></span></a></span></p>
+			<p class="time">Current Time: <span th:text="${#temporals.format(currentTime, 'HH:mm')}"></span> <span>local</span></p>
 			<div class="data-display-container-top tide-top">
 				<div class="col-2">
 					<p th:unless="${nextTide eq null}"><span class="data" th:text="${nextTide.height}"></span></p>

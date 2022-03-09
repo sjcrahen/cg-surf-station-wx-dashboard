@@ -99,10 +99,6 @@ a.none {
 	margin-top: 3rem;
 }
 
-.tide-top {
-	margin-top: 3.9rem;
-}
-
 .data-display-container-bottom {
 	display: flex;
 	flex-flow: row no-wrap;

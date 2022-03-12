@@ -27,7 +27,7 @@
 		<div class="main-container">
 			<div class="flex-container">
 			<p class="station-link" th:each="station : ${stations}" th:object="${station}">
-				<a th:href="@{/stations/{id}(id=${station.stationId})}"><span th:text="*{stationName}"></span></a></p>
+				<a class="bold" th:href="@{/stations/{id}(id=${station.stationId})}"><span th:text="*{stationName}"></span></a></p>
 			</div>
 		</div>
 	</div>

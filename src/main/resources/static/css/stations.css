@@ -11,6 +11,9 @@ body {
 a, a:visited {
 	color: blue;
 	text-decoration: none;
+}
+
+.bold {
 	font-weight: bold;
 }
 

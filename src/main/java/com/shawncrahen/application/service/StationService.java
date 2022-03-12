@@ -34,7 +34,8 @@ public class StationService {
 
   @Override
   public String toString() {
-    return "{\n  \"StationService\": {\n    \"activeStation\":\"" + activeStation + "\"\n  }\n}";
+    return "{\n  \"StationService\": {\n    \"repository\":\"" + repository
+            + "\", \n    \"activeStation\":\"" + activeStation + "\"\n  }\n}";
   }
 
 }

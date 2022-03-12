@@ -5,21 +5,22 @@ import org.springframework.stereotype.Component;
 @Component
 public class ActiveStation {
 
-  private String stationId;
+  private String name;
 
-  private ActiveStation() {}
+  public ActiveStation() {}
 
   public String getName() {
-    return stationId;
+    return name;
   }
 
   public void setName(String name) {
-    this.stationId = name;
+    this.name = name;
   }
 
   @Override
   public String toString() {
-    return "{\n  \"ActiveStation\": {\n    \"name\":\"" + stationId + "\"\n  }\n}";
+    return "{\n  \"ActiveStation\": {\n    \"name\":\"" + name + "\"\n  }\n}";
   }
+
 
 }

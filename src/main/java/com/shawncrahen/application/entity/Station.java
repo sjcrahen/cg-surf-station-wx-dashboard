@@ -27,17 +27,17 @@ public class Station {
   @Column(name = "waves_source_name")
   private String waveSourceName;
 
-  @Column(name = "waves_source_url")
-  private String waveSourceUrl;
+  @Column(name = "waves_source_id_2")
+  private String waveSourceId2 = null;
+
+  @Column(name = "waves_source_name_2")
+  private String waveSourceName2 = null;
 
   @Column(name = "wind_source_id")
   private String windSourceId;
 
   @Column(name = "wind_source_name")
   private String windSourceName;
-
-  @Column(name = "wind_source_url")
-  private String windSourceUrl;
 
   @Column(name = "weather_source_id")
   private String weatherSourceId;
@@ -65,20 +65,6 @@ public class Station {
 
   private Station() {}
 
-  private Station(String stationId, String stationName, String wavesSourceId, String wavesSourceUrl,
-          String windSourceId, String windSourceUrl, String weatherSourceId, String tideSourceId,
-          String currentSourceId) {
-    this.stationId = stationId;
-    this.stationName = stationName;
-    this.waveSourceId = wavesSourceId;
-    this.waveSourceUrl = wavesSourceUrl;
-    this.windSourceId = windSourceId;
-    this.windSourceUrl = windSourceUrl;
-    this.weatherSourceId = weatherSourceId;
-    this.tideSourceId = tideSourceId;
-    this.currentSourceId = currentSourceId;
-  }
-
   public String getStationId() {
     return stationId;
   }
@@ -95,20 +81,36 @@ public class Station {
     this.stationName = stationName;
   }
 
-  public String getWavesSourceId() {
+  public String getWaveSourceId() {
     return waveSourceId;
   }
 
-  public void setWavesSourceId(String wavesSourceId) {
-    this.waveSourceId = wavesSourceId;
+  public void setWaveSourceId(String waveSourceId) {
+    this.waveSourceId = waveSourceId;
   }
 
-  public String getWavesSourceUrl() {
-    return waveSourceUrl;
+  public String getWaveSourceName() {
+    return waveSourceName;
   }
 
-  public void setWavesSourceUrl(String wavesSourceUrl) {
-    this.waveSourceUrl = wavesSourceUrl;
+  public void setWaveSourceName(String waveSourceName) {
+    this.waveSourceName = waveSourceName;
+  }
+
+  public String getWaveSourceId2() {
+    return waveSourceId2;
+  }
+
+  public void setWaveSourceId2(String waveSourceId2) {
+    this.waveSourceId2 = waveSourceId2;
+  }
+
+  public String getWaveSourceName2() {
+    return waveSourceName2;
+  }
+
+  public void setWaveSourceName2(String waveSourceName2) {
+    this.waveSourceName2 = waveSourceName2;
   }
 
   public String getWindSourceId() {
@@ -119,12 +121,12 @@ public class Station {
     this.windSourceId = windSourceId;
   }
 
-  public String getWindSourceUrl() {
-    return windSourceUrl;
+  public String getWindSourceName() {
+    return windSourceName;
   }
 
-  public void setWindSourceUrl(String windSourceUrl) {
-    this.windSourceUrl = windSourceUrl;
+  public void setWindSourceName(String windSourceName) {
+    this.windSourceName = windSourceName;
   }
 
   public String getWeatherSourceId() {
@@ -135,12 +137,28 @@ public class Station {
     this.weatherSourceId = weatherSourceId;
   }
 
+  public String getCity() {
+    return city;
+  }
+
+  public void setCity(String city) {
+    this.city = city;
+  }
+
   public String getTideSourceId() {
     return tideSourceId;
   }
 
   public void setTideSourceId(String tideSourceId) {
     this.tideSourceId = tideSourceId;
+  }
+
+  public String getTideSourceName() {
+    return tideSourceName;
+  }
+
+  public void setTideSourceName(String tideSourceName) {
+    this.tideSourceName = tideSourceName;
   }
 
   public String getCurrentSourceId() {
@@ -151,44 +169,12 @@ public class Station {
     this.currentSourceId = currentSourceId;
   }
 
-  public void setId(int id) {
-    this.id = id;
+  public String getCurrentSourceName() {
+    return currentSourceName;
   }
 
-  public int getId() {
-    return id;
-  }
-
-  public String getWavesSourceName() {
-    return waveSourceName;
-  }
-
-  public void setWavesSourceName(String wavesSourceName) {
-    this.waveSourceName = wavesSourceName;
-  }
-
-  public String getWindSourceName() {
-    return windSourceName;
-  }
-
-  public void setWindSourceName(String windSourceName) {
-    this.windSourceName = windSourceName;
-  }
-
-  public String getCity() {
-    return city;
-  }
-
-  public void setCity(String city) {
-    this.city = city;
-  }
-
-  public String getTideSourceName() {
-    return tideSourceName;
-  }
-
-  public void setTideSourceName(String tideSourceName) {
-    this.tideSourceName = tideSourceName;
+  public void setCurrentSourceName(String currentSourceName) {
+    this.currentSourceName = currentSourceName;
   }
 
   public String getRadarSource() {
@@ -207,26 +193,21 @@ public class Station {
     this.timeZone = timeZone;
   }
 
-  public String getCurrentSourceName() {
-    return currentSourceName;
-  }
-
-  public void setCurrentSourceName(String currentSourceName) {
-    this.currentSourceName = currentSourceName;
-  }
-
   @Override
   public String toString() {
     return "{\n  \"Station\": {\n    \"id\":\"" + id + "\", \n    \"stationId\":\"" + stationId
-            + "\", \n    \"stationName\":\"" + stationName + "\", \n    \"wavesSourceId\":\""
-            + waveSourceId + "\", \n    \"wavesSourceName\":\"" + waveSourceName
-            + "\", \n    \"wavesSourceUrl\":\"" + waveSourceUrl + "\", \n    \"windSourceId\":\""
-            + windSourceId + "\", \n    \"windSourceName\":\"" + windSourceName
-            + "\", \n    \"windSourceUrl\":\"" + windSourceUrl + "\", \n    \"weatherSourceId\":\""
-            + weatherSourceId + "\", \n    \"city\":\"" + city + "\", \n    \"tideSourceId\":\""
-            + tideSourceId + "\", \n    \"tideSourceName\":\"" + tideSourceName
-            + "\", \n    \"currentSourceId\":\"" + currentSourceId + "\", \n    \"radarSource\":\""
-            + radarSource + "\", \n    \"timeZone\":\"" + timeZone + "\"\n  }\n}";
+            + "\", \n    \"stationName\":\"" + stationName + "\", \n    \"waveSourceId\":\""
+            + waveSourceId + "\", \n    \"waveSourceName\":\"" + waveSourceName
+            + "\", \n    \"waveSourceId2\":\"" + waveSourceId2 + "\", \n    \"waveSourceName2\":\""
+            + waveSourceName2 + "\", \n    \"windSourceId\":\"" + windSourceId
+            + "\", \n    \"windSourceName\":\"" + windSourceName
+            + "\", \n    \"weatherSourceId\":\"" + weatherSourceId + "\", \n    \"city\":\"" + city
+            + "\", \n    \"tideSourceId\":\"" + tideSourceId + "\", \n    \"tideSourceName\":\""
+            + tideSourceName + "\", \n    \"currentSourceId\":\"" + currentSourceId
+            + "\", \n    \"currentSourceName\":\"" + currentSourceName
+            + "\", \n    \"radarSource\":\"" + radarSource + "\", \n    \"timeZone\":\"" + timeZone
+            + "\"\n  }\n}";
   }
 
 }
+

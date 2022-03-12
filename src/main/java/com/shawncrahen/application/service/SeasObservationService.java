@@ -17,4 +17,8 @@ public class SeasObservationService {
     return seasObservationUpdater.getSeasObservation();
   }
 
+  public SeasObservation getSeasObservation2() {
+    return seasObservationUpdater.getSeasObservation2();
+  }
+
 }

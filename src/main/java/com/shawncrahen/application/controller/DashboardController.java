@@ -80,8 +80,13 @@ public class DashboardController {
     SeasObservation seas = seasObservationService.getSeasObservation();
     model.addAttribute("seas", seas);
 
-    WindObservation wind = windObservationService.getWindObservation();
+    if (station.getWaveSourceId2() != null) {
+      SeasObservation seas2 = seasObservationService.getSeasObservation2();
+      model.addAttribute("seas2", seas2);
+    }
+
     if (station.getWindSourceId() != null) {
+      WindObservation wind = windObservationService.getWindObservation();
       model.addAttribute("wind", wind);
     }
 

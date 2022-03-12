@@ -69,7 +69,10 @@ public class ScheduledWindObservationUpdater implements ScheduledUpdater {
           int minute = Integer.parseInt(data[4]);
           String windDirection = data[5];
           double windSpeed = Double.parseDouble(data[6]);
-          double windGust = Double.parseDouble(data[7]);
+          double windGust = -1;
+          if (!data[7].equals("MM")) {
+            windGust = Double.parseDouble(data[7]);
+          }
           ZonedDateTime zuluTime =
                   ZonedDateTime.of(LocalDateTime.of(year, month, day, hour, minute),
                           ZoneId.of("Z"));

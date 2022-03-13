@@ -11,7 +11,7 @@ public class Astro {
   private String sunrise;
   private String sunset;
 
-  private Astro() {}
+  public Astro() {}
 
   public String getSunrise() {
     return sunrise;
@@ -40,6 +40,4 @@ public class Astro {
     return "{\n  \"Astro\": {\n    \"sunrise\":\"" + sunrise + "\", \n    \"sunset\":\"" + sunset
             + "\"\n  }\n}";
   }
-
-
 }

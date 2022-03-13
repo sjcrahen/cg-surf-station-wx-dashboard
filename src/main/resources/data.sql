@@ -123,14 +123,12 @@ insert into stations
 	(station_id, station_name, waves_source_id, 
 		wind_source_id, weather_source_id, tide_source_id, 
 		current_source_id, waves_source_name, wind_source_name, tide_source_name,
-		city, radar_source, time_zone, current_source_name, waves_source_id_2,
-		waves_source_name_2) 
+		city, radar_source, time_zone, current_source_name) 
 values
 	('merrimack-river', 'Merrimack River', '44098', 'IOSN3', '01950', 
 		'8440452', 'ACT0816','44098 - JEFFREYS LEDGE', 'IOSN3 - ISLE OF SHOALS',
 		'MERRIMACK RIVER ENTRANCE','Newburyport, MA', 'https://embed.windy.com/embed2.html?lat=42.841&lon=-70.863&width=380&height=325&zoom=8&level=surface&overlay=radar&product=radar&calendar=now&type=map&location=coordinates&metricWind=kt&metricTemp=%C2%B0F&radarRange=-1',
-		'America/New_York', 'MERRIMACK RIVER ENTRANCE', '44029',
-		'44029 - MASSACHUSETTS BAY');
+		'America/New_York', 'MERRIMACK RIVER ENTRANCE');
 
 insert into stations 
 	(station_id, station_name, waves_source_id, 

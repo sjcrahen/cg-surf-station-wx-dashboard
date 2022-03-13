@@ -37,7 +37,6 @@ public class ScheduledTidePredictionsUpdater implements ScheduledUpdater {
     if (station != null) {
       String todayString =
               LocalDate.now(ZoneId.of(station.getTimeZone())).toString().replaceAll("-", "");
-      System.out.println(todayString);
       tideDto = restTemplate.getForObject(
               "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?begin_date="
                       + todayString
@@ -45,9 +44,6 @@ public class ScheduledTidePredictionsUpdater implements ScheduledUpdater {
                       + station.getTideSourceId()
                       + "&product=predictions&datum=mllw&interval=hilo&units=english&time_zone=lst_ldt&format=json",
               TideDto.class);
-      // for (TidePredictions prediction : tideDto.getPredictions()) {
-      // prediction.setDateTime(prediction.getTime());
-      // }
     }
   }
 }

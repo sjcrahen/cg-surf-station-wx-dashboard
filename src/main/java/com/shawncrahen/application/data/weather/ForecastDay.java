@@ -23,7 +23,6 @@ public class ForecastDay {
     SimpleDateFormat parseFormat = new SimpleDateFormat("yyyy-MM-dd");
     Date theDate = parseFormat.parse(date);
     this.date = displayFormat.format(theDate);
-
   }
 
   public Day getDay() {

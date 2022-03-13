@@ -3,6 +3,7 @@ package com.shawncrahen.application.service;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import org.springframework.stereotype.Service;
 import com.shawncrahen.application.data.CalculatedNextTide;
 import com.shawncrahen.application.data.TideDto;
@@ -26,6 +27,7 @@ public class NextTideService {
     Station station = stationService.getStation();
     TideDto tideApiResponse = scheduledTideApiUpdater.getTideDto();
     TidePredictions[] predictions = tideApiResponse.getPredictions();
+    System.out.println(Arrays.toString(predictions));
 
     ZonedDateTime now = ZonedDateTime.now(ZoneId.of(station.getTimeZone()));
     int i = 0;

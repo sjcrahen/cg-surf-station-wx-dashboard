@@ -100,7 +100,7 @@
 					<p><span class="data" th:text="*{windSpeed}"></span></p>
 				</div>
 				<div class="col-3">
-					<p th:unless="*{windGust eq 0}"><img title="wind-arrow" class="wind-arrow" th:src="@{/img/wind-arrow.png}" th:style="'transform:rotate('+*{windDirection}+'deg)'"/>
+					<p th:unless="*{windDirection eq null}"><img title="wind-arrow" class="wind-arrow" th:src="@{/img/wind-arrow.png}" th:style="'transform:rotate('+*{windDirection}+'deg)'"/>
 				</div>
 				<div class="col-3">
 					<p><span class="data" th:text="*{windGust < 0} ? '---' : *{windGust}"></span></p>
@@ -111,7 +111,7 @@
 					<p>kts</p>
 				</div>
 				<div class="col-3">
-					<p th:unless="*{windGust eq 0}"><span th:text="*{direction}"></span></p>
+					<p th:unless="*{windDirection eq null}"><span th:text="*{direction}"></span></p>
 				</div>
 				<div class="col-3">
 					<p><br>gust</p>

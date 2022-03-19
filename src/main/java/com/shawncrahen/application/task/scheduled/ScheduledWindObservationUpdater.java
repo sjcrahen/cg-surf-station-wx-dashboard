@@ -81,10 +81,14 @@ public class ScheduledWindObservationUpdater implements ScheduledUpdater {
           windObservation.setDateTimeString(
                   windObservation.getDateTime()
                           .format(DateTimeFormatter.ofPattern("HH:mm")));
-          windObservation.setWindDirection(windDirection.equals("MM") ? "---"
+          windObservation.setWindDirection(windDirection.equals("MM") ? null
                   : String.format("%3d", (Math.round(Double.parseDouble(windDirection) / 5)) * 5)
                           .replace(' ', '0'));
-          windObservation.setDirection(Math.round(Double.parseDouble(windDirection) / 5) * 5);
+          if (!windDirection.equals("MM")) {
+            windObservation.setDirection(Math.round(Double.parseDouble(windDirection) / 5) * 5);
+          } else {
+            windObservation.setDirection(-1);
+          }
           windObservation.setWindSpeed((int) Math.round(windSpeed * 1.94384));
           windObservation.setWindGust((int) Math.round(windGust * 1.94384));
         }

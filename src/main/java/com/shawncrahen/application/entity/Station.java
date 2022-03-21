@@ -21,16 +21,16 @@ public class Station {
   @Column(name = "station_name")
   private String stationName;
 
-  @Column(name = "waves_source_id")
+  @Column(name = "wave_source_id")
   private String waveSourceId;
 
-  @Column(name = "waves_source_name")
+  @Column(name = "wave_source_name")
   private String waveSourceName;
 
-  @Column(name = "waves_source_id_2")
+  @Column(name = "wave_source_id_2")
   private String waveSourceId2 = null;
 
-  @Column(name = "waves_source_name_2")
+  @Column(name = "wave_source_name_2")
   private String waveSourceName2 = null;
 
   @Column(name = "wind_source_id")

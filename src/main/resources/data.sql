@@ -1,7 +1,7 @@
 insert into stations 
-	(station_id, station_name, waves_source_id, 
+	(station_id, station_name, wave_source_id, 
 		wind_source_id, weather_source_id, tide_source_id, 
-		current_source_id, waves_source_name, wind_source_name, tide_source_name,
+		current_source_id, wave_source_name, wind_source_name, tide_source_name,
 		city, radar_source, time_zone, current_source_name) 
 values
 	('barnegat-light', 'Barnegat Light', '44091', null, '08005', 
@@ -10,9 +10,9 @@ values
 		'America/New_York', 'BARNEGAT INLET');
 
 insert into stations 
-	(station_id, station_name, waves_source_id, 
+	(station_id, station_name, wave_source_id, 
 		wind_source_id, weather_source_id, tide_source_id, 
-		current_source_id, waves_source_name, wind_source_name, tide_source_name,
+		current_source_id, wave_source_name, wind_source_name, tide_source_name,
 		city, radar_source, time_zone, current_source_name) 
 values
 	('bodega-bay', 'Bodega Bay', '46214', null, '94922', 
@@ -21,9 +21,9 @@ values
 		'America/Los_Angeles', null);
 
 insert into stations 
-	(station_id, station_name, waves_source_id, 
+	(station_id, station_name, wave_source_id, 
 		wind_source_id, weather_source_id, tide_source_id, 
-		current_source_id, waves_source_name, wind_source_name, tide_source_name,
+		current_source_id, wave_source_name, wind_source_name, tide_source_name,
 		city, radar_source, time_zone, current_source_name) 
 values
 	('cape-disappointment', 'Cape Disappointment', '46243', '46029', '98624', 
@@ -32,10 +32,10 @@ values
 		'America/Los_Angeles', 'CLATSOP SPIT');
 		
 insert into stations 
-	(station_id, station_name, waves_source_id, 
+	(station_id, station_name, wave_source_id, 
 		wind_source_id, weather_source_id, tide_source_id, 
-		current_source_id, waves_source_name, wind_source_name, tide_source_name,
-		city, radar_source, time_zone, current_source_name, waves_source_id_2, waves_source_name_2) 
+		current_source_id, wave_source_name, wind_source_name, tide_source_name,
+		city, radar_source, time_zone, current_source_name, wave_source_id_2, wave_source_name_2) 
 values
 	('chetco-river', 'Chetco River', '46027', '46027', '97415', 
 		'9430104', null,'46027 - ST GEORGES',	'46027 - ST GEORGES',	
@@ -43,10 +43,10 @@ values
 		'America/Los_Angeles', null, '46015', '46015 - PORT ORFORD');
 		
 insert into stations 
-	(station_id, station_name, waves_source_id, 
+	(station_id, station_name, wave_source_id, 
 		wind_source_id, weather_source_id, tide_source_id, 
-		current_source_id, waves_source_name, wind_source_name, tide_source_name,
-		city, radar_source, time_zone, current_source_name, waves_source_id_2, waves_source_name_2) 
+		current_source_id, wave_source_name, wind_source_name, tide_source_name,
+		city, radar_source, time_zone, current_source_name, wave_source_id_2, wave_source_name_2) 
 values
 	('coos-bay', 'Coos Bay', '46229', 'CHAO3', '97420', 
 		'9432780', 'PCT1061','46229 - UMPQUA OFFSHORE',	'CHAO3 - CHARLESTON',
@@ -54,9 +54,9 @@ values
 		'America/Los_Angeles', 'COOS BAY ENTRANCE', '46015', '46015 - PORT ORFORD');
 	
 insert into stations 
-	(station_id, station_name, waves_source_id, 
+	(station_id, station_name, wave_source_id, 
 		wind_source_id, weather_source_id, tide_source_id, 
-		current_source_id, waves_source_name, wind_source_name, tide_source_name,
+		current_source_id, wave_source_name, wind_source_name, tide_source_name,
 		city, radar_source, time_zone, current_source_name) 
 values
 	('coquille-river', 'Coquille River', '46015', 'PORO3', '97411', 
@@ -65,9 +65,9 @@ values
 		'America/Los_Angeles', 'COQUILLE RIVER ENTRANCE');
 		
 insert into stations 
-	(station_id, station_name, waves_source_id, 
+	(station_id, station_name, wave_source_id, 
 		wind_source_id, weather_source_id, tide_source_id, 
-		current_source_id, waves_source_name, wind_source_name, tide_source_name,
+		current_source_id, wave_source_name, wind_source_name, tide_source_name,
 		city, radar_source, time_zone, current_source_name) 
 values
 	('depoe-bay', 'Depoe Bay', '46050', '46050', '97341', 
@@ -76,9 +76,9 @@ values
 		'America/Los_Angeles', null);
 
 insert into stations 
-	(station_id, station_name, waves_source_id, 
+	(station_id, station_name, wave_source_id, 
 		wind_source_id, weather_source_id, tide_source_id, 
-		current_source_id, waves_source_name, wind_source_name, tide_source_name,
+		current_source_id, wave_source_name, wind_source_name, tide_source_name,
 		city, radar_source, time_zone, current_source_name) 
 values
 	('golden-gate', 'Golden Gate', '46026', '46026', '94965', 
@@ -87,9 +87,9 @@ values
 		'America/Los_Angeles', 'POINT BONITA LT');
 
 insert into stations 
-	(station_id, station_name, waves_source_id, 
+	(station_id, station_name, wave_source_id, 
 		wind_source_id, weather_source_id, tide_source_id, 
-		current_source_id, waves_source_name, wind_source_name, tide_source_name,
+		current_source_id, wave_source_name, wind_source_name, tide_source_name,
 		city, radar_source, time_zone, current_source_name) 
 values
 	('grays-harbor', 'Grays Harbor', '46211', 'WPTW1', '98595', 
@@ -98,9 +98,9 @@ values
 		'America/Los_Angeles', 'GRAYS HARBOR ENTRANCE');
 
 insert into stations 
-	(station_id, station_name, waves_source_id, 
+	(station_id, station_name, wave_source_id, 
 		wind_source_id, weather_source_id, tide_source_id, 
-		current_source_id, waves_source_name, wind_source_name, tide_source_name,
+		current_source_id, wave_source_name, wind_source_name, tide_source_name,
 		city, radar_source, time_zone, current_source_name) 
 values
 	('hatteras-inlet', 'Hatteras Inlet', '41120', '41025', '27943', 
@@ -109,9 +109,9 @@ values
 		'America/New_York', 'HATTERAS INLET');
 
 insert into stations 
-	(station_id, station_name, waves_source_id, 
+	(station_id, station_name, wave_source_id, 
 		wind_source_id, weather_source_id, tide_source_id, 
-		current_source_id, waves_source_name, wind_source_name, tide_source_name,
+		current_source_id, wave_source_name, wind_source_name, tide_source_name,
 		city, radar_source, time_zone, current_source_name) 
 values
 	('humboldt-bay', 'Humboldt Bay', '46244', '46022', '95564', 
@@ -120,9 +120,9 @@ values
 		'America/Los_Angeles', null);
 																
 insert into stations 
-	(station_id, station_name, waves_source_id, 
+	(station_id, station_name, wave_source_id, 
 		wind_source_id, weather_source_id, tide_source_id, 
-		current_source_id, waves_source_name, wind_source_name, tide_source_name,
+		current_source_id, wave_source_name, wind_source_name, tide_source_name,
 		city, radar_source, time_zone, current_source_name) 
 values
 	('merrimack-river', 'Merrimack River', '44098', 'IOSN3', '01950', 
@@ -131,10 +131,10 @@ values
 		'America/New_York', 'MERRIMACK RIVER ENTRANCE');
 
 insert into stations 
-	(station_id, station_name, waves_source_id, 
+	(station_id, station_name, wave_source_id, 
 		wind_source_id, weather_source_id, tide_source_id, 
-		current_source_id, waves_source_name, wind_source_name, tide_source_name,
-		city, radar_source, time_zone, current_source_name, waves_source_id_2, waves_source_name_2) 
+		current_source_id, wave_source_name, wind_source_name, tide_source_name,
+		city, radar_source, time_zone, current_source_name, wave_source_id_2, wave_source_name_2) 
 values
 	('morro-bay', 'Morro Bay', '46215', '46011', '93442', 
 		'9412110', null,'46215 - DIABLO CANYON',	'46011 - SANTA MARIA',
@@ -142,9 +142,9 @@ values
 		'America/Los_Angeles', null, '46011', '46011 - SANTA MARIA');
 
 insert into stations 
-	(station_id, station_name, waves_source_id, 
+	(station_id, station_name, wave_source_id, 
 		wind_source_id, weather_source_id, tide_source_id, 
-		current_source_id, waves_source_name, wind_source_name, tide_source_name,
+		current_source_id, wave_source_name, wind_source_name, tide_source_name,
 		city, radar_source, time_zone, current_source_name) 
 values
 	('noyo-river', 'Noyo River', '46014', '46014', '95437', 
@@ -153,9 +153,9 @@ values
 		'America/Los_Angeles', null);
 
 insert into stations 
-	(station_id, station_name, waves_source_id, 
+	(station_id, station_name, wave_source_id, 
 		wind_source_id, weather_source_id, tide_source_id, 
-		current_source_id, waves_source_name, wind_source_name, tide_source_name,
+		current_source_id, wave_source_name, wind_source_name, tide_source_name,
 		city, radar_source, time_zone, current_source_name) 
 values
 	('ocracoke-inlet', 'Ocracoke Inlet', '41120', '41025', '27960', 
@@ -164,9 +164,9 @@ values
 		'America/New_York', 'OCRACOKE INLET');
 				
 insert into stations 
-	(station_id, station_name, waves_source_id, 
+	(station_id, station_name, wave_source_id, 
 		wind_source_id, weather_source_id, tide_source_id, 
-		current_source_id, waves_source_name, wind_source_name, tide_source_name,
+		current_source_id, wave_source_name, wind_source_name, tide_source_name,
 		city, radar_source, time_zone, current_source_name) 
 values
 	('oregon-inlet', 'Oregon Inlet', '44095', 'ORIN7', '27959', 
@@ -175,9 +175,9 @@ values
 		'America/New_York', 'OREGON INLET');
 
 insert into stations 
-	(station_id, station_name, waves_source_id, 
+	(station_id, station_name, wave_source_id, 
 		wind_source_id, weather_source_id, tide_source_id, 
-		current_source_id, waves_source_name, wind_source_name, tide_source_name,
+		current_source_id, wave_source_name, wind_source_name, tide_source_name,
 		city, radar_source, time_zone, current_source_name) 
 values
 	('quillayute-river', 'Quillayute River', '46206', 'LAPW1', '98350', 
@@ -186,9 +186,9 @@ values
 		'America/Los_Angeles', 'QUILLAYUTE RIVER ENTRANCE');
 
 insert into stations 
-	(station_id, station_name, waves_source_id, 
+	(station_id, station_name, wave_source_id, 
 		wind_source_id, weather_source_id, tide_source_id, 
-		current_source_id, waves_source_name, wind_source_name, tide_source_name,
+		current_source_id, wave_source_name, wind_source_name, tide_source_name,
 		city, radar_source, time_zone, current_source_name) 
 values
 	('rogue-river', 'Rogue River', '46015', 'PORO3', '97444', 
@@ -197,10 +197,10 @@ values
 		'America/Los_Angeles', null);
 		
 insert into stations 
-	(station_id, station_name, waves_source_id, 
+	(station_id, station_name, wave_source_id, 
 		wind_source_id, weather_source_id, tide_source_id, 
-		current_source_id, waves_source_name, wind_source_name, tide_source_name,
-		city, radar_source, time_zone, current_source_name, waves_source_id_2, waves_source_name_2) 
+		current_source_id, wave_source_name, wind_source_name, tide_source_name,
+		city, radar_source, time_zone, current_source_name, wave_source_id_2, wave_source_name_2) 
 values
 	('siuslaw-river', 'Siuslaw River', '46229', '46098', '97439', 
 		'9434132', null,'46229 - UMPQUA OFFSHORE',	'46098 - WALDPORT OFFSHORE',	'SIUSLAW RIVER ENTRANCE',
@@ -208,10 +208,10 @@ values
 		'America/Los_Angeles', null, '46050', '46050 - STONEWALL BANK');
 		
 insert into stations 
-	(station_id, station_name, waves_source_id, 
+	(station_id, station_name, wave_source_id, 
 		wind_source_id, weather_source_id, tide_source_id, 
-		current_source_id, waves_source_name, wind_source_name, tide_source_name,
-		city, radar_source, time_zone, current_source_name, waves_source_id_2, waves_source_name_2) 
+		current_source_id, wave_source_name, wind_source_name, tide_source_name,
+		city, radar_source, time_zone, current_source_name, wave_source_id_2, wave_source_name_2) 
 values
 	('tillamook-bay', 'Tillamook Bay', '46248', null, '97118', 
 		'9437585', 'PCT1096','46248 - ASTORIA CANYON',	null,	'NORTH JETTY',
@@ -219,9 +219,9 @@ values
 		'America/Los_Angeles', 'TILLAMOOK BAY ENTRANCE', '46050', '46050 - STONEWALL BANK');
 
 insert into stations 
-	(station_id, station_name, waves_source_id, 
+	(station_id, station_name, wave_source_id, 
 		wind_source_id, weather_source_id, tide_source_id, 
-		current_source_id, waves_source_name, wind_source_name, tide_source_name,
+		current_source_id, wave_source_name, wind_source_name, tide_source_name,
 		city, radar_source, time_zone, current_source_name) 
 values
 	('umpqua-river', 'Umpqua River', '46229', '46098', '97467', 
@@ -230,9 +230,9 @@ values
 		'America/Los_Angeles', 'UMPQUA RIVER ENTRANCE');
 	
 insert into stations 
-	(station_id, station_name, waves_source_id, 
+	(station_id, station_name, wave_source_id, 
 		wind_source_id, weather_source_id, tide_source_id, 
-		current_source_id, waves_source_name, wind_source_name, tide_source_name,
+		current_source_id, wave_source_name, wind_source_name, tide_source_name,
 		city, radar_source, time_zone, current_source_name) 
 values
 	('yaquina-bay', 'Yaquina Bay', '46050', '46050', '97365', 

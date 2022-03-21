@@ -76,8 +76,9 @@ public class ScheduledWindObservationUpdater implements ScheduledUpdater {
           ZonedDateTime zuluTime =
                   ZonedDateTime.of(LocalDateTime.of(year, month, day, hour, minute),
                           ZoneId.of("Z"));
-          windObservation
-                  .setDateTime(zuluTime.withZoneSameInstant(ZoneId.of(station.getTimeZone())));
+          ZonedDateTime observationTime =
+                  zuluTime.withZoneSameInstant(ZoneId.of(station.getTimeZone()));
+          windObservation.setDateTime(observationTime);
           windObservation.setDateTimeString(
                   windObservation.getDateTime()
                           .format(DateTimeFormatter.ofPattern("HH:mm")));
@@ -91,10 +92,17 @@ public class ScheduledWindObservationUpdater implements ScheduledUpdater {
           }
           windObservation.setWindSpeed((int) Math.round(windSpeed * 1.94384));
           windObservation.setWindGust((int) Math.round(windGust * 1.94384));
+          ZonedDateTime now = ZonedDateTime.now(ZoneId.of(station.getTimeZone()));
+          if (now.minusHours(4).compareTo(observationTime) > 0) {
+            windObservation.setOutDated(true);
+          } else {
+            windObservation.setOutDated(false);
+          }
         }
       } catch (MalformedURLException e) {
         e.printStackTrace();
       } catch (IOException e) {
+        windObservation = null;
         e.printStackTrace();
       }
     }

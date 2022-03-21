@@ -63,6 +63,9 @@ public class Station {
   @Column(name = "time_zone")
   private String timeZone;
 
+  @Column(name = "forecast_source")
+  private String forecastSource = null;
+
   private Station() {}
 
   public String getStationId() {
@@ -193,6 +196,14 @@ public class Station {
     this.timeZone = timeZone;
   }
 
+  public String getForecastSource() {
+    return forecastSource;
+  }
+
+  public void setForecastSource(String forecastSource) {
+    this.forecastSource = forecastSource;
+  }
+
   @Override
   public String toString() {
     return "{\n  \"Station\": {\n    \"id\":\"" + id + "\", \n    \"stationId\":\"" + stationId
@@ -206,7 +217,7 @@ public class Station {
             + tideSourceName + "\", \n    \"currentSourceId\":\"" + currentSourceId
             + "\", \n    \"currentSourceName\":\"" + currentSourceName
             + "\", \n    \"radarSource\":\"" + radarSource + "\", \n    \"timeZone\":\"" + timeZone
-            + "\"\n  }\n}";
+            + "\", \n    \"forecastSource\":\"" + forecastSource + "\"\n  }\n}";
   }
 
 }

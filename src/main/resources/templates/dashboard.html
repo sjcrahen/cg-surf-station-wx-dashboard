@@ -22,7 +22,7 @@
 <div class="page">
 
 	<div class="content">
-	<h1>Station <span th:text="${station.stationName}"></span> <a id="stations-link" href="/stations">change&nbspstation</a></h1>
+	<h1>Station <span th:text="${station.stationName}"></span> <a id="stations-link" href="/stations">Change&nbspStation</a></h1>
 	
 	<div class="flex-container main-dashboard">
 	
@@ -31,17 +31,17 @@
 		<div class="card" th:object="${seas}" th:with="baseUrl='https://www.ndbc.noaa.gov/station_page.php'">
 			<h3>Significant Wave Height</h3>
 			<p class="time bold"><span><a class="none" th:href="@{${baseUrl}(station=${station.waveSourceId})}" target="_blank">
-							<span th:text="${station.waveSourceName}"></span></a></span></p>
-			<p class="time">Updated: <span th:text="${seas eq null} ? 'No Wave Data Available' : *{dateTimeString}"></span> <span th:unless="${seas eq null}">local</span></p>
+							<span th:text="${station.waveSourceName}"></span></a> | <a class="none" th:href="@{${station.forecastSource}}" target="_blank">MARINE FORECAST</a></span></p>
+			<p class="time">Updated: <span th:text="*{outDated || dateTimeString eq null} ? 'No Recent Data Available' : *{dateTimeString}"></span> <span th:unless="*{outDated || dateTimeString eq null}">local</span></p>
 			<div class="data-display-container-top">
 				<div class="col-3">
-					<p><span class="data" th:text="${seas eq null} ? '---' : *{waveHeight}"></span></p>
+					<p><span class="data" th:text="*{outDated || dateTimeString eq null} ? '---' : *{waveHeight}"></span></p>
 				</div>
 				<div class="col-3">
-					<p th:unless="${seas.waveDirection eq null}"><img title="swell-arrow" class="swell-arrow" th:src="@{/img/swell-arrow.png}" th:style="'transform:rotate('+*{waveDirection}+'deg)'"/>
+					 <p th:unless="*{waveDirection eq null || outDated}"><img title="swell-arrow" class="swell-arrow" th:src="@{/img/swell-arrow.png}" th:style="'transform:rotate('+*{waveDirection}+'deg)'"/>
 				</div>
 				<div class="col-3">
-					<p><span class="data" th:text="${seas eq null} ? '---' : *{dominantPeriod}"></span></p>
+					<p><span class="data" th:text="*{outDated || dateTimeString eq null} ? '---' : *{dominantPeriod}"></span></p>
 				</div>
 			</div>
 			<div class="data-display-container-bottom">
@@ -49,7 +49,7 @@
 					<p>ft</p>
 				</div>	
 				<div class="col-3">
-					<p th:unless="${seas.waveDirection eq null}"><span th:text="*{direction}"></span></p>
+					<p th:unless="*{waveDirection eq null || outDated}"><span th:text="*{direction}"></span></p>
 				</div>	
 				<div class="col-3">
 					<p><br>sec</p>
@@ -59,20 +59,20 @@
 		
 	<!-- ---------- Secondary Wave Data ---------- -->
 	
-		<div th:unless="${seas2 eq null}" class="card" th:object="${seas2}" th:with="baseUrl='https://www.ndbc.noaa.gov/station_page.php'">
+		<div th:unless="${seas2 eq null || seas2.dateTimeString eq null}" class="card" th:object="${seas2}" th:with="baseUrl='https://www.ndbc.noaa.gov/station_page.php'">
 			<h3>Significant Wave Height</h3>
 			<p class="time bold"><span><a class="none" th:href="@{${baseUrl}(station=${station.waveSourceId2})}" target="_blank">
 							<span th:text="${station.waveSourceName2}"></span></a></span></p>
-			<p class="time">Updated: <span th:text="${seas2 eq null} ? 'No Wave Data Available' : *{dateTimeString}"></span> <span th:unless="${seas2 eq null}">local</span></p>
+			<p class="time">Updated: <span th:text="*{outDated} ? 'No Recent Data Available' : *{dateTimeString}"></span> <span th:unless="*{outDated}">local</span></p>
 			<div class="data-display-container-top">
 				<div class="col-3">
-					<p><span class="data" th:text="*{waveHeight}"></span></p>
+					<p><span class="data" th:text="*{outDated} ? ' ---' : *{waveHeight}"></span></p>
 				</div>
 				<div class="col-3">
-					<p th:unless="${seas2.waveDirection eq null}"><img title="swell-arrow" class="swell-arrow" th:src="@{/img/swell-arrow.png}" th:style="'transform:rotate('+*{waveDirection}+'deg)'"/>
+					<p th:unless="*{waveDirection eq null || outDated}"><img title="swell-arrow" class="swell-arrow" th:src="@{/img/swell-arrow.png}" th:style="'transform:rotate('+*{waveDirection}+'deg)'"/>
 				</div>
 				<div class="col-3">
-					<p><span class="data" th:text="*{dominantPeriod}"></span></p>
+					<p><span class="data" th:text="*{outDated} ? '---' : *{dominantPeriod}"></span></p>
 				</div>
 			</div>
 			<div class="data-display-container-bottom">
@@ -80,7 +80,7 @@
 					<p>ft</p>
 				</div>	
 				<div class="col-3">
-					<p th:unless="${seas2.waveDirection eq null}"><span th:text="*{direction}"></span></p>
+					<p th:unless="*{waveDirection eq null || outDated}"><span th:text="*{direction}"></span></p>
 				</div>	
 				<div class="col-3">
 					<p><br>sec</p>
@@ -90,20 +90,20 @@
 			
 	<!-- ---------- Wind Data ---------- -->
 		
-		<div th:unless="${station.windSourceName eq null}" class="card"  th:object="${wind}" th:with="baseUrl='https://www.ndbc.noaa.gov/station_page.php'">
+		<div th:unless="${station.windSourceName eq null || wind eq null}" class="card"  th:object="${wind}" th:with="baseUrl='https://www.ndbc.noaa.gov/station_page.php'">
 			<h3>Wind</h3>
 			<p class="time bold"><span><a class="none" th:href="@{${baseUrl}(station=${station.windSourceId})}" target="_blank">
 					<span th:text="${station.windSourceName}"></span></a></span></p>
-			<p class="time">Updated: <span th:text="${wind eq null} ? 'No Wind Data Available' : *{dateTimeString}"></span> <span>local</span></p>
+			<p class="time">Updated: <span th:text="*{outDated} ? 'No Recent Data Available' : *{dateTimeString}"></span> <span th:unless="*{outDated}">local</span></p>
 			<div class="data-display-container-top">
 				<div class="col-3">
-					<p><span class="data" th:text="*{windSpeed}"></span></p>
+					<p><span class="data" th:text="*{outDated} ? '---' : *{windSpeed}"></span></p>
 				</div>
 				<div class="col-3">
-					<p th:unless="*{windDirection eq null}"><img title="wind-arrow" class="wind-arrow" th:src="@{/img/wind-arrow.png}" th:style="'transform:rotate('+*{windDirection}+'deg)'"/>
+					<p th:unless="*{windDirection eq null || outDated}"><img title="wind-arrow" class="wind-arrow" th:src="@{/img/wind-arrow.png}" th:style="'transform:rotate('+*{windDirection}+'deg)'"/>
 				</div>
 				<div class="col-3">
-					<p><span class="data" th:text="*{windGust < 0} ? '---' : *{windGust}"></span></p>
+					<p><span class="data" th:text="*{windGust < 0 || outDated} ? '---' : *{windGust}"></span></p>
 				</div>
 			</div>
 			<div class="data-display-container-bottom">
@@ -111,7 +111,7 @@
 					<p>kts</p>
 				</div>
 				<div class="col-3">
-					<p th:unless="*{windDirection eq null}"><span th:text="*{direction}"></span></p>
+					<p th:unless="*{windDirection eq null || outDated}"><span th:text="*{direction}"></span></p>
 				</div>
 				<div class="col-3">
 					<p><br>gust</p>

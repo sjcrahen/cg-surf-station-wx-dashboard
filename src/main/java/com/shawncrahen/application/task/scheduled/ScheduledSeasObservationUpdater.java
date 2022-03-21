@@ -88,7 +88,9 @@ public class ScheduledSeasObservationUpdater implements ScheduledUpdater {
         ZonedDateTime zuluTime =
                 ZonedDateTime.of(LocalDateTime.of(year, month, day, hour, minute),
                         ZoneId.of("Z"));
-        ob.setDateTime(zuluTime.withZoneSameInstant(ZoneId.of(station.getTimeZone())));
+        ZonedDateTime observationTime =
+                zuluTime.withZoneSameInstant(ZoneId.of(station.getTimeZone()));
+        ob.setDateTime(observationTime);
         ob.setDateTimeString(ob.getDateTime().format(DateTimeFormatter.ofPattern("HH:mm")));
         ob.setWaveHeight(String.format("%.1f", (Double.parseDouble(waveHeight) * 3.28084)));
         ob.setDominantPeriod(dominantPeriod);
@@ -98,6 +100,12 @@ public class ScheduledSeasObservationUpdater implements ScheduledUpdater {
           ob.setWaveDirection(
                   String.valueOf(Math.round(Double.parseDouble(waveDirection) / 5) * 5));
           ob.setDirection(Math.round(Double.parseDouble(waveDirection) / 5) * 5);
+        }
+        ZonedDateTime now = ZonedDateTime.now(ZoneId.of(station.getTimeZone()));
+        if (now.minusHours(4).compareTo(observationTime) > 0) {
+          ob.setOutDated(true);
+        } else {
+          ob.setOutDated(false);
         }
       }
     } catch (MalformedURLException e) {

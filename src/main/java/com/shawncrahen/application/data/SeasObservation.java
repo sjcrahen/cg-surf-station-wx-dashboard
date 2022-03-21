@@ -15,6 +15,7 @@ public class SeasObservation {
   private String dominantPeriod;
   private String waveDirection;
   private String direction;
+  private boolean outDated;
 
   public SeasObservation() {}
 
@@ -66,13 +67,21 @@ public class SeasObservation {
     this.direction = DirectionMapper.mapDirection(direction);
   }
 
+  public boolean isOutDated() {
+    return outDated;
+  }
+
+  public void setOutDated(boolean outDated) {
+    this.outDated = outDated;
+  }
+
   @Override
   public String toString() {
     return "{\n  \"SeasObservation\": {\n    \"dateTime\":\"" + dateTime
             + "\", \n    \"dateTimeString\":\"" + dateTimeString + "\", \n    \"waveHeight\":\""
             + waveHeight + "\", \n    \"dominantPeriod\":\"" + dominantPeriod
             + "\", \n    \"waveDirection\":\"" + waveDirection + "\", \n    \"direction\":\""
-            + direction + "\"\n  }\n}";
+            + direction + "\", \n    \"outDated\":\"" + outDated + "\"\n  }\n}";
   }
 
 }

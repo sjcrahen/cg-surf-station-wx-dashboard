@@ -18,6 +18,7 @@ public class WindObservation {
   private String direction;
   private int windSpeed;
   private int windGust;
+  private boolean outDated;
 
   public WindObservation() {}
 
@@ -111,6 +112,14 @@ public class WindObservation {
     this.windGust = windGust;
   }
 
+  public boolean isOutDated() {
+    return outDated;
+  }
+
+  public void setOutDated(boolean outDated) {
+    this.outDated = outDated;
+  }
+
   @Override
   public String toString() {
     return "{\n  \"WindObservation\": {\n    \"dateTime\":\"" + dateTime
@@ -119,7 +128,7 @@ public class WindObservation {
             + "\", \n    \"hour\":\"" + hour + "\", \n    \"minute\":\"" + minute
             + "\", \n    \"windDirection\":\"" + windDirection + "\", \n    \"direction\":\""
             + direction + "\", \n    \"windSpeed\":\"" + windSpeed + "\", \n    \"windGust\":\""
-            + windGust + "\"\n  }\n}";
+            + windGust + "\", \n    \"outDated\":\"" + outDated + "\"\n  }\n}";
   }
 
   public void reset() {

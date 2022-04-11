@@ -1,12 +1,10 @@
 package com.shawncrahen.application.data;
 
 import java.time.ZonedDateTime;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import com.shawncrahen.application.utility.DirectionMapper;
 
 @Component
-@Scope("prototype")
 public class WindObservation {
 
   private ZonedDateTime dateTime;

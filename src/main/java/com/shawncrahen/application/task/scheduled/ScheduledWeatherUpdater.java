@@ -1,6 +1,5 @@
 package com.shawncrahen.application.task.scheduled;
 
-import org.springframework.context.annotation.Scope;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
@@ -9,7 +8,6 @@ import com.shawncrahen.application.entity.Station;
 import com.shawncrahen.application.service.StationService;
 
 @Component
-@Scope("session")
 public class ScheduledWeatherUpdater implements ScheduledUpdater {
 
   private RestTemplate restTemplate;

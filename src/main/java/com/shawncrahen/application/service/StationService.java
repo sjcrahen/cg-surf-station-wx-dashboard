@@ -1,13 +1,11 @@
 package com.shawncrahen.application.service;
 
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import com.shawncrahen.application.data.ActiveStation;
 import com.shawncrahen.application.entity.Station;
 import com.shawncrahen.application.repository.StationRepository;
 
 @Service
-@Scope("session")
 public class StationService {
 
   private StationRepository repository;

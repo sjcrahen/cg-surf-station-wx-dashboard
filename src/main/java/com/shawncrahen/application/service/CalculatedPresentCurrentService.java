@@ -4,7 +4,6 @@ import java.time.Duration;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import com.shawncrahen.application.data.CalculatedPresentCurrent;
 import com.shawncrahen.application.data.CurrentDto;
@@ -13,7 +12,6 @@ import com.shawncrahen.application.entity.Station;
 import com.shawncrahen.application.task.scheduled.ScheduledCurrentPredictionsUpdater;
 
 @Service
-@Scope("session")
 public class CalculatedPresentCurrentService {
 
   private ScheduledCurrentPredictionsUpdater scheduledCurrentPredictionsUpdater;

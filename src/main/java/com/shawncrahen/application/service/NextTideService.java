@@ -3,6 +3,7 @@ package com.shawncrahen.application.service;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import com.shawncrahen.application.data.CalculatedNextTide;
 import com.shawncrahen.application.data.TideDto;
@@ -11,6 +12,7 @@ import com.shawncrahen.application.entity.Station;
 import com.shawncrahen.application.task.scheduled.ScheduledTidePredictionsUpdater;
 
 @Service
+@Scope("session")
 public class NextTideService {
 
   private ScheduledTidePredictionsUpdater scheduledTideApiUpdater;

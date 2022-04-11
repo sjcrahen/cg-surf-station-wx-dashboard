@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import org.springframework.context.annotation.Scope;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import com.shawncrahen.application.data.SeasObservation;
@@ -16,6 +17,7 @@ import com.shawncrahen.application.entity.Station;
 import com.shawncrahen.application.service.StationService;
 
 @Component
+@Scope("session")
 public class ScheduledSeasObservationUpdater implements ScheduledUpdater {
 
   private StationService stationService;

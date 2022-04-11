@@ -2,6 +2,7 @@ package com.shawncrahen.application.controller;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +26,7 @@ import com.shawncrahen.application.service.WindObservationService;
 import com.shawncrahen.application.task.ApiUpdater;
 
 @Controller
+@Scope("session")
 public class DashboardController {
 
   ApiUpdater apiUpdater;

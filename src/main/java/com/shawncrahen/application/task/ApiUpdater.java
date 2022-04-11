@@ -1,5 +1,6 @@
 package com.shawncrahen.application.task;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import com.shawncrahen.application.task.scheduled.ScheduledCurrentPredictionsUpdater;
 import com.shawncrahen.application.task.scheduled.ScheduledSeasObservationUpdater;
@@ -8,6 +9,7 @@ import com.shawncrahen.application.task.scheduled.ScheduledWeatherUpdater;
 import com.shawncrahen.application.task.scheduled.ScheduledWindObservationUpdater;
 
 @Component
+@Scope("session")
 public class ApiUpdater {
 
   private ScheduledCurrentPredictionsUpdater currentUpdater;

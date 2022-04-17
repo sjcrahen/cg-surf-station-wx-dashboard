@@ -1,4 +1,4 @@
-package com.shawncrahen.application.data.current;
+package com.shawncrahen.application.rest.current;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

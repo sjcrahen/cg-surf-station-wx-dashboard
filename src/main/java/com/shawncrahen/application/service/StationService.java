@@ -1,41 +1,41 @@
 package com.shawncrahen.application.service;
 
+import java.util.ArrayList;
+import java.util.List;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-import com.shawncrahen.application.data.ActiveStation;
-import com.shawncrahen.application.entity.Station;
+import com.shawncrahen.application.data.StationDto;
+import com.shawncrahen.application.entity.StationEntity;
 import com.shawncrahen.application.repository.StationRepository;
 
 @Service
 public class StationService {
 
   private StationRepository repository;
-  private ActiveStation activeStation;
 
-  public StationService(StationRepository repository, ActiveStation activeStation) {
+  public StationService(StationRepository repository) {
     this.repository = repository;
-    this.activeStation = activeStation;
   }
 
-  public ActiveStation getActiveStation() {
-    return activeStation;
+  public StationDto getStation(String stationId) {
+    StationEntity stationEntity = repository.findByStationId(stationId);
+    return new ModelMapper().map(stationEntity, StationDto.class);
   }
 
-  public void setActiveStation(ActiveStation activeStation) {
-    this.activeStation = activeStation;
-  }
+  public Iterable<StationDto> getAllStations() {
+    List<StationDto> stationsList = new ArrayList<>();
+    Iterable<StationEntity> stations = repository.findAll();
 
-  public Station getStation() {
-    return repository.findByStationId(activeStation.getName());
-  }
-
-  public Iterable<Station> getAllStations() {
-    return repository.findAll();
+    for (StationEntity station : stations) {
+      StationDto stationDto = new ModelMapper().map(station, StationDto.class);
+      stationsList.add(stationDto);
+    }
+    return stationsList;
   }
 
   @Override
   public String toString() {
-    return "{\n  \"StationService\": {\n    \"repository\":\"" + repository
-            + "\", \n    \"activeStation\":\"" + activeStation + "\"\n  }\n}";
+    return "{\n  \"StationService\": {\n    \"repository\":\"" + repository + "\"\n  }\n}";
   }
 
 }

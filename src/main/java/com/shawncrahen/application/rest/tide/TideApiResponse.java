@@ -1,13 +1,12 @@
-package com.shawncrahen.application.data;
+package com.shawncrahen.application.rest.tide;
 
 import java.util.Arrays;
-import com.shawncrahen.application.data.tide.TidePredictions;
 
-public class TideDto {
+public class TideApiResponse {
 
   private TidePredictions[] predictions;
 
-  private TideDto() {}
+  private TideApiResponse() {}
 
   public TidePredictions[] getPredictions() {
     return predictions;

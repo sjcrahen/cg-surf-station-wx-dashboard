@@ -1,4 +1,4 @@
-package com.shawncrahen.application.data.weather;
+package com.shawncrahen.application.rest.weather;
 
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

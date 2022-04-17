@@ -1,31 +1,36 @@
 package com.shawncrahen.application.service;
 
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 import com.shawncrahen.application.data.CalculatedNextTide;
-import com.shawncrahen.application.data.TideDto;
-import com.shawncrahen.application.data.tide.TidePredictions;
-import com.shawncrahen.application.entity.Station;
-import com.shawncrahen.application.task.scheduled.ScheduledTidePredictionsUpdater;
+import com.shawncrahen.application.data.StationDto;
+import com.shawncrahen.application.rest.tide.TideApiResponse;
+import com.shawncrahen.application.rest.tide.TidePredictions;
 
 @Service
 public class NextTideService {
 
-  private ScheduledTidePredictionsUpdater scheduledTideApiUpdater;
-  private StationService stationService;
+  private RestTemplate restTemplate;
 
-  public NextTideService(ScheduledTidePredictionsUpdater scheduleTideApiUpdater,
-          StationService stationService) {
-    this.scheduledTideApiUpdater = scheduleTideApiUpdater;
-    this.stationService = stationService;
+  public NextTideService(RestTemplate restTemplate) {
+    this.restTemplate = restTemplate;
   }
 
-  public CalculatedNextTide getNextTide() {
-    Station station = stationService.getStation();
-    TideDto tideApiResponse = scheduledTideApiUpdater.getTideDto();
-    TidePredictions[] predictions = tideApiResponse.getPredictions();
+  public CalculatedNextTide getNextTide(StationDto station) {
+    String todayString =
+            LocalDate.now(ZoneId.of(station.getTimeZone())).toString().replaceAll("-", "");
+    TideApiResponse tides = restTemplate.getForObject(
+            "https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?begin_date="
+                    + todayString
+                    + "&range=48&station="
+                    + station.getTideSourceId()
+                    + "&product=predictions&datum=mllw&interval=hilo&units=english&time_zone=lst_ldt&format=json",
+            TideApiResponse.class);
+    TidePredictions[] predictions = tides.getPredictions();
 
     ZonedDateTime now = ZonedDateTime.now(ZoneId.of(station.getTimeZone()));
     int i = 0;

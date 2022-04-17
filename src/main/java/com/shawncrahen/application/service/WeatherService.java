@@ -1,20 +1,26 @@
 package com.shawncrahen.application.service;
 
 import org.springframework.stereotype.Service;
-import com.shawncrahen.application.data.WeatherDto;
-import com.shawncrahen.application.task.scheduled.ScheduledWeatherUpdater;
+import org.springframework.web.client.RestTemplate;
+import com.shawncrahen.application.rest.weather.WeatherApiObject;
 
 @Service
 public class WeatherService {
 
-  ScheduledWeatherUpdater scheduledWeatherUpdater;
+  private RestTemplate restTemplate;
 
-  private WeatherService(ScheduledWeatherUpdater scheduledWeatherUpdater) {
-    this.scheduledWeatherUpdater = scheduledWeatherUpdater;
+  public WeatherService(RestTemplate restTemplate) {
+    this.restTemplate = restTemplate;
   }
 
-  public WeatherDto getCurrentWeather() {
-    return scheduledWeatherUpdater.getWeatherDto();
+  public WeatherApiObject getCurrentWeather(String weatherSourceId) {
+    WeatherApiObject weather = restTemplate.getForObject(
+            "http://api.weatherapi.com/v1/forecast.json?key=3436a533716643b989d191452220402&q="
+                    + weatherSourceId
+                    + "&aqi=no",
+            WeatherApiObject.class);
+    weather.setChanceOfPrecip();
+    return weather;
   }
 
 }

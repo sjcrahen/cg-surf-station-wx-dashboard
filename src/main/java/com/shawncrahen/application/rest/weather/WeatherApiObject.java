@@ -1,17 +1,14 @@
-package com.shawncrahen.application.data;
+package com.shawncrahen.application.rest.weather;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.shawncrahen.application.data.weather.CurrentWeather;
-import com.shawncrahen.application.data.weather.Forecast;
-import com.shawncrahen.application.data.weather.ForecastDay;
 
-public class WeatherDto {
+public class WeatherApiObject {
 
   @JsonProperty("current")
   private CurrentWeather currentWeather;
   private Forecast forecast;
 
-  public WeatherDto() {}
+  public WeatherApiObject() {}
 
   public CurrentWeather getCurrentWeather() {
     return currentWeather;

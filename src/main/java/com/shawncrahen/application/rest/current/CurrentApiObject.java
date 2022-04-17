@@ -1,12 +1,10 @@
-package com.shawncrahen.application.data;
+package com.shawncrahen.application.rest.current;
 
-import com.shawncrahen.application.data.current.CurrentPredictions;
-
-public class CurrentDto {
+public class CurrentApiObject {
 
   private CurrentPredictions current_predictions;
 
-  public CurrentDto() {}
+  public CurrentApiObject() {}
 
   public CurrentPredictions getCurrent_predictions() {
     return current_predictions;

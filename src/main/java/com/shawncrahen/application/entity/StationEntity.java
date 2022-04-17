@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "stations")
-public class Station {
+public class StationEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -66,7 +66,7 @@ public class Station {
   @Column(name = "forecast_source")
   private String forecastSource = null;
 
-  private Station() {}
+  private StationEntity() {}
 
   public String getStationId() {
     return stationId;

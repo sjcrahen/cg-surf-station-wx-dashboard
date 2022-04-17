@@ -1,4 +1,4 @@
-package com.shawncrahen.application.data.tide;
+package com.shawncrahen.application.rest.tide;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

@@ -30,6 +30,9 @@ public class StationService {
       StationDto stationDto = new ModelMapper().map(station, StationDto.class);
       stationsList.add(stationDto);
     }
+    // stationsList.sort((StationDto a, StationDto b) -> {
+    //
+    // });
     return stationsList;
   }
 

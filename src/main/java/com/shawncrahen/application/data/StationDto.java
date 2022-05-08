@@ -1,6 +1,6 @@
 package com.shawncrahen.application.data;
 
-public class StationDto {
+public class StationDto implements Comparable<StationDto> {
 
   private String stationId;
   private String stationName;
@@ -172,6 +172,11 @@ public class StationDto {
             + "\", \n    \"currentSourceName\":\"" + currentSourceName
             + "\", \n    \"radarSource\":\"" + radarSource + "\", \n    \"timeZone\":\"" + timeZone
             + "\", \n    \"forecastSource\":\"" + forecastSource + "\"\n  }\n}";
+  }
+
+  @Override
+  public int compareTo(StationDto o) {
+    return this.stationName.compareTo(o.getStationName());
   }
 
 }

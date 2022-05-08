@@ -5,12 +5,16 @@
 }
 
 body {
-	background-color:#7EC0FF;
+	background-color:#084597;
 }
 
 a, a:visited {
-	color: blue;
+	color: black;
 	text-decoration: none;
+}
+
+.site {
+	color: #eee;
 }
 
 .bold {
@@ -81,11 +85,16 @@ h2 {
 }
 
 .station-link {
-	padding: .5rem;
+	padding: .5rem .5rem 0 .5rem;
 	font-size: 1.3rem;
 	font-family: "Trebuchet MS", Helvetica, sans-serif;
 	text-align: center;
-	margin: 1rem .5rem .5rem;
+	margin: 1rem .5rem 0 .5rem;
+}
+
+.station-link:last-of-type {
+	padding-bottom: .5rem;
+	margin-bottom: 1rem;
 }
 
 @media(min-width:481px) {

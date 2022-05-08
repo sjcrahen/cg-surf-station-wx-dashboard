@@ -62,6 +62,9 @@ public class DashboardController {
   @GetMapping("/stations/{stationId}")
   public String showDashboard(@PathVariable String stationId, Model model) {
 
+    Iterable<StationDto> stationsList = stationService.getAllStations();
+    model.addAttribute("stationsList", stationsList);
+
     StationDto stationDto = stationService.getStation(stationId);
     model.addAttribute("station", stationDto);
 

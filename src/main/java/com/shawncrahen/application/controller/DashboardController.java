@@ -47,9 +47,9 @@ public class DashboardController {
     this.emailService = emailService;
   }
 
-  @GetMapping("/test")
-  public String test() {
-    return "test";
+  @GetMapping("/")
+  public String index() {
+    return "redirect:/stations";
   }
 
   @GetMapping("/stations")

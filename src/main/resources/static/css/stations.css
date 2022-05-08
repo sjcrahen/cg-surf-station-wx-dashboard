@@ -13,8 +13,13 @@ a, a:visited {
 	text-decoration: none;
 }
 
-.site {
+a.site {
 	color: #eee;
+}
+
+#back-link {
+	display: flex;
+	justify-content: center;
 }
 
 .bold {
@@ -84,7 +89,7 @@ h2 {
 	margin: 1rem auto;
 }
 
-.station-link {
+.station-link, #back-link a {
 	padding: .5rem .5rem 0 .5rem;
 	font-size: 1.3rem;
 	font-family: "Trebuchet MS", Helvetica, sans-serif;

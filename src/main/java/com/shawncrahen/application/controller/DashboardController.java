@@ -6,8 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import com.shawncrahen.application.contact.Contact;
 import com.shawncrahen.application.data.CalculatedNextTide;
 import com.shawncrahen.application.data.CalculatedPresentCurrent;
 import com.shawncrahen.application.data.SeasObservation;
@@ -96,22 +94,22 @@ public class DashboardController {
     return "dashboard";
   }
 
-  @GetMapping("/contact")
-  public String showContact(Model model) {
-    Contact contact = new Contact();
-    model.addAttribute("contact", contact);
-    return "contact";
-  }
-
-  @PostMapping("/contact")
-  public String handleFormSubmission(Contact contact) throws Exception {
-    emailService.sendEmail(contact);
-    return "redirect:/contact/success";
-  }
-
-  @GetMapping("/contact/success")
-  public String getSuccess() {
-    return "success";
-  }
+  // @GetMapping("/contact")
+  // public String showContact(Model model) {
+  // Contact contact = new Contact();
+  // model.addAttribute("contact", contact);
+  // return "contact";
+  // }
+  //
+  // @PostMapping("/contact")
+  // public String handleFormSubmission(Contact contact) throws Exception {
+  // emailService.sendEmail(contact);
+  // return "redirect:/contact/success";
+  // }
+  //
+  // @GetMapping("/contact/success")
+  // public String getSuccess() {
+  // return "success";
+  // }
 
 }

@@ -21,6 +21,10 @@
 <body>
 <div class="page">
 	<div class="content">
+	<a href="javascript: document.logout.submit()" style="position:absolute;top:10px; left:20px;color:white;z-index:100">Logout</a>
+	<form name="logout" th:action="@{/logout}" method="post" th:hidden="true">
+		<input hidden type="submit" value="Sign Out"/>
+	</form>
 	<h1>Weather Dashboard</h1>
 	<div class="container">
 		<p class="description">Select a station</p>

@@ -19,4 +19,4 @@
 	window.setTimeout(function () {
 		window.location.reload();
 	}, 180000);
-}());
+})();

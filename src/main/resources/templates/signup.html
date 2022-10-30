@@ -1,0 +1,23 @@
+<!DOCTYPE html>  
+<html xmlns:th="http://www.thymeleaf.org">  
+<head>  
+    <title>Signup Page</title>  
+</head>  
+<body onload='document.form.username.focus();'>  
+<div id="container">  
+    <h2>Sign Up</h2>  
+    <form name="form" th:action="@{/signup}" method="post">  
+        <label for="username">Username</label>  
+        <input type="text" id="username" name="username" autofocus="autofocus"/>
+        <br/>
+        <label for="password">Password</label>  
+        <input type="password" id="password" name="password" />  
+        <br/>
+        <br/>
+        <input id="submit" type="submit" value="Sign Up" />  
+    </form>  
+    <p>OR</p>
+    <p>Already a user? <a th:href="@{/login}">LOG IN</a>
+</div>  
+</body>  
+</html>

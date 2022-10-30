@@ -22,6 +22,10 @@
 <div class="page">
 
 	<div class="content">
+	<a href="javascript: document.logout.submit()" style="position:absolute;top:10px; left:20px;color:white;z-index:100;text-decoration:none">Logout</a>
+	<form name="logout" th:action="@{/logout}" method="post" th:hidden="true">
+		<input hidden type="submit" value="Sign Out"/>
+	</form>
 	<div id="stations-dropdown" class="dropdown">
  	<button id="drop-btn" class="dropbtn"><th:block th:text="${station.stationName}"/><i class="bi bi-caret-down-fill"></i></button>
 		<div id="drop" class="dropdown-content"> 
@@ -38,7 +42,7 @@
 		<div class="card" th:object="${seas}" th:with="baseUrl='https://www.ndbc.noaa.gov/station_page.php'">
 			<h3>Significant Wave Height</h3>
 			<p class="time bold"><span><a class="none" th:href="@{${baseUrl}(station=${station.waveSourceId})}" target="_blank">
-							<span th:text="${station.waveSourceName}"></span></a> | <a class="none" th:href="@{${station.forecastSource}}" target="_blank">MARINE FORECAST</a></span></p>
+							<span th:text="${station.waveSourceName}"></span></a> | <a class="none" th:href="@{'https://www.ndbc.noaa.gov/data/Forecasts/'+${station.forecastSource}+'.html'}" target="_blank">MARINE FORECAST</a></span></p>
 			<p class="time">Updated: <span th:text="*{outDated || dateTimeString eq null} ? 'No Recent Data Available' : *{dateTimeString}"></span> <span th:unless="*{outDated || dateTimeString eq null}">local</span></p>
 			<div class="data-display-container-top">
 				<div class="col-3">
@@ -238,9 +242,8 @@
 		</div>
 		
 	<!-- ---------- Windy Embed ---------- -->	
-		
 		<div class="card">
-			<iframe title="Windy" class="radar-frame" th:src="@{${station.radarSource}}" frameborder="0"></iframe>	
+			<iframe title="Windy" class="radar-frame" th:src="@{'https://embed.windy.com/embed2.html?lat='+${station.lat}+'&lon='+${station.lon}+'&width=380&height=325&zoom=8&level=surface&overlay=radar&product=radar&calendar=now&type=map&location=coordinates&metricWind=kt&&radarRange=-1'}" frameborder="0"></iframe>	
 		</div>
 	</div>
 	</div>

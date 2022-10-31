@@ -12,9 +12,14 @@ public class UserService {
     @Autowired
     private UserRepository repository;
 
-    public UserEntity createUser(UserDto userDto) {
+    public UserEntity createNewUser(UserDto userDto) throws UserAlreadyExistsException {
+        UserEntity existingUser = repository.findByEmail(userDto.getEmail());
+        if (existingUser != null) {
+            throw new UserAlreadyExistsException(
+                            "A user with that email address already exists.");
+        }
         UserEntity user = new UserEntity();
-        user.setUsername(userDto.getUsername());
+        user.setEmail(userDto.getEmail());
         user.setPassword(new BCryptPasswordEncoder().encode(userDto.getPassword()));
         user.setEnabled(true);
         user.setAuthority("ROLE_USER");
@@ -22,8 +27,8 @@ public class UserService {
         return repository.save(user);
     }
 
-    public UserEntity get(String username) {
-        return repository.findByUsername(username);
+    public UserEntity get(String email) {
+        return repository.findByEmail(email);
     }
 
 }

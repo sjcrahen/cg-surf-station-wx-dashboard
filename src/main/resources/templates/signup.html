@@ -6,16 +6,19 @@
 <body onload='document.form.username.focus();'>  
 <div id="container">  
     <h2>Sign Up</h2>  
-    <form name="form" th:action="@{/signup}" method="post">  
-        <label for="username">Username</label>  
-        <input type="text" id="username" name="username" autofocus="autofocus"/>
+    <form name="form" th:action="@{/signup}" method="post" th:object="${user}">  
+        <label for="username">Email</label>  
+        <input type="text" id="username" name="username" autofocus="autofocus" th:field="*{email}" placeholder="Enter a valid email address"/>
+        <p th:each="error : ${#fields.errors('email')}" th:text="${error}"></p>
         <br/>
         <label for="password">Password</label>  
-        <input type="password" id="password" name="password" />  
+        <input type="password" id="password" name="password" th:field="*{password}" placeholder="Choose a password" />  
+        <p th:each="error : ${#fields.errors('password')}" th:text="${error}"></p>
         <br/>
         <br/>
         <input id="submit" type="submit" value="Sign Up" />  
     </form>  
+    <p th:if="${userExists}" class="error">A user with that email address already exists.</p>  
     <p>OR</p>
     <p>Already a user? <a th:href="@{/login}">LOG IN</a>
 </div>  

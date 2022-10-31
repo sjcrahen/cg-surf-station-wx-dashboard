@@ -15,8 +15,8 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column
-    private String username;
+    @Column(name = "username")
+    private String email;
 
     @Column
     private String password;
@@ -27,12 +27,12 @@ public class UserEntity {
     @Column
     private String authority;
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {

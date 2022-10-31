@@ -1,6 +1,6 @@
 insert into users
 	(username, password, enabled, authority)
-values ('scrahen','$2a$10$cMtLsEOa.sLJVy1.NYvD.uLqstOGSTA9XGNV81MJoLJyREoU/rJaS', true, 'ROLE_ADMIN');
+values ('shawn.j.crahen@gmail.com','$2a$10$cMtLsEOa.sLJVy1.NYvD.uLqstOGSTA9XGNV81MJoLJyREoU/rJaS', true, 'ROLE_ADMIN');
 
 insert into stations 
 	(station_id, station_name, wave_source_id, wind_source_id, weather_source_id, tide_source_id, current_source_id, 

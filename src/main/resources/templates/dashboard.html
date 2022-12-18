@@ -22,10 +22,6 @@
 <div class="page">
 
 	<div class="content">
-	<a href="javascript: document.logout.submit()" style="position:absolute;top:10px; left:20px;color:white;z-index:100;text-decoration:none">Logout</a>
-	<form name="logout" th:action="@{/logout}" method="post" th:hidden="true">
-		<input hidden type="submit" value="Sign Out"/>
-	</form>
 	<div id="stations-dropdown" class="dropdown">
  	<button id="drop-btn" class="dropbtn"><th:block th:text="${station.stationName}"/><i class="bi bi-caret-down-fill"></i></button>
 		<div id="drop" class="dropdown-content"> 

@@ -35,7 +35,7 @@
 	
 	<!-- ---------- Wave Data ---------- -->
 	
-		<div class="card" th:object="${seas}" th:with="baseUrl='https://www.ndbc.noaa.gov/station_page.php'">
+		<div class="card" th:object="${seas}" th:unless="${seas eq null}" th:with="baseUrl='https://www.ndbc.noaa.gov/station_page.php'">
 			<h3>Significant Wave Height</h3>
 			<p class="time bold"><span><a class="none" th:href="@{${baseUrl}(station=${station.waveSourceId})}" target="_blank">
 							<span th:text="${station.waveSourceName}"></span></a> | <a class="none" th:href="@{'https://www.ndbc.noaa.gov/data/Forecasts/'+${station.forecastSource}+'.html'}" target="_blank">MARINE FORECAST</a></span></p>
@@ -66,7 +66,7 @@
 		
 	<!-- ---------- Secondary Wave Data ---------- -->
 	
-		<div th:unless="${seas2 eq null || seas2.dateTimeString eq null}" class="card" th:object="${seas2}" th:with="baseUrl='https://www.ndbc.noaa.gov/station_page.php'">
+		<div th:unless="${seas2 eq null || seas2['dateTimeString'] eq null}" class="card" th:object="${seas2}" th:with="baseUrl='https://www.ndbc.noaa.gov/station_page.php'">
 			<h3>Significant Wave Height</h3>
 			<p class="time bold"><span><a class="none" th:href="@{${baseUrl}(station=${station.waveSourceId2})}" target="_blank">
 							<span th:text="${station.waveSourceName2}"></span></a></span></p>
@@ -104,7 +104,7 @@
 			<p class="time">Updated: <span th:text="*{outDated} ? 'No Recent Data Available' : *{dateTimeString}"></span> <span th:unless="*{outDated}">local</span></p>
 			<div class="data-display-container-top">
 				<div class="col-3">
-					<p><span class="data" th:text="*{outDated} ? '---' : *{windSpeed}"></span></p>
+					<p><span class="data" th:text="*{outDated || windSpeed eq -1} ? '---' : *{windSpeed}"></span></p>
 				</div>
 				<div class="col-3">
 					<p th:unless="*{windDirection eq null || outDated}"><img title="wind-arrow" class="wind-arrow" th:src="@{/img/wind-arrow.png}" th:style="'transform:rotate('+*{windDirection}+'deg)'"/>
@@ -132,16 +132,16 @@
 			<h3>Tidal Current</h3>
 			<p class="time bold"><span th:unless="${nextTide eq null}"><a class="none" th:href="@{${baseUrl}(id=${station.currentSourceId})}" target="_blank">
 					<span th:text="${station.currentSourceName}"></span></a></span></p>
-			<p class="time">Updated: <span th:text="${current.dateTimeString}"></span> <span>local</span></p>
+			<p class="time">Updated: <span th:text="${current['dateTimeString']}"></span> <span>local</span></p>
 			<div class="data-display-container-top">
 				<div class="col-3">
-					<p><span class="data" th:text="${current.velocity}"></span></p>
+					<p><span class="data" th:text="${current['velocity']}"></span></p>
 				</div>
 				<div class="col-3">
-					<p th:unless="${current.type eq 'Slack'}"><img title="current-arrow" class="current-arrow" th:src="@{/img/currentarrow.png}" th:style="'transform:rotate('+${current.direction}+'deg)'"/></p>
+					<p th:unless="${current['type'] eq 'Slack'}"><img title="current-arrow" class="current-arrow" th:src="@{/img/currentarrow.png}" th:style="'transform:rotate('+${current['direction']}+'deg)'"/></p>
 				</div>
 				<div class="col-3">
-					<p><span class="data" th:text="${current.nextSlackTime}"></span></p>
+					<p><span class="data" th:text="${current['nextSlackTime']}"></span></p>
 				</div>
 			</div>
 			<div class="data-display-container-bottom">
@@ -149,10 +149,10 @@
 					<p>kts</p>
 				</div>			
 				<div class="col-3">
-					<p th:unless="${current.type eq 'Slack'}"><span th:text="${current.type}"></span></p>
+					<p th:unless="${current['type'] eq 'Slack'}"><span th:text="${current['type']}"></span></p>
 				</div>			
 				<div class="col-3">
-					<p>Slack<br><span th:text="${current.nextSlackType}"></span></p>
+					<p>Slack<br><span th:text="${current['nextSlackType']}"></span></p>
 				</div>			
 			</div>
 		</div>

@@ -180,7 +180,7 @@ insert into stations
 	lat, long, 
 	time_zone, current_source_name, forecast_source) 
 values
-	('quillayute-river', 'Quillayute River', '46206', 'LAPW1', '98350', '9442388', 'PCT1321','46206 - LA PEROUSE BANK',
+	('quillayute-river', 'Quillayute River', '46041', 'LAPW1', '98350', '9442388', 'PCT1321','46041 - CAPE ELIZABETH',
 		'LAPW1 - LA PUSH', 'QUILLAYUTE RIVER',	'La Push, WA', 
 		'47.893','-124.629',
 		'America/Los_Angeles', 'QUILLAYUTE RIVER ENTRANCE', 'FZUS56.KSEW');

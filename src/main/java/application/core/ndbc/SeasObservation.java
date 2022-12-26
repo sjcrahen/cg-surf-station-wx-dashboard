@@ -1,4 +1,4 @@
-package application.core.seas;
+package application.core.ndbc;
 
 import java.time.ZonedDateTime;
 import application.core.utilities.DirectionMapper;

@@ -8,36 +8,35 @@ import org.springframework.stereotype.Service;
 @Service
 public class StationService {
 
-  private StationRepository repository;
+    private StationRepository repository;
 
-  public StationService(StationRepository repository) {
-    this.repository = repository;
-  }
-
-  public StationDto getStation(String stationId) {
-    StationEntity stationEntity = repository.findByStationId(stationId);
-    StationDto ret = new ModelMapper().map(stationEntity, StationDto.class);
-    System.out.println(ret);
-    return ret;
-  }
-
-  public Iterable<StationDto> getAllStations() {
-    List<StationDto> stationsList = new ArrayList<>();
-    Iterable<StationEntity> stations = repository.findAll();
-
-    for (StationEntity station : stations) {
-      StationDto stationDto = new ModelMapper().map(station, StationDto.class);
-      stationsList.add(stationDto);
+    public StationService(StationRepository repository) {
+        this.repository = repository;
     }
-    // stationsList.sort((StationDto a, StationDto b) -> {
-    //
-    // });
-    return stationsList;
-  }
 
-  @Override
-  public String toString() {
-    return "{\n  \"StationService\": {\n    \"repository\":\"" + repository + "\"\n  }\n}";
-  }
+    public StationDto getStation(String stationId) {
+        StationEntity stationEntity = repository.findByStationId(stationId);
+        StationDto ret = new ModelMapper().map(stationEntity, StationDto.class);
+        return ret;
+    }
+
+    public Iterable<StationDto> getAllStations() {
+        List<StationDto> stationsList = new ArrayList<>();
+        Iterable<StationEntity> stations = repository.findAll();
+
+        for (StationEntity station : stations) {
+            StationDto stationDto = new ModelMapper().map(station, StationDto.class);
+            stationsList.add(stationDto);
+        }
+        // stationsList.sort((StationDto a, StationDto b) -> {
+        //
+        // });
+        return stationsList;
+    }
+
+    @Override
+    public String toString() {
+        return "{\n  \"StationService\": {\n    \"repository\":\"" + repository + "\"\n  }\n}";
+    }
 
 }

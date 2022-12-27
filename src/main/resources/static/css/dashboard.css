@@ -159,7 +159,7 @@ a.site {
 	min-width: 340px;
 	height: 290px;
 	font-family: Helvetica, Arial, "Helvetic Neue", sans-serif;
-	padding: 8px;
+	padding: 12px;
 }
 
 .card h3 {
@@ -177,7 +177,7 @@ a.site {
 
 .data-display-container-top {
 	display: flex;
-	flex-flow: row no-wrap;
+	flex-flow: row nowrap;
 	margin-top: 48px;
 }
 
@@ -188,25 +188,15 @@ a.site {
 
 .main-temp-data {
 	text-align: center;
-	margin: 24px 0;
+	margin: 18px 0 30px;
 }
 
 .col-3 {
 	display: flex;
 	flex-flow: row no-wrap;
 	width: 33%;
-	justify-content: center;
-	align-items: flex-end;
 	text-align: center;
-}
-
-.col-2 {
-	display: flex;
-	flex-flow: row no-wrap;
-	width: 49.5%;
 	justify-content: center;
-	align-items: flex-end;
-	text-align: center;
 }
 
 .swell-arrow {
@@ -215,10 +205,6 @@ a.site {
 
 .wind-arrow {
 	width: 30%;
-}
-
-.data-display-container-top > div > * {
-	text-align: center;
 }
 
 .data-display-container-bottom > div > * {
@@ -244,8 +230,6 @@ a.site {
 .data {
 	font-size: 2.7rem;
 	font-weight: bold;
-	text-align: center;
-	padding: 0 16px;
 }
 
 .current-temp {
@@ -267,27 +251,23 @@ a.site {
 }
 
 .weather-data-data {
-	padding-top: 16px;
 	font-size: 1.4rem;
 }
 
 .forecast-icon-container {
 	text-align: center;
-	margin: 16px;
+	margin: 8px 0 24px;
 }
 
 .forecast-data-container-left {
 	width: 55%;
 	font-size: 1.4rem;
-	margin-top: 16px;
 	padding: 12px;
 }
 
 .forecast-data-container-right {
 	width: 45%;
 	font-size: 1.4rem;
-	margin-top: 16px;
-	padding: ;
 }
 
 .small {
@@ -295,6 +275,7 @@ a.site {
 }
 
 #weather-icon {
+	margin-top: -12px;
 	width: 100px;
 }
 
@@ -327,5 +308,13 @@ a.site {
 	.card.radar {
 		height: 290px;
 	}
-	
+	.main-temp-data {
+		margin: 12px 0 18px;
+	}
+	.forecast-icon-container {
+		margin: 0 0 12px;
+	}
+	.data-display-container-bottom > div > * {
+		margin-top: 8px;
+	}
 }

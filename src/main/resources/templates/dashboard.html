@@ -53,13 +53,13 @@
 				</div>
 			</div>
 			<div class="data-display-container-bottom">
-				<div class="col-3">
+				<div class="col-3 label">
 					<p>ft</p>
 				</div>	
-				<div class="col-3">
+				<div class="col-3 label">
 					<p th:unless="*{waveDirection eq null || outDated}"><span th:text="*{direction}"></span></p>
 				</div>	
-				<div class="col-3">
+				<div class="col-3 label">
 					<p>sec</p>
 				</div>	
 			</div>
@@ -84,13 +84,13 @@
 				</div>
 			</div>
 			<div class="data-display-container-bottom">
-				<div class="col-3">
+				<div class="col-3 label">
 					<p>ft</p>
 				</div>	
-				<div class="col-3">
+				<div class="col-3 label">
 					<p th:unless="*{waveDirection eq null || outDated}"><span th:text="*{direction}"></span></p>
 				</div>	
-				<div class="col-3">
+				<div class="col-3 label">
 					<p>sec</p>
 				</div>	
 			</div>
@@ -115,13 +115,13 @@
 				</div>
 			</div>
 			<div class="data-display-container-bottom">
-				<div class="col-3">
+				<div class="col-3 label">
 					<p>kts</p>
 				</div>
-				<div class="col-3">
+				<div class="col-3 label">
 					<p th:unless="*{windDirection eq null || outDated}"><span th:text="*{direction}"></span></p>
 				</div>
-				<div class="col-3">
+				<div class="col-3 label">
 					<p>gust</p>
 				</div>
 			</div>
@@ -146,13 +146,13 @@
 				</div>
 			</div>
 			<div class="data-display-container-bottom">
-				<div class="col-3">
+				<div class="col-3 label">
 					<p>kts</p>
 				</div>			
-				<div class="col-3">
+				<div class="col-3 label">
 					<p th:unless="${current['type'] eq 'Slack'}"><span th:text="${current['type']}"></span></p>
 				</div>			
-				<div class="col-3">
+				<div class="col-3 label">
 					<p>Slack&nbsp;<span th:text="${current['nextSlackType']}"></span></p>
 				</div>			
 			</div>
@@ -166,18 +166,20 @@
 					<span th:text="${station.tideSourceName}"></span></a></span></p>
 			<p class="time">Current Time: <span th:text="${#temporals.format(currentTime, 'HH:mm')}"></span> <span>local</span></p>
 			<div class="data-display-container-top">
-				<div class="col-2">
+				<div class="col-3">
 					<p th:unless="${nextTide eq null}"><span class="data" th:text="${nextTide.height}"></span></p>
 				</div>
-				<div class="col-2">
+				<div class="col-3"></div>
+				<div class="col-3">
 					<p th:unless="${nextTide eq null}"><span class="data" th:text="${nextTide.time}"></span></p>
 				</div>
 			</div>
 			<div class="data-display-container-bottom">
-				<div class="col-2">
+				<div class="col-3 label">
 					<p th:unless="${nextTide eq null}">ft &plusmn MLW</p>
 				</div>			
-				<div class="col-2">
+				<div class="col-3 label"></div>
+				<div class="col-3 label">
 					<p th:unless="${nextTide eq null}"><span th:text="${nextTide.type}"></span></p>
 				</div>			
 			</div>

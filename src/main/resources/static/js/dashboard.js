@@ -17,7 +17,7 @@
 				overlay.classList.remove('show');
 		}
 	}
-
+	
 	window.setTimeout(function () {
 		window.location.reload();
 	}, 180_000);

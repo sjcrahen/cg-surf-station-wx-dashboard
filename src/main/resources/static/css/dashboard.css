@@ -84,13 +84,14 @@ a.site {
 	background-color: var(--main-bg-color);
 	color: var(--main-txt-color);
 	padding: 16px;
-	font-size: 2.3rem;
+	font-size: 1.8rem;
 	font-weight: bold;
 	border: none;
 	cursor: pointer;
 	margin: auto;
 	font-family: Helvetica, Arial, "Helvetic Neue", sans-serif;
 	z-index: 105;
+	white-space: nowrap;
 }
 
 .dropbtn > * {
@@ -106,11 +107,12 @@ a.site {
 	position: relative;
 	display: flex;
 	justify-content: center;
+	height: 70px;
 }
 
 .dropdown-content {
 	position: fixed;
-	top: -575px;
+	top: -570px;
 	left:50%;
 	transform: translate(-50%);
 	background-color: #ccc;
@@ -134,7 +136,7 @@ a.site {
 }
 
 .show {
-	top: 75px;
+	top: 70px;
 	transition: top 0.7s ease-out;
 }
 

@@ -49,7 +49,6 @@ footer {
 	text-align: center;
 	font-family: Helvetica, Arial, "Helvetic Neue", sans-serif;
 	font-size: 1.5rem;
-	font-weight: 100;
 	color: var(--main-txt-color);
 }
 
@@ -58,7 +57,7 @@ footer *, footer a * {
 }
 
 i {
-	padding: 0 .5rem;
+	padding: 0 8px;
 	color: var(--main-txt-color);
 }
 
@@ -77,12 +76,14 @@ a.site {
 #stations-dropdown {
 	background-color: var(--main-bg-color);
 	z-index: 105;
+	position: sticky;
+	top: 0;
 }
 
 .dropbtn {
 	background-color: var(--main-bg-color);
 	color: var(--main-txt-color);
-	padding: 1rem;
+	padding: 16px;
 	font-size: 2.3rem;
 	font-weight: bold;
 	border: none;
@@ -108,7 +109,7 @@ a.site {
 }
 
 .dropdown-content {
-	position: absolute;
+	position: fixed;
 	top: -575px;
 	left:50%;
 	transform: translate(-50%);
@@ -125,7 +126,7 @@ a.site {
 	text-decoration: none;
 	font-family: Helvetica, Arial, "Helvetic Neue", sans-serif;
 	font-weight: bold;
-	padding: 1rem 1.4rem;
+	padding: 16px 22px;
 	font-size: 1.3rem;
 	display: block;
 }
@@ -141,30 +142,32 @@ a.site {
 	gap: 10px;
 }
 
+.flex-container.ss {
+	gap: 6px;
+}
+
 .main-dashboard {
 	width: 100%;
-	margin: 0 auto 1rem auto;
+	margin: 0 auto 16px auto;
 	justify-content: center;
 }
 
 .card {
 	background: linear-gradient(#b5b5b5, #ddd);
-	flex: 0 0 0;
+	flex: 0;
 	min-width: 340px;
-	height: 300px;
+	height: 290px;
 	font-family: Helvetica, Arial, "Helvetic Neue", sans-serif;
+	padding: 8px;
 }
 
 .card h3 {
 	font-size: 1.3rem;
-	padding: .5rem 0 0 .5rem;
 }
 
 .time {
 	font-size: .7rem;
-	font-weight: 200;
-	padding-left: .5rem;
-	padding-top: .2rem;
+	padding-top: 3px;
 }
 
 .bold {
@@ -174,18 +177,17 @@ a.site {
 .data-display-container-top {
 	display: flex;
 	flex-flow: row no-wrap;
-	margin-top: 3rem;
+	margin-top: 48px;
 }
 
 .data-display-container-bottom {
 	display: flex;
 	flex-flow: row no-wrap;
-	margin-bottom: 2rem;
 }
 
 .main-temp-data {
 	text-align: center;
-	margin: 1.5rem 0;
+	margin: 24px 0;
 }
 
 .col-3 {
@@ -221,18 +223,17 @@ a.site {
 .data-display-container-bottom > div > * {
 	text-align: center;
 	font-size: 1.2rem;
-	margin-bottom: 2rem;
+	margin-top: 16px;
 }
 
 .ss-icon-container {
-	margin-left: 5px;
 	width: 30%;
+	padding-top: 4px;
 }
 
 .ss-data-container {
 	width: 59%;
-	margin-bottom: .8rem;
-	padding-top: .4rem;
+	padding-top: 8px;
 }
 
 .ss-img {
@@ -243,7 +244,7 @@ a.site {
 	font-size: 2.7rem;
 	font-weight: bold;
 	text-align: center;
-	padding: 0 1rem;
+	padding: 0 16px;
 }
 
 .current-temp {
@@ -265,27 +266,27 @@ a.site {
 }
 
 .weather-data-data {
-	padding-top: 1rem;
+	padding-top: 16px;
 	font-size: 1.4rem;
 }
 
 .forecast-icon-container {
 	text-align: center;
-	margin: 1rem;
+	margin: 16px;
 }
 
 .forecast-data-container-left {
 	width: 55%;
 	font-size: 1.4rem;
-	margin-top: 1rem;
-	padding: .8rem;
+	margin-top: 16px;
+	padding: 12px;
 }
 
 .forecast-data-container-right {
 	width: 45%;
 	font-size: 1.4rem;
-	margin-top: 1rem;
-	padding: .4rem;
+	margin-top: 16px;
+	padding: ;
 }
 
 .small {
@@ -294,17 +295,19 @@ a.site {
 
 #weather-icon {
 	width: 100px;
-	padding-left: 1rem;
-	margin-bottom: 2rem;
 }
 
 #forecast-icon {
 	width: 85px;
 }
 
+.card.radar {
+	padding: 0;
+}
+
 .radar-frame {
 	width: 340px;
-	height: 300px;
+	height: 290px;
 }
 
 @media(min-width: 481px) {
@@ -312,4 +315,16 @@ a.site {
 		width: 98%;
 	}	
 	.dropdown-content a:hover {background-color: #ddd;}
+}
+@media(max-width: 480px) {
+	.card {
+		height: unset;
+	}
+	.data-display-container-top {
+		margin-top: 16px;
+	}
+	.card.radar {
+		height: 290px;
+	}
+	
 }

@@ -60,7 +60,7 @@
 					<p th:unless="*{waveDirection eq null || outDated}"><span th:text="*{direction}"></span></p>
 				</div>	
 				<div class="col-3">
-					<p><br>sec</p>
+					<p>sec</p>
 				</div>	
 			</div>
 		</div>
@@ -91,7 +91,7 @@
 					<p th:unless="*{waveDirection eq null || outDated}"><span th:text="*{direction}"></span></p>
 				</div>	
 				<div class="col-3">
-					<p><br>sec</p>
+					<p>sec</p>
 				</div>	
 			</div>
 		</div>
@@ -122,7 +122,7 @@
 					<p th:unless="*{windDirection eq null || outDated}"><span th:text="*{direction}"></span></p>
 				</div>
 				<div class="col-3">
-					<p><br>gust</p>
+					<p>gust</p>
 				</div>
 			</div>
 		</div>
@@ -153,7 +153,7 @@
 					<p th:unless="${current['type'] eq 'Slack'}"><span th:text="${current['type']}"></span></p>
 				</div>			
 				<div class="col-3">
-					<p>Slack<br><span th:text="${current['nextSlackType']}"></span></p>
+					<p>Slack&nbsp;<span th:text="${current['nextSlackType']}"></span></p>
 				</div>			
 			</div>
 		</div>
@@ -175,7 +175,7 @@
 			</div>
 			<div class="data-display-container-bottom">
 				<div class="col-2">
-					<p th:unless="${nextTide eq null}"><br>ft &plusmn MLW</p>
+					<p th:unless="${nextTide eq null}">ft &plusmn MLW</p>
 				</div>			
 				<div class="col-2">
 					<p th:unless="${nextTide eq null}"><span th:text="${nextTide.type}"></span></p>
@@ -219,7 +219,7 @@
 					<p><span class="small">Precip:&nbsp</span> <span th:text="${forecastDay.day.chance_of_precip}"></span>&#37</p>
 				</div>
 				<div class="forecast-data-container-right">
-					<div class="flex-container">
+					<div class="flex-container ss">
 					<div class="ss-icon-container">
 						<img title="sunrise" class="ss-img" th:src="@{/img/sunrise.png}"/>
 					</div>
@@ -240,7 +240,7 @@
 		
 	<!-- ---------- Windy Embed ---------- -->	
 		<div class="card radar">
-			<iframe title="Windy" class="radar-frame" th:src="@{'https://embed.windy.com/embed2.html?lat='+${station.lat}+'&lon='+${station.lon}+'&width=380&height=325&zoom=8&level=surface&overlay=radar&product=radar&calendar=now&type=map&location=coordinates&metricWind=kt&&radarRange=-1'}" frameborder="0"></iframe>	
+			<iframe title="Windy" class="radar-frame" th:src="@{'https://embed.windy.com/embed2.html?lat='+${station.lat}+'&lon='+${station.lon}+'&width=340&height=290&zoom=8&level=surface&overlay=radar&product=radar&calendar=now&type=map&location=coordinates&metricWind=kt&&radarRange=-1'}" frameborder="0"></iframe>	
 		</div>
 	</div>
 	</div>

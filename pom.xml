@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.shawncrahen.application</groupId>
 	<artifactId>surf-station-wx-dashboard</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<name>surf-station-wx-dashboard</name>
 	<description>CG Surf Station Weather Dashboard</description>
 	<properties>

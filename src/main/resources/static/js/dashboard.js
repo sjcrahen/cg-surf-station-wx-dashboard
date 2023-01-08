@@ -12,9 +12,9 @@
 	}
 	
 	function hideDropMenu(event) {
-		if (!event.target.matches('.dropbtn')) {
-				dropdownContent.classList.remove('show');
-				overlay.classList.remove('show');
+		if (!event.target.matches('.dropbtn') && !event.target.matches('.dropdown-item')) {
+			dropdownContent.classList.remove('show');
+			overlay.classList.remove('show');
 		}
 	}
 	

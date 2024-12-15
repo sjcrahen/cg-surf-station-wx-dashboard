@@ -1,4 +1,4 @@
-# cg-surf-station-wx-dashboard - http://surfstationwx.com
+# cg-surf-station-wx-dashboard
 Weather Dashboard - One stop access to the most important data for a Coast Guard Surf Station on one page. Data is updated continuously via API calls to reliable weather sources. All designated surf stations are available.
 
 In progress sample pages:
